@@ -1,0 +1,15 @@
+ID,Name,Category,Density,GWP100,Unit
+1.1.01,Beton C20/25,Beton,2300,0.0896,kgCO2e/kg
+1.1.02,Beton C25/30,Beton,2350,0.0941,kgCO2e/kg
+1.1.03,Beton C30/37,Beton,2400,0.100,kgCO2e/kg
+1.2.01,Bewehrungsstahl,Stahl,7850,0.769,kgCO2e/kg
+1.2.02,Baustahl,Stahl,7850,1.44,kgCO2e/kg
+2.1.01,Vollziegel,Mauerwerk,1800,0.160,kgCO2e/kg
+2.1.02,Hochlochziegel,Mauerwerk,1200,0.140,kgCO2e/kg
+3.1.01,Brettschichtholz,Holz,470,-0.655,kgCO2e/kg
+3.1.02,Brettsperrholz,Holz,470,-0.580,kgCO2e/kg
+4.1.01,Mineralwolle,Dämmung,100,1.28,kgCO2e/kg
+4.1.02,EPS,Dämmung,20,3.29,kgCO2e/kg
+4.1.03,XPS,Dämmung,35,3.87,kgCO2e/kg
+5.1.01,Floatglas,Glas,2500,0.790,kgCO2e/kg
+5.1.02,VSG,Glas,2500,0.850,kgCO2e/kg 

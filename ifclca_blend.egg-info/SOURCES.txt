@@ -1,0 +1,8 @@
+LICENSE
+README.md
+setup.py
+ifclca_blend.egg-info/PKG-INFO
+ifclca_blend.egg-info/SOURCES.txt
+ifclca_blend.egg-info/dependency_links.txt
+ifclca_blend.egg-info/requires.txt
+ifclca_blend.egg-info/top_level.txt
