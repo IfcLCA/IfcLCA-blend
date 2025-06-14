@@ -564,6 +564,23 @@ class IFCLCA_OT_ExportResults(Operator):
         context.window_manager.fileselect_add(self)
         return {'RUNNING_MODAL'}
     
+    def _parse_carbon_value_to_kg(self, carbon_str):
+        """Parse carbon value from string and convert to kg (e.g. '4.13 t CO₂-eq' -> '4130.0 kg CO₂-eq')"""
+        try:
+            # Remove CO₂-eq suffix
+            value_str = carbon_str.replace('CO₂-eq', '').replace('CO₂e', '').strip()
+            
+            # Check for tons
+            if 't' in value_str:
+                value = float(value_str.replace('t', '').strip())
+                return f"{value * 1000:.1f} kg CO₂-eq"  # Convert to kg
+            else:
+                # Already in kg, just clean up formatting
+                value = float(value_str.replace('kg', '').strip())
+                return f"{value:.1f} kg CO₂-eq"
+        except:
+            return carbon_str  # Return original if parsing fails
+
     def execute(self, context):
         props = context.scene.ifclca_props
         
@@ -614,13 +631,18 @@ class IFCLCA_OT_ExportResults(Operator):
                     writer.writeheader()
                     
                     for mat in materials_data:
+                        # Convert carbon values to kg if they're in tonnes
+                        carbon_value = mat.get('Carbon', '')
+                        if carbon_value:
+                            carbon_value = self._parse_carbon_value_to_kg(carbon_value)
+                        
                         row = {
                             'Material': mat.get('Material', ''),
                             'IFC Material': mat.get('IFC Material', ''),
                             'Elements': mat.get('Elements', ''),
                             'Volume': mat.get('Volume', ''),
                             'Mass': mat.get('Mass', ''),
-                            'Carbon': mat.get('Carbon', '')
+                            'Carbon': carbon_value
                         }
                         writer.writerow(row)
             
