@@ -58,9 +58,14 @@ _logger = setup_ifclca_logger()
 # Import our modules - handle relative imports carefully
 if _BPY_AVAILABLE:
     # Normal Blender imports
-    from . import panels
-    from . import operators
-    from . import properties
+    try:
+        from . import panels
+        from . import operators
+        from . import properties
+    except Exception:
+        import panels
+        import operators
+        import properties
 else:
     # For testing, use absolute imports
     try:

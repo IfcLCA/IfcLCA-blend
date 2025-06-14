@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>IfcLCA Results</title>
+<style>
+body { font-family: Arial, sans-serif; margin: 20px; }
+table { border-collapse: collapse; width: 100%; }
+th, td { border: 1px solid #ccc; padding: 8px; }
+th { background: #eee; cursor:pointer; }
+</style>
+</head>
+<body>
+<h1>IfcLCA Results</h1>
+<table id="results">
+<thead>
+<tr><th data-key="name">Material</th><th data-key="total_volume">Volume (m³)</th><th data-key="total_mass">Mass (kg)</th><th data-key="total_carbon">Carbon (kg CO₂e)</th></tr>
+</thead>
+<tbody></tbody>
+</table>
+<script>
+function load(){
+  fetch('/results').then(r=>r.json()).then(data=>{
+    const tbody=document.querySelector('#results tbody');
+    tbody.innerHTML='';
+    Object.entries(data).forEach(([name,info])=>{
+      const tr=document.createElement('tr');
+      tr.innerHTML=`<td>${name}</td><td>${info.total_volume.toFixed(2)}</td><td>${info.total_mass.toFixed(0)}</td><td>${info.total_carbon.toFixed(1)}</td>`;
+      tbody.appendChild(tr);
+    });
+  });
+}
+function sortTable(key){
+  const rows=Array.from(document.querySelectorAll('#results tbody tr'));
+  const idx={name:0,total_volume:1,total_mass:2,total_carbon:3}[key];
+  rows.sort((a,b)=>parseFloat(b.children[idx].textContent)-parseFloat(a.children[idx].textContent));
+  const tbody=document.querySelector('#results tbody');
+  tbody.innerHTML='';
+  rows.forEach(r=>tbody.appendChild(r));
+}
+document.querySelectorAll('th').forEach(th=>{
+  th.addEventListener('click',()=>sortTable(th.dataset.key));
+});
+load();
+</script>
+</body>
+</html>

@@ -22,6 +22,7 @@ except ImportError:
 import os
 import logging
 import sys
+import json
 
 # Set up logging for Blender console
 def setup_logging():
@@ -409,6 +410,7 @@ class IFCLCA_OT_RunAnalysis(Operator):
             # Format and store results
             results_text = format_results(results, detailed_results, db_reader)
             props.results_text = results_text
+            props.results_json = json.dumps(detailed_results)
             
             # Calculate total
             total_carbon = sum(detailed_results[m]['total_carbon'] for m in detailed_results)
@@ -441,6 +443,7 @@ class IFCLCA_OT_ClearResults(Operator):
     def execute(self, context):
         props = context.scene.ifclca_props
         props.results_text = ""
+        props.results_json = ""
         props.total_carbon = 0.0
         props.show_results = False
         return {'FINISHED'}
@@ -656,6 +659,30 @@ class IFCLCA_OT_ExportResults(Operator):
             return {'CANCELLED'}
 
 
+class IFCLCA_OT_ViewWebResults(Operator):
+    """Open analysis results in a web browser"""
+    bl_idname = "ifclca.view_web_results"
+    bl_label = "View in Browser"
+    bl_description = "View analysis results in an interactive web page"
+    bl_options = {'REGISTER', 'UNDO'}
+
+    def execute(self, context):
+        props = context.scene.ifclca_props
+        if not props.results_json:
+            self.report({'ERROR'}, "No results available")
+            return {'CANCELLED'}
+        try:
+            from . import web_interface
+        except ImportError:
+            import web_interface
+
+        data = json.loads(props.results_json)
+        server = web_interface.launch_results_browser(data)
+        # Store server on context to keep alive
+        context.scene.ifclca_web_server = server
+        return {'FINISHED'}
+
+
 # List of classes to register
 classes = [
     IFCLCA_OT_LoadIFC,
@@ -664,5 +691,6 @@ classes = [
     IFCLCA_OT_RunAnalysis,
     IFCLCA_OT_ClearResults,
     IFCLCA_OT_AutoMapMaterials,
-    IFCLCA_OT_ExportResults
-] 
+    IFCLCA_OT_ExportResults,
+    IFCLCA_OT_ViewWebResults
+]

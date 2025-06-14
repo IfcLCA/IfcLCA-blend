@@ -108,6 +108,12 @@ class IfcLCAProperties(PropertyGroup):
         description="Formatted results text",
         default=""
     )
+    results_json: StringProperty(
+        name="Results JSON",
+        description="Analysis results in JSON",
+        default="",
+    )
+
     
     show_results: BoolProperty(
         name="Show Results",
