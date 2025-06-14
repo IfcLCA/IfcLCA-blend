@@ -1,13 +1,13 @@
 bl_info = {
     "name": "IfcLCA Integration",
-    "author": "IfcLCA Development Team",
+    "author": "louistrue",
     "version": (0, 1, 0),
     "blender": (3, 6, 0),
     "location": "View3D > Sidebar > IfcLCA Tab",
-    "description": "Life Cycle Assessment for IFC models using IfcLCA-Py",
+    "description": "Life Cycle Assessment for IFC models using IfcLCA",
     "warning": "",
     "doc_url": "https://github.com/IfcLCA",
-    "category": "BIM",
+    "category": "LCA",
 }
 
 # Only import bpy when running inside Blender
@@ -23,6 +23,37 @@ except ImportError:
     if 'pytest' in sys.modules:
         from tests.mock_bpy import MockBpy
         bpy = MockBpy()
+
+import logging
+import sys
+
+# Set up global logger for IfcLCA
+def setup_ifclca_logger():
+    """Set up logging for IfcLCA that outputs to Blender's console"""
+    logger = logging.getLogger('IfcLCA')
+    logger.setLevel(logging.DEBUG)
+    
+    # Remove existing handlers to avoid duplicates
+    for handler in logger.handlers[:]:
+        logger.removeHandler(handler)
+    
+    # Create console handler
+    console_handler = logging.StreamHandler(sys.stdout)
+    console_handler.setLevel(logging.DEBUG)
+    
+    # Create formatter
+    formatter = logging.Formatter('[IfcLCA] %(levelname)s: %(message)s')
+    console_handler.setFormatter(formatter)
+    
+    logger.addHandler(console_handler)
+    return logger
+
+def get_ifclca_logger():
+    """Get the IfcLCA logger - useful for console debugging"""
+    return logging.getLogger('IfcLCA')
+
+# Initialize logger
+_logger = setup_ifclca_logger()
 
 # Import our modules - handle relative imports carefully
 if _BPY_AVAILABLE:
@@ -75,7 +106,12 @@ def register():
     # Register property groups
     bpy.types.Scene.ifclca_props = PointerProperty(type=properties.IfcLCAProperties)
     
+    # Make logger available in console
+    bpy.ifclca_logger = get_ifclca_logger()
+    
+    _logger.info("IfcLCA Integration add-on registered")
     print("IfcLCA Integration add-on registered")
+    print("Access logger in console with: bpy.ifclca_logger.info('your message')")
 
 def unregister():
     """Unregister all classes and properties"""
@@ -95,6 +131,11 @@ def unregister():
     # Remove property groups
     del bpy.types.Scene.ifclca_props
     
+    # Remove logger from bpy
+    if hasattr(bpy, 'ifclca_logger'):
+        del bpy.ifclca_logger
+    
+    _logger.info("IfcLCA Integration add-on unregistered")
     print("IfcLCA Integration add-on unregistered")
 
 if __name__ == "__main__" and _BPY_AVAILABLE:

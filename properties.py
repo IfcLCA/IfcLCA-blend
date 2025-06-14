@@ -37,9 +37,10 @@ class MaterialResult(PropertyGroup):
 
 class MaterialMapping(PropertyGroup):
     """Property group for material mapping"""
-    ifc_material: StringProperty(name="IFC Material")
-    db_material_id: StringProperty(name="Database Material ID")
-    db_material_name: StringProperty(name="Database Material Name")
+    ifc_material_name: StringProperty(name="IFC Material")
+    database_id: StringProperty(name="Database Material ID")
+    database_name: StringProperty(name="Database Material Name")
+    is_mapped: BoolProperty(name="Is Mapped", default=False)
     carbon_per_unit: FloatProperty(name="Carbon per Unit")
     density: FloatProperty(name="Density")
 
@@ -48,11 +49,17 @@ class IfcLCAProperties(PropertyGroup):
     """Main property group for IfcLCA"""
     
     # IFC file settings
-    ifc_file: StringProperty(
+    ifc_file_path: StringProperty(
         name="IFC File",
         description="Path to IFC file",
         subtype='FILE_PATH',
         default=""
+    )
+    
+    ifc_loaded: BoolProperty(
+        name="IFC Loaded",
+        description="Whether an IFC file is currently loaded",
+        default=False
     )
     
     # Database settings
@@ -65,6 +72,20 @@ class IfcLCAProperties(PropertyGroup):
             ('CUSTOM', "Custom", "Custom JSON database")
         ],
         default='KBOB'
+    )
+    
+    kbob_data_path: StringProperty(
+        name="KBOB Data Path",
+        description="Path to KBOB data directory or file",
+        subtype='DIR_PATH',
+        default=""
+    )
+    
+    okobaudat_csv_path: StringProperty(
+        name="ÖKOBAUDAT CSV File",
+        description="Path to ÖKOBAUDAT CSV file",
+        subtype='FILE_PATH',
+        default=""
     )
     
     database_file: StringProperty(
@@ -82,13 +103,31 @@ class IfcLCAProperties(PropertyGroup):
         unit='MASS'
     )
     
+    results_text: StringProperty(
+        name="Results Text",
+        description="Formatted results text",
+        default=""
+    )
+    
+    show_results: BoolProperty(
+        name="Show Results",
+        description="Whether to show results panel",
+        default=False
+    )
+    
     # Material collections
     materials: CollectionProperty(type=MaterialResult)
-    material_mapping: CollectionProperty(type=MaterialMapping)
+    material_mappings: CollectionProperty(type=MaterialMapping)
     
     # UI state
     selected_material_index: IntProperty(default=0)
     selected_mapping_index: IntProperty(default=0)
+    active_mapping_index: IntProperty(default=0)
+    filter_mapped: BoolProperty(
+        name="Show Mapped Only",
+        description="Show only mapped materials",
+        default=False
+    )
     
     # Element filter settings
     filter_ifc_class: EnumProperty(

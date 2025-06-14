@@ -52,7 +52,7 @@ class TestBlendDatabaseReader:
                 "category": "Test",
                 "density": 1000,
                 "carbon_per_unit": 0.5,
-                "unit": "kgCO2e/kg"
+                "unit": "kg CO₂-eq/kg"
             }
         }
         

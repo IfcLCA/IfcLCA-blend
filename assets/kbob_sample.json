@@ -4,7 +4,7 @@
         "category": "Concrete",
         "density": 2400,
         "carbon_per_unit": 0.0941,
-        "unit": "kgCO2e/kg",
+        "unit": "kg CO₂-eq/kg",
         "description": "Normal concrete with 25 MPa cylinder / 30 MPa cube strength"
     },
     "KBOB_CONCRETE_C30_37": {
@@ -12,7 +12,7 @@
         "category": "Concrete",
         "density": 2400,
         "carbon_per_unit": 0.100,
-        "unit": "kgCO2e/kg",
+        "unit": "kg CO₂-eq/kg",
         "description": "Normal concrete with 30 MPa cylinder / 37 MPa cube strength"
     },
     "KBOB_STEEL_REINFORCING": {
@@ -20,7 +20,7 @@
         "category": "Metal",
         "density": 7850,
         "carbon_per_unit": 0.750,
-        "unit": "kgCO2e/kg",
+        "unit": "kg CO₂-eq/kg",
         "description": "Steel reinforcement bars (rebar)"
     },
     "KBOB_TIMBER_GLULAM": {
@@ -28,7 +28,7 @@
         "category": "Wood",
         "density": 470,
         "carbon_per_unit": -0.655,
-        "unit": "kgCO2e/kg",
+        "unit": "kg CO₂-eq/kg",
         "description": "Glued laminated timber (negative value due to carbon storage)"
     }
 }

@@ -40,91 +40,91 @@ class KBOBDatabaseReader(CarbonDatabaseReader):
     def load_default_data(self):
         """Load default KBOB data (subset for demo)"""
         # This is a representative subset of KBOB 2022 data
-        # Units: density in kg/m³, carbon_per_unit in kgCO2e/kg
+        # Units: density in kg/m³, carbon_per_unit in kg CO₂-eq/kg
         self.data = {
             "KBOB_CONCRETE_C25_30": {
                 "name": "Concrete C25/30",
                 "category": "Concrete",
                 "density": 2400,
                 "carbon_per_unit": 0.0941,
-                "unit": "kgCO2e/kg"
+                "unit": "kg CO₂-eq/kg"
             },
             "KBOB_CONCRETE_C30_37": {
                 "name": "Concrete C30/37",
                 "category": "Concrete", 
                 "density": 2400,
                 "carbon_per_unit": 0.100,
-                "unit": "kgCO2e/kg"
+                "unit": "kg CO₂-eq/kg"
             },
             "KBOB_CONCRETE_C35_45": {
                 "name": "Concrete C35/45",
                 "category": "Concrete",
                 "density": 2400,
                 "carbon_per_unit": 0.110,
-                "unit": "kgCO2e/kg"
+                "unit": "kg CO₂-eq/kg"
             },
             "KBOB_STEEL_REINFORCING": {
                 "name": "Reinforcing steel",
                 "category": "Metal",
                 "density": 7850,
                 "carbon_per_unit": 0.750,
-                "unit": "kgCO2e/kg"
+                "unit": "kg CO₂-eq/kg"
             },
             "KBOB_STEEL_STRUCTURAL": {
                 "name": "Structural steel",
                 "category": "Metal",
                 "density": 7850,
                 "carbon_per_unit": 1.44,
-                "unit": "kgCO2e/kg"
+                "unit": "kg CO₂-eq/kg"
             },
             "KBOB_TIMBER_GLULAM": {
                 "name": "Glulam timber",
                 "category": "Wood",
                 "density": 470,
                 "carbon_per_unit": -0.655,  # Negative due to carbon storage
-                "unit": "kgCO2e/kg"
+                "unit": "kg CO₂-eq/kg"
             },
             "KBOB_TIMBER_CLT": {
                 "name": "Cross-laminated timber (CLT)",
                 "category": "Wood",
                 "density": 470,
                 "carbon_per_unit": -0.580,
-                "unit": "kgCO2e/kg"
+                "unit": "kg CO₂-eq/kg"
             },
             "KBOB_BRICK_CLAY": {
                 "name": "Clay brick",
                 "category": "Masonry",
                 "density": 1800,
                 "carbon_per_unit": 0.160,
-                "unit": "kgCO2e/kg"
+                "unit": "kg CO₂-eq/kg"
             },
             "KBOB_INSULATION_MINERAL_WOOL": {
                 "name": "Mineral wool insulation",
                 "category": "Insulation",
                 "density": 100,
                 "carbon_per_unit": 1.28,
-                "unit": "kgCO2e/kg"
+                "unit": "kg CO₂-eq/kg"
             },
             "KBOB_INSULATION_EPS": {
                 "name": "EPS insulation",
                 "category": "Insulation",
                 "density": 20,
                 "carbon_per_unit": 3.29,
-                "unit": "kgCO2e/kg"
+                "unit": "kg CO₂-eq/kg"
             },
             "KBOB_GLASS_FLOAT": {
                 "name": "Float glass",
                 "category": "Glass",
                 "density": 2500,
                 "carbon_per_unit": 0.790,
-                "unit": "kgCO2e/kg"
+                "unit": "kg CO₂-eq/kg"
             },
             "KBOB_PLASTER": {
                 "name": "Gypsum plaster",
                 "category": "Finishes",
                 "density": 1200,
                 "carbon_per_unit": 0.120,
-                "unit": "kgCO2e/kg"
+                "unit": "kg CO₂-eq/kg"
             }
         }
         
@@ -182,9 +182,9 @@ class OkobaudatDatabaseReader(CarbonDatabaseReader):
                         # Convert to per kg
                         if density > 0:
                             gwp = gwp / density
-                        carbon_unit = "kgCO2e/kg"
+                        carbon_unit = "kg CO₂-eq/kg"
                     else:
-                        carbon_unit = "kgCO2e/kg"
+                        carbon_unit = "kg CO₂-eq/kg"
                     
                     self.data[material_id] = {
                         "name": row.get('Name', material_id),

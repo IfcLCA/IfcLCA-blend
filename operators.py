@@ -20,11 +20,38 @@ except ImportError:
     EnumProperty = MagicMock()
 
 import os
+import logging
+import sys
+
+# Set up logging for Blender console
+def setup_logging():
+    """Set up logging to output to Blender's console"""
+    logger = logging.getLogger('IfcLCA')
+    logger.setLevel(logging.DEBUG)
+    
+    # Remove existing handlers to avoid duplicates
+    for handler in logger.handlers[:]:
+        logger.removeHandler(handler)
+    
+    # Create console handler
+    console_handler = logging.StreamHandler(sys.stdout)
+    console_handler.setLevel(logging.DEBUG)
+    
+    # Create formatter
+    formatter = logging.Formatter('[IfcLCA] %(levelname)s: %(message)s')
+    console_handler.setFormatter(formatter)
+    
+    logger.addHandler(console_handler)
+    return logger
+
+# Initialize logger
+logger = setup_logging()
 
 try:
     import ifcopenshell
 except ImportError:
     ifcopenshell = None
+    logger.error("ifcopenshell not available - IFC functionality will be limited")
 
 # Import our modules
 try:
@@ -37,10 +64,12 @@ except ImportError:
 
 # Try to import Bonsai tools if available
 try:
-    from bonsai.bim import tool
+    from bonsai.bim.ifc import IfcStore
     HAS_BONSAI = True
+    logger.info("Bonsai tools available")
 except ImportError:
     HAS_BONSAI = False
+    logger.warning("Bonsai tools not available - some features will be limited")
 
 # Global storage for IFC file (could also use Bonsai's IfcStore)
 _ifc_file = None
@@ -63,10 +92,35 @@ class IFCLCA_OT_LoadIFC(Operator, ImportHelper):
         global _ifc_file
         props = context.scene.ifclca_props
         
+        if not ifcopenshell:
+            logger.error("ifcopenshell not available")
+            self.report({'ERROR'}, "ifcopenshell not available")
+            return {'CANCELLED'}
+        
         try:
             # Load the IFC file
-            print(f"Loading IFC file: {self.filepath}")
+            logger.info(f"Loading IFC file: {self.filepath}")
             _ifc_file = ifcopenshell.open(self.filepath)
+            
+            # Log IFC file info
+            logger.info(f"IFC Schema: {_ifc_file.schema}")
+            
+            # Check for basic IFC structure
+            projects = _ifc_file.by_type("IfcProject")
+            logger.info(f"Found {len(projects)} IfcProject(s)")
+            
+            sites = _ifc_file.by_type("IfcSite")
+            logger.info(f"Found {len(sites)} IfcSite(s)")
+            
+            buildings = _ifc_file.by_type("IfcBuilding")
+            logger.info(f"Found {len(buildings)} IfcBuilding(s)")
+            
+            elements = _ifc_file.by_type("IfcElement")
+            logger.info(f"Found {len(elements)} IfcElement(s)")
+            
+            # Check for geometric representations
+            representations = _ifc_file.by_type("IfcShapeRepresentation")
+            logger.info(f"Found {len(representations)} geometric representations")
             
             # Update properties
             props.ifc_file_path = self.filepath
@@ -76,21 +130,39 @@ class IFCLCA_OT_LoadIFC(Operator, ImportHelper):
             props.material_mappings.clear()
             
             # Extract materials from the IFC file
+            logger.info("Extracting materials from IFC file...")
             extractor = IfcMaterialExtractor(_ifc_file)
             materials = extractor.get_all_materials()
             
+            logger.info(f"Found {len(materials)} unique materials")
+            
             # Create material mapping entries
             for material_name, count in materials:
+                logger.debug(f"Material: {material_name} used by {count} elements")
                 item = props.material_mappings.add()
                 item.ifc_material_name = material_name
                 item.database_id = ""
                 item.database_name = ""
                 item.is_mapped = False
             
-            self.report({'INFO'}, f"Loaded IFC file with {len(materials)} materials")
+            # Diagnostic checks
+            if len(elements) == 0:
+                logger.warning("No IfcElements found - file may be empty or corrupt")
+                self.report({'WARNING'}, "No IFC elements found in file")
+            
+            if len(representations) == 0:
+                logger.warning("No geometric representations found - elements may not be visible")
+                self.report({'WARNING'}, "No geometric representations found")
+            
+            self.report({'INFO'}, f"Loaded IFC file with {len(materials)} materials and {len(elements)} elements")
+            logger.info("IFC file loaded successfully")
             return {'FINISHED'}
             
         except Exception as e:
+            logger.error(f"Failed to load IFC file: {str(e)}")
+            logger.error(f"Exception type: {type(e).__name__}")
+            import traceback
+            logger.error(f"Traceback: {traceback.format_exc()}")
             self.report({'ERROR'}, f"Failed to load IFC file: {str(e)}")
             return {'CANCELLED'}
 
@@ -111,17 +183,39 @@ class IFCLCA_OT_UseActiveIFC(Operator):
         props = context.scene.ifclca_props
         
         if not HAS_BONSAI:
+            logger.error("Bonsai is not available")
             self.report({'ERROR'}, "Bonsai is not available")
             return {'CANCELLED'}
         
         try:
-            # Get IFC file from Bonsai
-            ifc = tool.Ifc.get()
+            # Get IFC file from Bonsai using IfcStore
+            logger.info("Getting active IFC file from Bonsai")
+            ifc = IfcStore.get_file()
+            
+            # Debug: Check what we got
+            logger.debug(f"IFC object type: {type(ifc)}")
+            logger.debug(f"IFC object: {ifc}")
+            
             if not ifc:
+                logger.error("No IFC file is currently loaded in Bonsai")
                 self.report({'ERROR'}, "No IFC file is currently loaded in Bonsai")
                 return {'CANCELLED'}
             
             _ifc_file = ifc
+            
+            # Log IFC file info
+            logger.info(f"Active IFC Schema: {_ifc_file.schema}")
+            
+            # Check for basic IFC structure
+            projects = _ifc_file.by_type("IfcProject")
+            logger.info(f"Found {len(projects)} IfcProject(s)")
+            
+            elements = _ifc_file.by_type("IfcElement")
+            logger.info(f"Found {len(elements)} IfcElement(s)")
+            
+            # Check for geometric representations
+            representations = _ifc_file.by_type("IfcShapeRepresentation")
+            logger.info(f"Found {len(representations)} geometric representations")
             
             # Update properties
             props.ifc_file_path = "Active Bonsai IFC"
@@ -131,21 +225,39 @@ class IFCLCA_OT_UseActiveIFC(Operator):
             props.material_mappings.clear()
             
             # Extract materials from the IFC file
+            logger.info("Extracting materials from active IFC file...")
             extractor = IfcMaterialExtractor(_ifc_file)
             materials = extractor.get_all_materials()
             
+            logger.info(f"Found {len(materials)} unique materials")
+            
             # Create material mapping entries
             for material_name, count in materials:
+                logger.debug(f"Material: {material_name} used by {count} elements")
                 item = props.material_mappings.add()
                 item.ifc_material_name = material_name
                 item.database_id = ""
                 item.database_name = ""
                 item.is_mapped = False
             
-            self.report({'INFO'}, f"Using active IFC with {len(materials)} materials")
+            # Diagnostic checks
+            if len(elements) == 0:
+                logger.warning("No IfcElements found in active IFC - file may be empty")
+                self.report({'WARNING'}, "No IFC elements found")
+            
+            if len(representations) == 0:
+                logger.warning("No geometric representations found - elements may not be visible")
+                self.report({'WARNING'}, "No geometric representations found")
+            
+            self.report({'INFO'}, f"Using active IFC with {len(materials)} materials and {len(elements)} elements")
+            logger.info("Active IFC loaded successfully")
             return {'FINISHED'}
             
         except Exception as e:
+            logger.error(f"Failed to get active IFC: {str(e)}")
+            logger.error(f"Exception type: {type(e).__name__}")
+            import traceback
+            logger.error(f"Traceback: {traceback.format_exc()}")
             self.report({'ERROR'}, f"Failed to get active IFC: {str(e)}")
             return {'CANCELLED'}
 
@@ -191,7 +303,9 @@ class IFCLCA_OT_MapMaterial(Operator):
                 items.append((mat_id, mat_name, f"Category: {mat_category}"))
                 
         except Exception as e:
-            print(f"Error loading database: {e}")
+            logger.error(f"Error loading database: {e}")
+            import traceback
+            logger.error(f"Database error traceback: {traceback.format_exc()}")
         
         return items
     
@@ -301,16 +415,19 @@ class IFCLCA_OT_RunAnalysis(Operator):
             props.total_carbon = total_carbon
             props.show_results = True
             
-            # Report to console and info
-            print("\n" + results_text)
+            # Log results
+            logger.info("Analysis completed successfully")
+            logger.info(f"Total: {total_carbon:.1f} kg CO₂e")
+            logger.info(f"Results:\n{results_text}")
             self.report({'INFO'}, f"Analysis complete. Total: {total_carbon:.1f} kg CO₂e")
             
             return {'FINISHED'}
             
         except Exception as e:
-            self.report({'ERROR'}, f"Analysis failed: {str(e)}")
+            logger.error(f"Analysis failed: {str(e)}")
             import traceback
-            traceback.print_exc()
+            logger.error(f"Analysis error traceback: {traceback.format_exc()}")
+            self.report({'ERROR'}, f"Analysis failed: {str(e)}")
             return {'CANCELLED'}
 
 
@@ -353,14 +470,47 @@ class IFCLCA_OT_AutoMapMaterials(Operator):
                 return {'CANCELLED'}
             
             mapped_count = 0
+            already_mapped = 0
+            no_match_materials = []
+            
+            logger.info("Starting auto-mapping...")
             
             # Try to map each material
             for mat_mapping in props.material_mappings:
                 if mat_mapping.is_mapped:
+                    already_mapped += 1
                     continue
                 
-                # Search for matching database entries
+                # Clean up material name for better matching
+                clean_name = mat_mapping.ifc_material_name.lower()
+                
+                # Try exact search first
                 matches = db_reader.search_materials(mat_mapping.ifc_material_name)
+                
+                # If no exact match, try common mappings
+                if not matches:
+                    # Common material mappings
+                    material_mappings = {
+                        'concrete': ['concrete', 'beton'],
+                        'steel': ['steel', 'stahl', 'metal'],
+                        'reinforced concrete': ['concrete', 'reinforced'],
+                        'wood': ['timber', 'wood', 'holz'],
+                        'glass': ['glass', 'glas'],
+                        'gypsum': ['gypsum', 'plaster', 'gips'],
+                        'brick': ['brick', 'masonry', 'ziegel'],
+                        'insulation': ['insulation', 'dämmung'],
+                        'aluminum': ['aluminum', 'aluminium']
+                    }
+                    
+                    # Try to find matches based on keywords
+                    for key, search_terms in material_mappings.items():
+                        if any(term in clean_name for term in search_terms):
+                            for term in search_terms:
+                                matches = db_reader.search_materials(term)
+                                if matches:
+                                    break
+                            if matches:
+                                break
                 
                 if matches:
                     # Use first match
@@ -369,12 +519,118 @@ class IFCLCA_OT_AutoMapMaterials(Operator):
                     mat_mapping.database_name = mat_name
                     mat_mapping.is_mapped = True
                     mapped_count += 1
+                    logger.debug(f"Mapped '{mat_mapping.ifc_material_name}' to '{mat_name}'")
+                else:
+                    no_match_materials.append(mat_mapping.ifc_material_name)
             
-            self.report({'INFO'}, f"Auto-mapped {mapped_count} materials")
+            # Report results
+            total_materials = len(props.material_mappings)
+            logger.info(f"Auto-mapping complete: {mapped_count} newly mapped, {already_mapped} already mapped, {len(no_match_materials)} unmatched")
+            
+            if no_match_materials:
+                logger.warning(f"Could not find matches for: {', '.join(no_match_materials[:5])}")
+                if len(no_match_materials) > 5:
+                    logger.warning(f"... and {len(no_match_materials) - 5} more")
+            
+            self.report({'INFO'}, f"Auto-mapped {mapped_count} materials. Total: {already_mapped + mapped_count}/{total_materials}")
             return {'FINISHED'}
             
         except Exception as e:
+            logger.error(f"Auto-mapping failed: {str(e)}")
             self.report({'ERROR'}, f"Auto-mapping failed: {str(e)}")
+            return {'CANCELLED'}
+
+
+class IFCLCA_OT_ExportResults(Operator):
+    """Export LCA results to CSV file"""
+    bl_idname = "ifclca.export_results"
+    bl_label = "Export Results"
+    bl_description = "Export LCA analysis results to CSV file"
+    bl_options = {'REGISTER', 'UNDO'}
+    
+    filepath: StringProperty(
+        name="File Path",
+        description="Path to save the CSV file",
+        default="lca_results.csv",
+        subtype='FILE_PATH'
+    )
+    
+    def invoke(self, context, event):
+        # Set default filename with timestamp
+        import datetime
+        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+        self.filepath = f"lca_results_{timestamp}.csv"
+        
+        context.window_manager.fileselect_add(self)
+        return {'RUNNING_MODAL'}
+    
+    def execute(self, context):
+        props = context.scene.ifclca_props
+        
+        if not props.results_text:
+            self.report({'ERROR'}, "No results to export")
+            return {'CANCELLED'}
+        
+        try:
+            import csv
+            import re
+            
+            # Parse results
+            lines = props.results_text.split('\n')
+            materials_data = []
+            
+            i = 0
+            while i < len(lines):
+                line = lines[i]
+                if line and not line.startswith(' ') and not line.startswith('=') and not line.startswith('-') and ':' in line:
+                    material_name = line.rstrip(':')
+                    material_info = {'Material': material_name}
+                    
+                    i += 1
+                    while i < len(lines) and lines[i].startswith('  '):
+                        info_line = lines[i].strip()
+                        if ':' in info_line:
+                            key, value = info_line.split(':', 1)
+                            material_info[key.strip()] = value.strip()
+                        i += 1
+                    
+                    if 'Carbon' in material_info:
+                        materials_data.append(material_info)
+                    continue
+                i += 1
+            
+            # Write CSV
+            with open(self.filepath, 'w', newline='', encoding='utf-8') as csvfile:
+                # Write header
+                csvfile.write(f"LCA Results Export\n")
+                csvfile.write(f"Project: {context.scene.name}\n")
+                csvfile.write(f"Total Embodied Carbon: {props.total_carbon:.1f} kg CO₂-eq\n")
+                csvfile.write(f"\n")
+                
+                # Write material data
+                if materials_data:
+                    fieldnames = ['Material', 'IFC Material', 'Elements', 'Volume', 'Mass', 'Carbon']
+                    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+                    writer.writeheader()
+                    
+                    for mat in materials_data:
+                        row = {
+                            'Material': mat.get('Material', ''),
+                            'IFC Material': mat.get('IFC Material', ''),
+                            'Elements': mat.get('Elements', ''),
+                            'Volume': mat.get('Volume', ''),
+                            'Mass': mat.get('Mass', ''),
+                            'Carbon': mat.get('Carbon', '')
+                        }
+                        writer.writerow(row)
+            
+            self.report({'INFO'}, f"Results exported to {self.filepath}")
+            logger.info(f"Exported LCA results to {self.filepath}")
+            return {'FINISHED'}
+            
+        except Exception as e:
+            logger.error(f"Export failed: {str(e)}")
+            self.report({'ERROR'}, f"Export failed: {str(e)}")
             return {'CANCELLED'}
 
 
@@ -385,5 +641,6 @@ classes = [
     IFCLCA_OT_MapMaterial,
     IFCLCA_OT_RunAnalysis,
     IFCLCA_OT_ClearResults,
-    IFCLCA_OT_AutoMapMaterials
+    IFCLCA_OT_AutoMapMaterials,
+    IFCLCA_OT_ExportResults
 ] 
