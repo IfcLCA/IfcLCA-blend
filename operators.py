@@ -656,6 +656,27 @@ class IFCLCA_OT_ExportResults(Operator):
             return {'CANCELLED'}
 
 
+# Simple web viewer -------------------------------------------------------
+
+class IFCLCA_OT_ViewWebResults(Operator):
+    """Launch a local web page to view results"""
+    bl_idname = "ifclca.view_web_results"
+    bl_label = "View Results in Browser"
+    bl_description = "Open a simple web page showing the analysis results"
+    bl_options = {'REGISTER', 'UNDO'}
+
+    def execute(self, context):
+        from . import web_interface
+        props = context.scene.ifclca_props
+        if not props.results_text:
+            self.report({'ERROR'}, "No results available")
+            return {'CANCELLED'}
+
+        web_interface.update_results(props.results_text)
+        web_interface.start_server()
+        self.report({'INFO'}, "Web results opened in browser")
+        return {'FINISHED'}
+
 # List of classes to register
 classes = [
     IFCLCA_OT_LoadIFC,
@@ -664,5 +685,6 @@ classes = [
     IFCLCA_OT_RunAnalysis,
     IFCLCA_OT_ClearResults,
     IFCLCA_OT_AutoMapMaterials,
-    IFCLCA_OT_ExportResults
-] 
+    IFCLCA_OT_ExportResults,
+    IFCLCA_OT_ViewWebResults
+]
