@@ -57,22 +57,26 @@ _logger = setup_ifclca_logger()
 
 # Import our modules - handle relative imports carefully
 if _BPY_AVAILABLE:
-    # Normal Blender imports
-    from . import panels
-    from . import operators
-    from . import properties
+    try:
+        from . import panels
+        from . import operators
+        from . import properties
+    except ImportError:
+        try:
+            import panels
+            import operators
+            import properties
+        except ImportError:
+            panels = None
+            operators = None
+            properties = None
 else:
-    # For testing, use absolute imports
     try:
         import panels
-        import operators  
+        import operators
         import properties
     except ImportError:
-        # If that fails, we're probably in a test environment
-        # where the modules aren't importable
-        panels = None
-        operators = None
-        properties = None
+        panels = operators = properties = None
 
 # Module reload support for development
 if _BPY_AVAILABLE and "bpy" in locals():
