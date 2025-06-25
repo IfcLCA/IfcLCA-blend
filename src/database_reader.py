@@ -33,100 +33,147 @@ class KBOBDatabaseReader(CarbonDatabaseReader):
     def __init__(self, data_path: str = None):
         super().__init__()
         if data_path and os.path.exists(data_path):
-            self.load_from_file(data_path)
+            self.load_from_json(data_path)
         else:
-            self.load_default_data()
+            # Try to find indicatorsKBOB_v6.json in various locations
+            possible_paths = [
+                # In the assets directory (preferred location)
+                os.path.join(os.path.dirname(__file__), '..', 'assets', 'indicatorsKBOB_v6.json'),
+                # In the parent directory (IfcLCA-blend root)
+                os.path.join(os.path.dirname(__file__), '..', 'indicatorsKBOB_v6.json'),
+                # In the same directory as database_reader.py
+                os.path.join(os.path.dirname(__file__), 'indicatorsKBOB_v6.json'),
+                # Current working directory
+                'indicatorsKBOB_v6.json',
+                # In case it's run from the project root
+                'IfcLCA-blend/indicatorsKBOB_v6.json',
+                # In case it's run from the project root with assets
+                'IfcLCA-blend/assets/indicatorsKBOB_v6.json'
+            ]
+            
+            for path in possible_paths:
+                if os.path.exists(path):
+                    self.load_from_json(path)
+                    print(f"Loaded KBOB database from: {path}")
+                    break
+            else:
+                print("Warning: indicatorsKBOB_v6.json not found. Using empty database.")
+                self.data = {}
+                self.materials_list = []
     
-    def load_default_data(self):
-        """Load default KBOB data (subset for demo)"""
-        # This is a representative subset of KBOB 2022 data
-        # Units: density in kg/m³, carbon_per_unit in kg CO₂-eq/kg
-        self.data = {
-            "KBOB_CONCRETE_C25_30": {
-                "name": "Concrete C25/30",
-                "category": "Concrete",
-                "density": 2400,
-                "carbon_per_unit": 0.0941,
-                "unit": "kg CO₂-eq/kg"
-            },
-            "KBOB_CONCRETE_C30_37": {
-                "name": "Concrete C30/37",
-                "category": "Concrete", 
-                "density": 2400,
-                "carbon_per_unit": 0.100,
-                "unit": "kg CO₂-eq/kg"
-            },
-            "KBOB_CONCRETE_C35_45": {
-                "name": "Concrete C35/45",
-                "category": "Concrete",
-                "density": 2400,
-                "carbon_per_unit": 0.110,
-                "unit": "kg CO₂-eq/kg"
-            },
-            "KBOB_STEEL_REINFORCING": {
-                "name": "Reinforcing steel",
-                "category": "Metal",
-                "density": 7850,
-                "carbon_per_unit": 0.750,
-                "unit": "kg CO₂-eq/kg"
-            },
-            "KBOB_STEEL_STRUCTURAL": {
-                "name": "Structural steel",
-                "category": "Metal",
-                "density": 7850,
-                "carbon_per_unit": 1.44,
-                "unit": "kg CO₂-eq/kg"
-            },
-            "KBOB_TIMBER_GLULAM": {
-                "name": "Glulam timber",
-                "category": "Wood",
-                "density": 470,
-                "carbon_per_unit": -0.655,
-                "unit": "kg CO₂-eq/kg"
-            },
-            "KBOB_TIMBER_CLT": {
-                "name": "Cross-laminated timber (CLT)",
-                "category": "Wood",
-                "density": 470,
-                "carbon_per_unit": -0.580,
-                "unit": "kg CO₂-eq/kg"
-            },
-            "KBOB_BRICK_CLAY": {
-                "name": "Clay brick",
-                "category": "Masonry",
-                "density": 1800,
-                "carbon_per_unit": 0.160,
-                "unit": "kg CO₂-eq/kg"
-            },
-            "KBOB_INSULATION_MINERAL_WOOL": {
-                "name": "Mineral wool insulation",
-                "category": "Insulation",
-                "density": 100,
-                "carbon_per_unit": 1.28,
-                "unit": "kg CO₂-eq/kg"
-            },
-            "KBOB_INSULATION_EPS": {
-                "name": "EPS insulation",
-                "category": "Insulation",
-                "density": 20,
-                "carbon_per_unit": 3.29,
-                "unit": "kg CO₂-eq/kg"
-            },
-            "KBOB_GLASS_FLOAT": {
-                "name": "Float glass",
-                "category": "Glass",
-                "density": 2500,
-                "carbon_per_unit": 0.790,
-                "unit": "kg CO₂-eq/kg"
-            },
-            "KBOB_PLASTER": {
-                "name": "Gypsum plaster",
-                "category": "Finishes",
-                "density": 1200,
-                "carbon_per_unit": 0.120,
-                "unit": "kg CO₂-eq/kg"
-            }
-        }
+    def determine_category(self, name: str, kbob_id: float) -> str:
+        """Determine material category based on name or KBOB ID"""
+        name_lower = name.lower()
+        
+        # Category mapping based on KBOB ID ranges and material names
+        if kbob_id < 1:
+            return "Foundation/Excavation"
+        elif 1 <= kbob_id < 2:
+            return "Concrete"
+        elif 2 <= kbob_id < 3:
+            return "Masonry"
+        elif 3 <= kbob_id < 4:
+            return "Mineral/Stone"
+        elif 4 <= kbob_id < 5:
+            return "Mortar/Plaster"
+        elif 5 <= kbob_id < 6:
+            return "Facade/Windows"
+        elif 6 <= kbob_id < 7:
+            return "Metal"
+        elif 7 <= kbob_id < 8:
+            return "Wood"
+        elif 8 <= kbob_id < 9:
+            return "Sealants/Adhesives"
+        elif 9 <= kbob_id < 10:
+            return "Membranes/Foils"
+        elif 10 <= kbob_id < 11:
+            return "Insulation"
+        elif 11 <= kbob_id < 12:
+            return "Flooring"
+        elif 12 <= kbob_id < 13:
+            return "Doors"
+        elif 13 <= kbob_id < 14:
+            return "Plastics/Pipes"
+        elif 14 <= kbob_id < 15:
+            return "Coatings"
+        elif 15 <= kbob_id < 21:
+            return "Other Materials"
+        elif 21 <= kbob_id:
+            return "Kitchen/Interior"
+        else:
+            return "Uncategorized"
+    
+    def load_from_json(self, filepath: str):
+        """Load KBOB data from JSON file"""
+        with open(filepath, 'r', encoding='utf-8') as f:
+            raw_data = json.load(f)
+        
+        self.data = {}
+        
+        for item in raw_data:
+            try:
+                # Extract fields
+                kbob_id = item.get('KBOB_ID')
+                if kbob_id is None:
+                    continue
+                
+                # Convert KBOB_ID to string if it's not already
+                kbob_id_str = str(kbob_id)
+                
+                name = item.get('Name', f'Material {kbob_id}')
+                gwp = item.get('GWP', 0)  # Global Warming Potential
+                penre = item.get('PENRE', 0)  # Primary Energy Non-Renewable
+                ubp = item.get('UBP', None)  # Environmental Impact Points (optional)
+                
+                # Handle density/weight
+                kg_unit = item.get('kg/unit', '-')
+                density = None
+                
+                if kg_unit != '-' and kg_unit is not None:
+                    try:
+                        density = float(kg_unit)
+                    except (ValueError, TypeError):
+                        density = None
+                
+                # Check for min/max density
+                min_density = item.get('min density')
+                max_density = item.get('max density')
+                
+                if density is None and min_density is not None and max_density is not None:
+                    # Use average of min and max
+                    density = (min_density + max_density) / 2
+                
+                # Create material ID
+                material_id = f"KBOB_{kbob_id_str}"
+                
+                # Determine category - convert ID to float for comparison
+                try:
+                    # Try to convert to float for category determination
+                    kbob_id_float = float(kbob_id)
+                except (ValueError, TypeError):
+                    # If it's a string ID like "01.002.01", try to extract main number
+                    try:
+                        kbob_id_float = float(kbob_id_str.split('.')[0])
+                    except:
+                        kbob_id_float = 99  # Default to "Other Materials" category
+                
+                category = self.determine_category(name, kbob_id_float)
+                
+                # Store data
+                self.data[material_id] = {
+                    "name": name,
+                    "category": category,
+                    "density": density,
+                    "carbon_per_unit": gwp / 1000 if gwp else 0,  # Convert g CO₂-eq/kg to kg CO₂-eq/kg
+                    "unit": "kg CO₂-eq/kg",
+                    "kbob_id": kbob_id_str,
+                    "penre": penre,
+                    "ubp": ubp
+                }
+                
+            except Exception as e:
+                print(f"Error parsing KBOB item: {e}")
+                continue
         
         # Build materials list
         self.materials_list = [
@@ -134,18 +181,8 @@ class KBOBDatabaseReader(CarbonDatabaseReader):
             for id, mat in self.data.items()
         ]
         self.materials_list.sort(key=lambda x: (x[2], x[1]))  # Sort by category, then name
-    
-    def load_from_file(self, filepath: str):
-        """Load KBOB data from JSON file"""
-        with open(filepath, 'r', encoding='utf-8') as f:
-            self.data = json.load(f)
         
-        # Build materials list
-        self.materials_list = [
-            (id, mat.get("name", id), mat.get("category", "Uncategorized"))
-            for id, mat in self.data.items()
-        ]
-        self.materials_list.sort(key=lambda x: (x[2], x[1]))
+        print(f"Loaded {len(self.data)} materials from KBOB database")
 
 
 class OkobaudatDatabaseReader(CarbonDatabaseReader):

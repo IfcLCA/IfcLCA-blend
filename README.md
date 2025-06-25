@@ -1,76 +1,75 @@
 # IfcLCA-blend
 
-**Early Prototype** - A Blender addon for IFC-based Life Cycle Assessment (LCA) calculations.
+IfcLCA-blend is a Blender addon for performing Life Cycle Assessment (LCA) calculations on IFC building models. It integrates with BlenderBIM to provide environmental impact analysis directly within the Blender environment.
 
-⚠️ **Current Status**: This is an initial prototype using mock carbon data for development and testing purposes.
+## Features
 
-## What It Does
+- Load IFC models and analyze building elements
+- Assign materials from environmental databases (KBOB, ÖKOBAUDAT)
+- Calculate carbon footprint and other environmental indicators
+- Web-based visualization interface
+- Export results for further analysis
 
-This Blender addon allows you to:
-- Load IFC building models in Blender
-- Extract material information from IFC elements
-- Map materials to environmental databases (KBOB, CSV)
-- Calculate basic embodied carbon estimates
-- View results in an interactive web interface
+## Installation
 
-## Current Limitations
+1. Install [BlenderBIM](https://blenderbim.org/) addon first
+2. Download the IfcLCA-blend addon
+3. In Blender: Edit → Preferences → Add-ons → Install
+4. Select the downloaded zip file
+5. Enable the "IfcLCA" addon
 
-- **Mock Data**: Uses placeholder carbon values for development
-- **Prototype Stage**: Basic functionality, not production-ready
-- **Limited Database Support**: Basic KBOB and CSV parsing
-- **No Real LCA**: Simplified calculations for proof-of-concept
-
-## Repository Structure
+## Project Structure
 
 ```
 IfcLCA-blend/
-├── src/                    # Python source code
-├── tests/                  # Unit tests
-├── tools/                  # Build and packaging scripts
-├── assets/                 # Web interface and sample files
-├── samples/               # Example IFC files
-├── .github/               # GitHub configuration
-└── LICENSE                # MIT License
-```
+├── src/               # Core addon source code
+├── assets/            # Database files and web interface
+│   ├── indicatorsKBOB_v6.json  # Swiss KBOB database (314+ materials)
+│   ├── okobaudat_sample.csv    # German database format
+│   └── web/                    # Web visualization interface
+├── examples/          # Example scripts
+│   └── explore_kbob_database.py  # Database exploration example
+├── samples/           # Sample IFC files
+│   └── simple_building.ifc      # Basic test model
+└── tests/            # Unit tests
 
-## Installation (For Testing)
+## Quick Start
 
-1. Download or build the addon zip
-2. In Blender: Edit > Preferences > Add-ons > Install
-3. Enable "Import-Export: IfcLCA"
+1. Import an IFC file using BlenderBIM
+2. Open the IfcLCA panel in Blender's sidebar
+3. Select environmental database (KBOB or ÖKOBAUDAT)
+4. Assign materials to building elements
+5. Calculate environmental impacts
+6. View results in the web interface
 
-## Usage
+## Environmental Databases
 
-1. Open an IFC file in Blender (use BlenderBIM addon)
-2. Go to Scene Properties panel
-3. Find "IFC LCA" section
-4. Load a database file (sample files in assets/)
-5. Map materials and run analysis
-6. View results in web browser
+### KBOB (Swiss)
+- 314+ construction materials
+- Indicators: GWP, PENRE, UBP
+- Pre-loaded from `assets/indicatorsKBOB_v6.json`
 
-## Building
+### ÖKOBAUDAT (German)
+- Import from CSV format
+- See `assets/okobaudat_sample.csv` for format
 
+## Examples
+
+See the `examples/` directory for standalone scripts:
+- `explore_kbob_database.py` - Browse and search the KBOB database
+
+## Testing
+
+Run tests with pytest:
 ```bash
-# Package for distribution
-./tools/package.sh
+cd IfcLCA-blend
+python -m pytest tests/
 ```
-
-## Development Status
-
-This is an **early prototype** created to explore:
-- IFC material extraction workflows
-- Blender addon architecture
-- Web-based results visualization
-- Database integration patterns
-
-Not suitable for real LCA calculations yet.
-
-## Dependencies
-
-- Blender 3.0+
-- IfcOpenShell (for IFC processing)
-- IfcLCA-Py (separate library, in development)
 
 ## License
 
-MIT License - see [LICENSE](LICENSE) 
+Licensed under GNU General Public License v3.0 - see LICENSE file for details.
+
+## Contributing
+
+Contributions welcome! Please feel free to submit issues and pull requests. 

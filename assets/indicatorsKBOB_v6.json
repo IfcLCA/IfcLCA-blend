@@ -1,0 +1,5309 @@
+[{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dac5"
+  },
+  "KBOB_ID": 0.001,
+  "Name": "Baugrubensicherung, Bohrpfahlwand, gespriesst",
+  "GWP": 861,
+  "PENRE": 2250,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "HAA0oC6TRiKrL7bHvcCppA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dac6"
+  },
+  "KBOB_ID": 0.002,
+  "Name": "Baugrubensicherung, Bohrpfahlwand, unverankert",
+  "GWP": 822,
+  "PENRE": 2060,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "7jUpj9TxT7+PIZFKxgEgTw==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dac7"
+  },
+  "KBOB_ID": 0.003,
+  "Name": "Baugrubensicherung, Bohrpfahlwand, verankert",
+  "GWP": 535,
+  "UBP": 846,
+  "PENRE": 1500,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "5iZlUE2nSsGZZzXTeMypFw==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dac8"
+  },
+  "KBOB_ID": 0.004,
+  "Name": "Baugrubensicherung, Nagelwand",
+  "GWP": 121,
+  "UBP": 188,
+  "PENRE": 320,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "tJ9cNdJuTr2XNlGTcoXVgw==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dac9"
+  },
+  "KBOB_ID": 0.005,
+  "Name": "Baugrubensicherung, Rühlwand, auskragend",
+  "GWP": 270,
+  "UBP": 436,
+  "PENRE": 984,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "8OLKYTgaQrCTMfOjsJIXGg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29daca"
+  },
+  "KBOB_ID": 0.006,
+  "Name": "Baugrubensicherung, Rühlwand, gespriesst",
+  "GWP": 187,
+  "UBP": 305,
+  "PENRE": 685,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "+2x6eWmyT2Go2frXLbtazQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dacb"
+  },
+  "KBOB_ID": 0.007,
+  "Name": "Baugrubensicherung, Rühlwand, verankert",
+  "GWP": 197,
+  "UBP": 319,
+  "PENRE": 688,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "TlYv36c+Tn6MVre1BooZ7A==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dacc"
+  },
+  "KBOB_ID": 0.008,
+  "Name": "Baugrubensicherung, Schlitzwand, 400 mm",
+  "GWP": 423,
+  "UBP": 777,
+  "PENRE": 1250,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "9Ms8D90jSCGdrHy/tXsq0Q==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dacd"
+  },
+  "KBOB_ID": 0.009,
+  "Name": "Baugrubensicherung, Schlitzwand, 800 mm",
+  "GWP": 809,
+  "PENRE": 2250,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "jw3eD1f+Sl6aUnCAOwd0xg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dace"
+  },
+  "KBOB_ID": 0.01,
+  "Name": "Baugrubensicherung, Spundwand, auskragend",
+  "GWP": 169,
+  "UBP": 287,
+  "PENRE": 777,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "ZQ6emkcJR4C6hEYGF65woA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dacf"
+  },
+  "KBOB_ID": 0.011,
+  "Name": "Baugrubensicherung, Spundwand, gespriesst",
+  "GWP": 96,
+  "UBP": 162,
+  "PENRE": 438,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "U6El+/ceShqRkd4RHg34wA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dad0"
+  },
+  "KBOB_ID": 0.012,
+  "Name": "Baugrubensicherung, Spundwand, verankert",
+  "GWP": 187,
+  "UBP": 321,
+  "PENRE": 848,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "mqETAXlXQTm8CZ9XByI47A==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dad1"
+  },
+  "KBOB_ID": 0.013,
+  "Name": "Tiefgründung, Mikrobohrpfahl",
+  "GWP": 31,
+  "UBP": 52.5,
+  "PENRE": 118,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "tAFe9GlcR7+c2KivXOPAyw==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dad2"
+  },
+  "KBOB_ID": 0.014,
+  "Name": "Tiefgründung, Ortbetonbohrpfahl, 700 mm",
+  "GWP": 163,
+  "UBP": 258,
+  "PENRE": 396,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "1rTNSM/QRd2POfKHe43mUg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dad3"
+  },
+  "KBOB_ID": 0.015,
+  "Name": "Tiefgründung, Ortbetonbohrpfahl, 900 mm",
+  "GWP": 244,
+  "UBP": 377,
+  "PENRE": 550,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "7kY+LPrUQYO736jh+kVrMg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dad4"
+  },
+  "KBOB_ID": 0.016,
+  "Name": "Tiefgründung, Ortbetonbohrpfahl, 1200 mm",
+  "GWP": 379,
+  "UBP": 579,
+  "PENRE": 822,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "3u1ZtbuBQQSbrteCZtxDng==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dad5"
+  },
+  "KBOB_ID": 0.017,
+  "Name": "Tiefgründung, Ortbetonverdrängungspfahl 560/480 mm",
+  "GWP": 77,
+  "UBP": 122,
+  "PENRE": 229,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "EyR0g/P5RJyH0GuVarA+UA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dad6"
+  },
+  "KBOB_ID": 0.018,
+  "Name": "Tiefgründung, Ortbetonverdrängungspfahl 660/580 mm",
+  "GWP": 96,
+  "UBP": 153,
+  "PENRE": 274,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "Ju0b7FubSCCEgaVEIx+A7g==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dad7"
+  },
+  "KBOB_ID": 0.019,
+  "Name": "Tiefgründung, Rüttelstopfsäule",
+  "GWP": 7,
+  "UBP": 30.8,
+  "PENRE": 30,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "TqywIMgcSCqIF/PekuH21g==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dad8"
+  },
+  "KBOB_ID": 0.02,
+  "Name": "Tiefgründung, Vorgefertigter Betonpfahl",
+  "GWP": 29,
+  "UBP": 44.6,
+  "PENRE": 64,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "T+gA+JCcQQKeP1Jaetidzg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dad9"
+  },
+  "KBOB_ID": 0.021,
+  "Name": "Wasserhaltung, Pumphöhe 2.5 m",
+  "GWP": 0,
+  "UBP": 21,
+  "PENRE": 0,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "hdQtiJY8SIu5Tsn9CYXPJw==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dada"
+  },
+  "KBOB_ID": 0.022,
+  "Name": "Wasserhaltung, Pumphöhe 5 m",
+  "GWP": 0,
+  "UBP": 25,
+  "PENRE": 0,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "MFjkuvWxQq+JBXRYAQhdKw==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dadb"
+  },
+  "KBOB_ID": 0.023,
+  "Name": "Wasserhaltung, Pumphöhe 7.5 m",
+  "GWP": 0,
+  "UBP": 29,
+  "PENRE": 0,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "UAZvJ5oWQiab2WxTxhszCw==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dadc"
+  },
+  "KBOB_ID": 0.024,
+  "Name": "Wasserhaltung, Pumphöhe 10 m",
+  "GWP": 0,
+  "UBP": 33,
+  "PENRE": 0,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "qj+2h7FlRyOPgzOJ3ndHtw==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dadd"
+  },
+  "KBOB_ID": 1.001,
+  "Name": "Magerbeton (ohne Bewehrung)",
+  "GWP": 0.0628,
+  "UBP": 104,
+  "PENRE": 0.139,
+  "kg/unit": 2150,
+  "uuid": {
+    "$binary": {
+      "base64": "oF9NkNAwSbagirrVIo41Ug==",
+      "subType": "04"
+    }
+  },
+  "userDensity": {}
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dade"
+  },
+  "KBOB_ID": 1.002,
+  "Name": "Hochbaubeton (ohne Bewehrung)",
+  "GWP": 0.101,
+  "UBP": 153,
+  "PENRE": 0.19,
+  "kg/unit": 2300,
+  "uuid": {
+    "$binary": {
+      "base64": "4T7gXv00T7WheA/EFkqW8g==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dadf"
+  },
+  "KBOB_ID": "01.002.01",
+  "Name": "Beton Klark Sorte A, 280kg CEM II/B (ohne Bewehrung)",
+  "GWP": 0.105,
+  "UBP": 174,
+  "PENRE": 0.799,
+  "kg/unit": 2269,
+  "uuid": {
+    "$binary": {
+      "base64": "sZLqINk7S++GFPCTEZFT8g==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dae0"
+  },
+  "KBOB_ID": "01.002.02",
+  "Name": "Beton Klark Sorte A, 300kg CEM II/B (ohne Bewehrung)",
+  "GWP": 0.11,
+  "UBP": 180,
+  "PENRE": 0.834,
+  "kg/unit": 2293,
+  "uuid": {
+    "$binary": {
+      "base64": "TfBWN8Y9RxexkrjwwBL5+A==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dae1"
+  },
+  "KBOB_ID": "01.002.03",
+  "Name": "Beton Klark Sorte B, 320kg CEM II/B (ohne Bewehrung)",
+  "GWP": 0.114,
+  "UBP": 187,
+  "PENRE": 0.873,
+  "kg/unit": 2333,
+  "uuid": {
+    "$binary": {
+      "base64": "Lp2/gk98SoqNT9t7Ga8y3A==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dae2"
+  },
+  "KBOB_ID": "01.002.04",
+  "Name": "Beton Klark Sorte C, 340kg CEM II/B (ohne Bewehrung)",
+  "GWP": 0.119,
+  "UBP": 192,
+  "PENRE": 0.91,
+  "kg/unit": 2353,
+  "uuid": {
+    "$binary": {
+      "base64": "BBNEOs0gTDGAKr6BJQgiPQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dae3"
+  },
+  "KBOB_ID": "01.002.05",
+  "Name": "Hochbaubeton, zirkulitÂ® NPK A, 280kg CEM II/B (ohne Bewehrung)",
+  "GWP": 0.0967,
+  "UBP": 145,
+  "PENRE": 0.21,
+  "kg/unit": 2350,
+  "uuid": {
+    "$binary": {
+      "base64": "wZibwfmvST+xUQJBJuQ67A==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dae4"
+  },
+  "KBOB_ID": "01.002.06",
+  "Name": "Hochbaubeton, zirkulitÂ® NPK C, 300kg CEM II/B (ohne Bewehrung)",
+  "GWP": 0.102,
+  "UBP": 153,
+  "PENRE": 0.218,
+  "kg/unit": 2350,
+  "uuid": {
+    "$binary": {
+      "base64": "HYY5LVVBS8KAsbFu1ZHZuQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dae5"
+  },
+  "KBOB_ID": "01.002.07",
+  "Name": "Hochbaubeton, Möckli Primärbeton, NPK A, 280 kg CEM II/B-LL (ohne Bewehrung)",
+  "GWP": 0.0906,
+  "UBP": 142,
+  "PENRE": 0.178,
+  "kg/unit": 2311,
+  "uuid": {
+    "$binary": {
+      "base64": "k7hwAlWCT+e+VHjZs3qhiA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dae6"
+  },
+  "KBOB_ID": "01.002.08",
+  "Name": "Hochbaubeton, NovoCon Light RC-C25/E30, NPK A, 280 kg CEM II/B-LL (ohne Bewehrung)",
+  "GWP": 0.0907,
+  "UBP": 142,
+  "PENRE": 0.179,
+  "kg/unit": 2312,
+  "uuid": {
+    "$binary": {
+      "base64": "YeZWy3A7Sn6zelpmyvEVCQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dae7"
+  },
+  "KBOB_ID": "01.002.09",
+  "Name": "Hochbaubeton, NovoCon RC-C25/E28, NPK A, 280 kg CEM II/B-LL (ohne Bewehrung)",
+  "GWP": 0.091,
+  "UBP": 140,
+  "PENRE": 0.178,
+  "kg/unit": 2292,
+  "uuid": {
+    "$binary": {
+      "base64": "TsQIH+6RTIuIkQoC8DNV7w==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dae8"
+  },
+  "KBOB_ID": "01.002.10",
+  "Name": "Hochbaubeton, NovoCon RC-C50/E25, NPK A, 280 kg CEM II/B-LL (ohne Bewehrung)",
+  "GWP": 0.091,
+  "UBP": 137,
+  "PENRE": 0.176,
+  "kg/unit": 2272,
+  "uuid": {
+    "$binary": {
+      "base64": "9br9lv9ES7eK9duSwgjwNQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dae9"
+  },
+  "KBOB_ID": "01.002.11",
+  "Name": "Hochbaubeton, NovoCon RC-M40/E20, NPK A, 280 kg CEM II/B-LL (ohne Bewehrung)",
+  "GWP": 0.091,
+  "UBP": 134,
+  "PENRE": 0.174,
+  "kg/unit": 2253,
+  "uuid": {
+    "$binary": {
+      "base64": "xGe56WCLRDSrOCtUFTkadA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29daea"
+  },
+  "KBOB_ID": 1.003,
+  "Name": "Tiefbaubeton (ohne Bewehrung)",
+  "GWP": 0.109,
+  "UBP": 163,
+  "PENRE": 0.205,
+  "kg/unit": 2350,
+  "uuid": {
+    "$binary": {
+      "base64": "ZwSlbiXzTdCIkOwuKg1LnA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29daeb"
+  },
+  "KBOB_ID": 1.004,
+  "Name": "Bohrpfahlbeton (ohne Bewehrung)",
+  "GWP": 0.119,
+  "UBP": 174,
+  "PENRE": 0.214,
+  "kg/unit": 2325,
+  "uuid": {
+    "$binary": {
+      "base64": "Trql/n8YRD6gWggYWmFl0A==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29daec"
+  },
+  "KBOB_ID": 1.041,
+  "Name": "Betonfertigteil, hochfester Beton, ab Werk",
+  "GWP": 0.276,
+  "UBP": 440,
+  "PENRE": 0.773,
+  "kg/unit": 2770,
+  "uuid": {
+    "$binary": {
+      "base64": "OlGRj6tgTOencaEMMmZoSg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29daed"
+  },
+  "KBOB_ID": 1.042,
+  "Name": "Betonfertigteil, Normalbeton, ab Werk",
+  "GWP": 0.177,
+  "UBP": 282,
+  "PENRE": 0.527,
+  "kg/unit": 2500,
+  "uuid": {
+    "$binary": {
+      "base64": "9tze+q/mRMuLaDUnq/3AEQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29daee"
+  },
+  "KBOB_ID": 1.043,
+  "Name": "Hanfbeton",
+  "GWP": 0.324,
+  "UBP": 665,
+  "PENRE": 1.86,
+  "kg/unit": 600,
+  "uuid": {
+    "$binary": {
+      "base64": "3Ra4H+SYSNaXVKHpVVi//g==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29daef"
+  },
+  "KBOB_ID": "01.043.01",
+  "Name": "Hanfbeton, ARBIO",
+  "GWP": 0.31,
+  "UBP": 639,
+  "PENRE": 1.8,
+  "kg/unit": 600,
+  "uuid": {
+    "$binary": {
+      "base64": "sFxLm7dJT1CpK5hxOklCIA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29daf0"
+  },
+  "KBOB_ID": 2.001,
+  "Name": "Backstein",
+  "GWP": 0.266,
+  "UBP": 371,
+  "PENRE": 0.87,
+  "kg/unit": 900,
+  "uuid": {
+    "$binary": {
+      "base64": "lYuggwPIQza/xQ21trwbQw==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29daf1"
+  },
+  "KBOB_ID": "02.001.01",
+  "Name": "Backstein, perlitgefüllt, zzwancor",
+  "GWP": 0.28,
+  "UBP": 420,
+  "PENRE": 1,
+  "kg/unit": 575,
+  "uuid": {
+    "$binary": {
+      "base64": "VV6aiZXfTJi8VYebTH5L/g==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29daf2"
+  },
+  "KBOB_ID": 2.002,
+  "Name": "Kalksandstein",
+  "GWP": 0.162,
+  "UBP": 258,
+  "PENRE": 0.43,
+  "kg/unit": 1400,
+  "uuid": {
+    "$binary": {
+      "base64": "F79Io3KtTrui3jJWEp9wMQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29daf3"
+  },
+  "KBOB_ID": "02.002.01",
+  "Name": "Kalksandstein, FBB",
+  "GWP": 0.12,
+  "UBP": 196,
+  "PENRE": 0.4,
+  "min density": 1200,
+  "max density": 2000,
+  "uuid": {
+    "$binary": {
+      "base64": "VkyfJe6KR5mgSW0m31hvBQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29daf4"
+  },
+  "KBOB_ID": "02.002.02",
+  "Name": "Kalksandstein, Hunziker Kalksandstein AG",
+  "GWP": 0.11,
+  "UBP": 190,
+  "PENRE": 0.3,
+  "min density": 1200,
+  "max density": 2000,
+  "uuid": {
+    "$binary": {
+      "base64": "rbrajBCLSGmgmLws2lxZKQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29daf5"
+  },
+  "KBOB_ID": 2.003,
+  "Name": "Leichtlehmstein",
+  "GWP": 0.18,
+  "UBP": 353,
+  "PENRE": 1.56,
+  "kg/unit": 700,
+  "uuid": {
+    "$binary": {
+      "base64": "RXZva7wXRyW5OSOqdoOHNg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29daf6"
+  },
+  "KBOB_ID": 2.004,
+  "Name": "Leichtzementstein, Blähton",
+  "GWP": 0.428,
+  "UBP": 609,
+  "PENRE": 1.48,
+  "kg/unit": 1200,
+  "uuid": {
+    "$binary": {
+      "base64": "Le7EsNP+QSSgig3TmKZSIA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29daf7"
+  },
+  "KBOB_ID": 2.005,
+  "Name": "Leichtzementstein, Naturbims",
+  "GWP": 0.212,
+  "UBP": 322,
+  "PENRE": 0.4,
+  "kg/unit": 1200,
+  "uuid": {
+    "$binary": {
+      "base64": "J7UInmADSSCZGgvMAFuUNA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29daf8"
+  },
+  "KBOB_ID": 2.006,
+  "Name": "Porenbetonstein",
+  "GWP": 0.426,
+  "UBP": 573,
+  "PENRE": 0.93,
+  "kg/unit": 500,
+  "uuid": {
+    "$binary": {
+      "base64": "QGue1MnAQeK5RXhExzEyUA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29daf9"
+  },
+  "KBOB_ID": 2.007,
+  "Name": "Zementstein",
+  "GWP": 0.126,
+  "UBP": 214,
+  "PENRE": 0.25,
+  "kg/unit": 1700,
+  "uuid": {
+    "$binary": {
+      "base64": "aVJJEeJ3SymCfbhHXk2MIw==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dafa"
+  },
+  "KBOB_ID": "02.007.01",
+  "Name": "Erdstein, aus gepresster Erde, Terrabloc",
+  "GWP": 0.06,
+  "UBP": 136,
+  "PENRE": 0.2,
+  "kg/unit": 1850,
+  "uuid": {
+    "$binary": {
+      "base64": "KIqEwhKaQx2xNX96P50MvQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dafb"
+  },
+  "KBOB_ID": "02.007.02",
+  "Name": "Hanfsteine, Schönthaler AG",
+  "GWP": 0.37,
+  "UBP": 824,
+  "PENRE": 3.7,
+  "kg/unit": 300,
+  "uuid": {
+    "$binary": {
+      "base64": "J2rFWAnnSm222FZD0IvPmw==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dafc"
+  },
+  "KBOB_ID": 3.021,
+  "Name": "Betongranulat 1",
+  "GWP": 0.014,
+  "UBP": 43,
+  "PENRE": 0.07,
+  "kg/unit": 1500,
+  "uuid": {
+    "$binary": {
+      "base64": "/JlgU2ziS+Opn0L7AbXRzg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dafd"
+  },
+  "KBOB_ID": 3.001,
+  "Name": "Betonziegel",
+  "GWP": 0.209,
+  "UBP": 326,
+  "PENRE": 0.51,
+  "kg/unit": 2300,
+  "uuid": {
+    "$binary": {
+      "base64": "0AugDtY7QQmtwE2aM2dzTQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dafe"
+  },
+  "KBOB_ID": 3.002,
+  "Name": "Faserzement-Dachschindel",
+  "GWP": 0.699,
+  "UBP": 1100,
+  "PENRE": 2.7,
+  "kg/unit": 1800,
+  "uuid": {
+    "$binary": {
+      "base64": "iHO2AYZET/SyzwQlRrhQDQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29daff"
+  },
+  "KBOB_ID": 3.003,
+  "Name": "Faserzementplatte gross",
+  "GWP": 1.03,
+  "UBP": 1.51,
+  "PENRE": 3.5,
+  "kg/unit": 1800,
+  "uuid": {
+    "$binary": {
+      "base64": "7Jk4dRNtSFewbrtYHqnaQw==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db00"
+  },
+  "KBOB_ID": 3.004,
+  "Name": "Faserzement-Wellplatte",
+  "GWP": 0.649,
+  "UBP": 1060,
+  "PENRE": 2.34,
+  "kg/unit": 1800,
+  "uuid": {
+    "$binary": {
+      "base64": "CMnHcYLZSSWOBjmkNnqDcA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db01"
+  },
+  "KBOB_ID": 3.005,
+  "Name": "Flachglas beschichtet",
+  "GWP": 1.2,
+  "UBP": 1.99,
+  "PENRE": 4.9,
+  "kg/unit": 2500,
+  "uuid": {
+    "$binary": {
+      "base64": "kwQzjI1KTuOxokOXetoYpA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db02"
+  },
+  "KBOB_ID": 3.006,
+  "Name": "Flachglas unbeschichtet",
+  "GWP": 1.14,
+  "UBP": 1.79,
+  "PENRE": 4.2,
+  "kg/unit": 2500,
+  "uuid": {
+    "$binary": {
+      "base64": "igOn1PtRSNC6hp0T7nCg2Q==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db03"
+  },
+  "KBOB_ID": 3.007,
+  "Name": "Gipsfaserplatte",
+  "GWP": 0.552,
+  "UBP": 873,
+  "PENRE": 2.57,
+  "kg/unit": 1200,
+  "uuid": {
+    "$binary": {
+      "base64": "Rb6ka0fpQl+SbK6zHLSgnQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db04"
+  },
+  "KBOB_ID": 3.008,
+  "Name": "Gipskartonplatte",
+  "GWP": 0.301,
+  "UBP": 523,
+  "PENRE": 1.42,
+  "kg/unit": 850,
+  "uuid": {
+    "$binary": {
+      "base64": "OKg8c5K9SSu0NZczKoSGPg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db05"
+  },
+  "KBOB_ID": 3.016,
+  "Name": "Gips-Wandbauplatte / Vollgipsplatte",
+  "GWP": 0.317,
+  "UBP": 531,
+  "PENRE": 1.48,
+  "kg/unit": 1000,
+  "uuid": "DB2B00A9-DBF6-CA2A-BAC1-9BCCE4E4846A"
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db07"
+  },
+  "KBOB_ID": "03.023.01",
+  "Name": "Glasfaserbeton Ecomur",
+  "GWP": 0.886,
+  "UBP": 1336,
+  "PENRE": 2.71,
+  "kg/unit": 2240,
+  "uuid": {
+    "$binary": {
+      "base64": "PJVoiM2/QvqHWRcu0feCLQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db08"
+  },
+  "KBOB_ID": 3.009,
+  "Name": "Hartsandsteinplatte",
+  "GWP": 0.0406,
+  "UBP": 112,
+  "PENRE": 0.32,
+  "kg/unit": 2500,
+  "uuid": {
+    "$binary": {
+      "base64": "t4fDOp2IQU6E3j4IfjY57Q==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db09"
+  },
+  "KBOB_ID": 3.017,
+  "Name": "Kalksteinplatte",
+  "GWP": 0.0736,
+  "UBP": 141,
+  "PENRE": 0.37,
+  "kg/unit": 2500,
+  "uuid": {
+    "$binary": {
+      "base64": "j+P9aSQATcSTO+kc3mARZQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db0a"
+  },
+  "KBOB_ID": 3.01,
+  "Name": "Keramik-/Steinzeugplatte",
+  "GWP": 0.793,
+  "UBP": 4.1,
+  "PENRE": 3.9,
+  "kg/unit": 2600,
+  "uuid": {
+    "$binary": {
+      "base64": "i0kymoVzR/yNGp8uRkDE5g==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db0b"
+  },
+  "KBOB_ID": 3.011,
+  "Name": "Kies gebrochen 1",
+  "GWP": 0.0176,
+  "UBP": 64.8,
+  "PENRE": 0.092,
+  "min density": 1400,
+  "max density": 1500,
+  "uuid": {
+    "$binary": {
+      "base64": "EwBwfPTyT9yvO+MfWEDxjg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db0c"
+  },
+  "KBOB_ID": 3.022,
+  "Name": "Mischgranulat 1",
+  "GWP": 0.0133,
+  "UBP": 41,
+  "PENRE": 0.055,
+  "kg/unit": 1600,
+  "uuid": {
+    "$binary": {
+      "base64": "gF4Kn6ZgREa33/nDtDgkwg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db0d"
+  },
+  "KBOB_ID": 3.012,
+  "Name": "Rundkies 1",
+  "GWP": 0.0157,
+  "UBP": 59.4,
+  "PENRE": 0.072,
+  "min density": 1600,
+  "max density": 1700,
+  "uuid": {
+    "$binary": {
+      "base64": "Gg2TPbE2REG5j25v/R392A==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db0e"
+  },
+  "KBOB_ID": 3.013,
+  "Name": "Sand 1",
+  "GWP": 0.0157,
+  "UBP": 59.4,
+  "PENRE": 0.072,
+  "kg/unit": 1500,
+  "uuid": {
+    "$binary": {
+      "base64": "tve3HSXORfa6Whp4asaeCw==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db0f"
+  },
+  "KBOB_ID": 3.014,
+  "Name": "Sanitärkeramik",
+  "GWP": 2.38,
+  "UBP": 4.68,
+  "PENRE": 11.5,
+  "kg/unit": 2000,
+  "uuid": {
+    "$binary": {
+      "base64": "paO6HX9/RneeHDVFud95ug==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db10"
+  },
+  "KBOB_ID": 3.02,
+  "Name": "Stampflehm",
+  "GWP": 0.02,
+  "UBP": 80,
+  "PENRE": 0.1,
+  "kg/unit": 2000,
+  "uuid": {
+    "$binary": {
+      "base64": "01hgcIBYSme8iWhQiCLaIQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db11"
+  },
+  "KBOB_ID": 3.015,
+  "Name": "Tonziegel",
+  "GWP": 0.385,
+  "UBP": 514,
+  "PENRE": 1.15,
+  "kg/unit": 1700,
+  "uuid": {
+    "$binary": {
+      "base64": "hOLU9tYfTt+dE32hVDp4hw==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db12"
+  },
+  "KBOB_ID": 4.008,
+  "Name": "Baukleber/Einbettmörtel mineralisch",
+  "GWP": 0.406,
+  "UBP": 633,
+  "PENRE": 1.7,
+  "kg/unit": 1400,
+  "uuid": {
+    "$binary": {
+      "base64": "+paoQDLfTJqTXxkDf2U6Yg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db13"
+  },
+  "KBOB_ID": 4.01,
+  "Name": "Baukleber/Einbettmörtel mineralisch Leichtzuschlag",
+  "GWP": 0.426,
+  "UBP": 638,
+  "PENRE": 1.76,
+  "kg/unit": 1100,
+  "uuid": {
+    "$binary": {
+      "base64": "mFs9w4RtSc6QZ49QtP5w1w==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db14"
+  },
+  "KBOB_ID": 4.002,
+  "Name": "Baukleber/Einbettmörtel organisch",
+  "GWP": 0.78,
+  "UBP": 1.39,
+  "PENRE": 4.3,
+  "kg/unit": 1670,
+  "uuid": {
+    "$binary": {
+      "base64": "Op2rmfY+TcedlSeJ8qRhQw==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db15"
+  },
+  "KBOB_ID": 4.017,
+  "Name": "Gips-Kalk-Putz",
+  "GWP": 0.158,
+  "UBP": 251,
+  "PENRE": 0.74,
+  "kg/unit": 925,
+  "uuid": {
+    "$binary": {
+      "base64": "vjmqK2fDQwatXVJh5D1jLQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db16"
+  },
+  "KBOB_ID": 4.001,
+  "Name": "Gips-/Weissputz",
+  "GWP": 0.15,
+  "UBP": 241,
+  "PENRE": 0.7,
+  "kg/unit": 1100,
+  "uuid": {
+    "$binary": {
+      "base64": "dtnPxmF0RkSCnhAgyV1TIg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db17"
+  },
+  "KBOB_ID": 4.003,
+  "Name": "Kunststoffputz (Dispersionsputz)",
+  "GWP": 0.97,
+  "UBP": 1740,
+  "PENRE": 5.44,
+  "kg/unit": 1540,
+  "uuid": {
+    "$binary": {
+      "base64": "1KtfcGG+RmiKLP8cdVoXKA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db18"
+  },
+  "KBOB_ID": 4.013,
+  "Name": "Kalk-Zement/Zement-Kalk-Putz",
+  "GWP": 0.263,
+  "UBP": 396,
+  "PENRE": 0.85,
+  "kg/unit": 1550,
+  "uuid": {
+    "$binary": {
+      "base64": "m9TJ5ESZQhWSFS7xI3Cs5g==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db19"
+  },
+  "KBOB_ID": 4.004,
+  "Name": "Lehmputz",
+  "GWP": 0.032,
+  "UBP": 96.2,
+  "PENRE": 0.191,
+  "kg/unit": 1800,
+  "uuid": {
+    "$binary": {
+      "base64": "QS8N7y8WTYGVzypzlAhrKA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db1a"
+  },
+  "KBOB_ID": 4.015,
+  "Name": "Leichtputz mineralisch",
+  "GWP": 0.373,
+  "UBP": 574,
+  "PENRE": 1.4,
+  "kg/unit": 1000,
+  "uuid": {
+    "$binary": {
+      "base64": "qNGGK27sSLaDvI76zjQhIg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db1b"
+  },
+  "KBOB_ID": 4.011,
+  "Name": "Silikatputz (Dispersionssilikatputz)",
+  "GWP": 1.08,
+  "UBP": 1880,
+  "PENRE": 5.76,
+  "kg/unit": 1880,
+  "uuid": {
+    "$binary": {
+      "base64": "hoyxPX7wRUu0/a4rBFOCBg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db1c"
+  },
+  "KBOB_ID": 4.012,
+  "Name": "Silikonharzputz",
+  "GWP": 1.14,
+  "UBP": 2010,
+  "PENRE": 6.45,
+  "kg/unit": 1670,
+  "uuid": {
+    "$binary": {
+      "base64": "Mk5d4P6xScORiPGqDhGVFA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db1d"
+  },
+  "KBOB_ID": 4.016,
+  "Name": "Sumpfkalkputz",
+  "GWP": 0.51,
+  "UBP": 745,
+  "PENRE": 1.9,
+  "kg/unit": 1350,
+  "uuid": {
+    "$binary": {
+      "base64": "MzMxupjKSb2IetZapNWyxA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db1e"
+  },
+  "KBOB_ID": 4.005,
+  "Name": "Unterlagsboden Anhydrit, 60 mm",
+  "GWP": 0.0911,
+  "UBP": 215,
+  "PENRE": 0.46,
+  "kg/unit": 2000,
+  "uuid": {
+    "$binary": {
+      "base64": "O5VoEZ1ARSy6wvuhImMMQw==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db1f"
+  },
+  "KBOB_ID": 4.006,
+  "Name": "Unterlagsboden Zement, 85 mm",
+  "GWP": 0.12,
+  "UBP": 206,
+  "PENRE": 0.27,
+  "kg/unit": 1850,
+  "uuid": {
+    "$binary": {
+      "base64": "sPItP3CdQI+ayhUz+kx/RQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db20"
+  },
+  "KBOB_ID": 4.007,
+  "Name": "Wärmedämmputz EPS",
+  "GWP": 0.727,
+  "UBP": 964,
+  "PENRE": 1.94,
+  "kg/unit": 250,
+  "uuid": {
+    "$binary": {
+      "base64": "5o+Wx5hKR7WxfLKAa9HPHA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db21"
+  },
+  "KBOB_ID": 4.014,
+  "Name": "Weisszementputz",
+  "GWP": 0.353,
+  "UBP": 507,
+  "PENRE": 1.04,
+  "kg/unit": 1550,
+  "uuid": {
+    "$binary": {
+      "base64": "Ij8A2sLZSXGHn/ORZIoBVQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db22"
+  },
+  "KBOB_ID": 4.009,
+  "Name": "Zementputz",
+  "GWP": 0.261,
+  "UBP": 391,
+  "PENRE": 0.78,
+  "kg/unit": 1550,
+  "uuid": {
+    "$binary": {
+      "base64": "OC1SMeTPQta5NdQbplPj7g==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db23"
+  },
+  "KBOB_ID": 5.008,
+  "Name": "Fassade, Pfosten-Riegel, Alu/Glas 1",
+  "GWP": 182,
+  "UBP": 329,
+  "PENRE": 776,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "KXyK+WtvR6KfUaDTfvy4kg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db24"
+  },
+  "KBOB_ID": 5.022,
+  "Name": "Fassadenplatte, Aluverbund, 4 mm",
+  "GWP": 43,
+  "UBP": 74.9,
+  "PENRE": 216,
+  "kg/unit": 7.1,
+  "uuid": {
+    "$binary": {
+      "base64": "WQW2rXIvQMuYd1fTZrSr9A==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db25"
+  },
+  "KBOB_ID": 5.028,
+  "Name": "Fassadenplatte, Glasfaserbeton",
+  "kg/unit": null,
+  "uuid": {
+    "$binary": {
+      "base64": "082rLpiKTc+pqQC9oc/g7g==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db26"
+  },
+  "KBOB_ID": "05.028.01",
+  "Name": "Fassadenplatte, Glasfaserbeton Ecomur, 15mm",
+  "GWP": 30,
+  "UBP": 44.886,
+  "PENRE": 91,
+  "kg/unit": 33.6,
+  "uuid": {
+    "$binary": {
+      "base64": "M9CV9J0bS7u9SSvJk4j6zQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db27"
+  },
+  "KBOB_ID": "05.028.02",
+  "Name": "Fassadenplatte, Glasfaserbeton Ecomur, 18mm",
+  "GWP": 36,
+  "UBP": 53.837,
+  "PENRE": 109,
+  "kg/unit": 40.3,
+  "uuid": {
+    "$binary": {
+      "base64": "6HOGsbqsQCGM2+lYjJz+qg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db28"
+  },
+  "KBOB_ID": 5.023,
+  "Name": "Fassadenplatte, Hochdrucklaminatplatte (HPL), 8.1 mm",
+  "GWP": 46,
+  "UBP": 73.4,
+  "PENRE": 282,
+  "kg/unit": 11.6,
+  "uuid": {
+    "$binary": {
+      "base64": "RyLh7+GlRwyDEPTcAwD38w==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db29"
+  },
+  "KBOB_ID": 5.025,
+  "Name": "Fassadenplatte, Kalkstein, 30 mm",
+  "GWP": 6,
+  "UBP": 11,
+  "PENRE": 28,
+  "kg/unit": 78,
+  "uuid": {
+    "$binary": {
+      "base64": "1LDs6x4ASmCgntYxoH4u4w==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db2a"
+  },
+  "KBOB_ID": 5.024,
+  "Name": "Fassadenplatte, Kunststoff glasfaserverstärkt (GFK), 1.6 mm",
+  "GWP": 22,
+  "UBP": 31.7,
+  "PENRE": 79,
+  "kg/unit": 2.4,
+  "uuid": {
+    "$binary": {
+      "base64": "S6jiOzViSUuHsp2JGzE7mw==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db2b"
+  },
+  "KBOB_ID": 5.004,
+  "Name": "Fensterrahmen Aluminium 2,5",
+  "GWP": 132,
+  "UBP": 246,
+  "PENRE": 631,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "n2hY7mSNQ6qnLkbYoLJeEQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db2c"
+  },
+  "KBOB_ID": "05.004.01",
+  "Name": "Fensterrahmen Aluminium, WICLINE 75evo, hergestellt mit Hydro CIRCAL 75R 2,5",
+  "GWP": 55.6,
+  "UBP": 177,
+  "PENRE": 247,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "pKBvIdKRQiWZ0erqrRGiow==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db2d"
+  },
+  "KBOB_ID": 5.005,
+  "Name": "Fensterrahmen Holz 2,6",
+  "GWP": 36,
+  "UBP": 77.7,
+  "PENRE": 362,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "5l1QZjwlRAqme0SqzwZ61Q==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db2e"
+  },
+  "KBOB_ID": "05.005.01",
+  "Name": "Fensterrahmen Holz, Saphir integral 67/55, G. Baumgartner AG 2,6",
+  "GWP": 25,
+  "UBP": 59.3,
+  "PENRE": 253,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "f8Z3qy/GQfmhoHUk1W6jBw==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db2f"
+  },
+  "KBOB_ID": 5.006,
+  "Name": "Fensterrahmen Holz-Metall 2,6",
+  "GWP": 66,
+  "UBP": 134,
+  "PENRE": 479,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "XT8SOSpQRTmN7zQSGND3Cg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db30"
+  },
+  "KBOB_ID": "05.006.01",
+  "Name": "Fensterrahmen Holz-Metall, Saphir integral 55/55, G. Baumgartner AG 2,6",
+  "GWP": 38,
+  "UBP": 79.6,
+  "PENRE": 306,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "EdNqCGZTRAW7ni272Ocdjg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db31"
+  },
+  "KBOB_ID": 5.007,
+  "Name": "Fensterrahmen Kunststoff/PVC 2,6",
+  "GWP": 63,
+  "UBP": 115,
+  "PENRE": 344,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "hOnGJ90DSp+rdMGSAhRRlQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db32"
+  },
+  "KBOB_ID": 5.001,
+  "Name": "Isolierverglasung 2-fach, Ug-Wert 1.1 W/m2K, Dicke 24 mm 3",
+  "GWP": 44.3,
+  "UBP": 70.7,
+  "PENRE": 178,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "+cWGTXFDRyqky37U3AtEfw==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db33"
+  },
+  "KBOB_ID": 5.009,
+  "Name": "Isolierverglasung 2-fach, Ug-Wert 1.1 W/m2K, Dicke 18 mm 3",
+  "GWP": 48.6,
+  "UBP": 78.9,
+  "PENRE": 208,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "d4X6pl9xR8yHUyaUMY9ZPQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db34"
+  },
+  "KBOB_ID": 5.01,
+  "Name": "Isolierverglasung 2-fach, ESG, Ug-Wert 1.1 W/m2K 3",
+  "GWP": 52.1,
+  "UBP": 87,
+  "PENRE": 235,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "I14pW3LARh+DIG0Hui9wIQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db35"
+  },
+  "KBOB_ID": 5.002,
+  "Name": "Isolierverglasung 2-fach, VSG, Ug-Wert 1.1 W/m2K 3",
+  "GWP": 79.3,
+  "UBP": 128,
+  "PENRE": 346,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "fRhbAVSESouo9XPLmQ7okA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db36"
+  },
+  "KBOB_ID": 5.011,
+  "Name": "Isolierverglasung 2-fach, ESG/VSG, Ug-Wert 1.1 W/m2K 3",
+  "GWP": 87.1,
+  "UBP": 144,
+  "PENRE": 403,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "xSxbMcdlRZSFKgiUiCqO0Q==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db37"
+  },
+  "KBOB_ID": 5.003,
+  "Name": "Isolierverglasung 3-fach, Ug-Wert 0.5 W/m2K, Dicke 36 mm 3",
+  "GWP": 78.3,
+  "UBP": 128,
+  "PENRE": 344,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "QxAdmR17QIK2Lb9Qkie1fg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db38"
+  },
+  "KBOB_ID": 5.012,
+  "Name": "Isolierverglasung 3-fach, Ug-Wert 0.6 W/m2K, Dicke 40 mm 3",
+  "GWP": 67.8,
+  "UBP": 110,
+  "PENRE": 271,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "jEKaPGXpQjy7CGJsRjnJew==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db39"
+  },
+  "KBOB_ID": 5.013,
+  "Name": "Isolierverglasung 3-fach, ESG/ESG, Ug-Wert 0.6 W/m2K 3",
+  "GWP": 83.3,
+  "UBP": 143,
+  "PENRE": 387,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "1tYPYwrGT2WmZSOJPv5V7g==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db3a"
+  },
+  "KBOB_ID": 5.014,
+  "Name": "Isolierverglasung 3-fach, ESG/ESG/ESG, Ug-Wert 0.6 W/m2K 3",
+  "GWP": 91.1,
+  "UBP": 159,
+  "PENRE": 444,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "nR8BrfpjT5iv8xV/QADYsw==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db3b"
+  },
+  "KBOB_ID": 5.015,
+  "Name": "Isolierverglasung 3-fach, VSG, Ug-Wert 0.6 W/m2K 3",
+  "GWP": 103,
+  "UBP": 168,
+  "PENRE": 439,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "FN/IyckVQ6KuUnt49ZSCaQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db3c"
+  },
+  "KBOB_ID": 5.016,
+  "Name": "Isolierverglasung 3-fach, ESG/VSG, Ug-Wert 0.6 W/m2K 3",
+  "GWP": 111,
+  "UBP": 185,
+  "PENRE": 501,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "wXJC71xdQw6pAERJobyAgg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db3d"
+  },
+  "KBOB_ID": 5.02,
+  "Name": "Putzträgerplatte kunstharzgebunden 13 mm",
+  "GWP": 8.11,
+  "UBP": 16600,
+  "PENRE": 47.9,
+  "kg/unit": 6.3,
+  "uuid": {
+    "$binary": {
+      "base64": "imT1G5bRQY+GmGWi38L24A==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db3e"
+  },
+  "KBOB_ID": 5.021,
+  "Name": "Putzträgerplatte mineralisch gebunden 12.5 mm",
+  "GWP": 6.31,
+  "UBP": 9910,
+  "PENRE": 21.5,
+  "kg/unit": 14.4,
+  "uuid": {
+    "$binary": {
+      "base64": "ouVhObF+SNKqKB+7vecwsA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db3f"
+  },
+  "KBOB_ID": 5.026,
+  "Name": "Rahmenverbreiterung, PVC",
+  "GWP": 69.7,
+  "UBP": 99700,
+  "PENRE": 348,
+  "kg/unit": 15,
+  "uuid": {
+    "$binary": {
+      "base64": "u7lshY8SQQS3dCID89VC5g==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db40"
+  },
+  "KBOB_ID": 5.027,
+  "Name": "Rahmenverbreiterung, Spanplatte",
+  "GWP": 26.1,
+  "UBP": 43500,
+  "PENRE": 219,
+  "kg/unit": 17.8,
+  "uuid": {
+    "$binary": {
+      "base64": "lDCx4VSyQQWFFoxK5GYS2A==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db41"
+  },
+  "KBOB_ID": 5.018,
+  "Name": "Sonnenschutz, Ausstellstoren motorisiert 4",
+  "GWP": 68,
+  "UBP": 150,
+  "PENRE": 319,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "4jZXjs2USluBAiWDQK2dPg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db42"
+  },
+  "KBOB_ID": 5.017,
+  "Name": "Sonnenschutz, Lamellenstoren motorisiert 4",
+  "GWP": 60,
+  "UBP": 133,
+  "PENRE": 281,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "nkuL2piaSE2/sebLkEkcxA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db43"
+  },
+  "KBOB_ID": 5.019,
+  "Name": "Sonnenschutz, Rollladen motorisiert 4",
+  "GWP": 75,
+  "UBP": 168,
+  "PENRE": 358,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "1pv9ojc9R5S/MUL61iHk+w==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db44"
+  },
+  "KBOB_ID": 6.001,
+  "Name": "Aluminiumblech, blank",
+  "GWP": 5.58,
+  "UBP": 12.5,
+  "PENRE": 30,
+  "kg/unit": 2690,
+  "uuid": {
+    "$binary": {
+      "base64": "EimU4GrjSPiXwmMxJWCfPg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db45"
+  },
+  "KBOB_ID": 6.002,
+  "Name": "Aluminiumprofil, blank",
+  "GWP": 5.7,
+  "UBP": 11.5,
+  "PENRE": 31,
+  "kg/unit": 2690,
+  "uuid": {
+    "$binary": {
+      "base64": "nRn7XzPwRLSUibbiJBA5VQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db46"
+  },
+  "KBOB_ID": "06.002.01",
+  "Name": "Aluminiumprofil blank, WICONA, hergestellt mit Hydro CIRCAL 75R",
+  "GWP": 2.67,
+  "UBP": 12.7,
+  "PENRE": 13.1,
+  "kg/unit": 2690,
+  "uuid": {
+    "$binary": {
+      "base64": "yVbd5yn8T+WpZRd2FeFNFA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db47"
+  },
+  "KBOB_ID": 6.003,
+  "Name": "Armierungsstahl",
+  "GWP": 0.785,
+  "UBP": 1.59,
+  "PENRE": 3.8,
+  "kg/unit": 7850,
+  "uuid": {
+    "$binary": {
+      "base64": "HzOET5HSQ2OzKJBOFREKHA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db48"
+  },
+  "KBOB_ID": 6.014,
+  "Name": "Blei",
+  "GWP": 1.02,
+  "UBP": 3.81,
+  "PENRE": 4.1,
+  "kg/unit": 11340,
+  "uuid": {
+    "$binary": {
+      "base64": "FIP/WPB8TtSkIj5ypmfRpw==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db49"
+  },
+  "KBOB_ID": 6.004,
+  "Name": "Chromnickelstahlblech 18/8 blank",
+  "GWP": 4.12,
+  "UBP": 9.71,
+  "PENRE": 17,
+  "kg/unit": 7900,
+  "uuid": {
+    "$binary": {
+      "base64": "D+AEKAz2TMGksboYb1bVfg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db4a"
+  },
+  "KBOB_ID": 6.005,
+  "Name": "Chromnickelstahlblech 18/8 verzinnt",
+  "GWP": 5.88,
+  "UBP": 13,
+  "PENRE": 25,
+  "kg/unit": 7900,
+  "uuid": {
+    "$binary": {
+      "base64": "etGVfvwzQ6iI+CpN2Do2Kg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db4b"
+  },
+  "KBOB_ID": 6.006,
+  "Name": "Chromstahlblech blank",
+  "GWP": 2.74,
+  "UBP": 7.08,
+  "PENRE": 9.5,
+  "kg/unit": 7700,
+  "uuid": {
+    "$binary": {
+      "base64": "dcw+gH5fThKJigOWaofj5g==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db4c"
+  },
+  "KBOB_ID": 6.007,
+  "Name": "Chromstahlblech verzinnt",
+  "GWP": 4.49,
+  "UBP": 10.4,
+  "PENRE": 17.5,
+  "kg/unit": 7700,
+  "uuid": {
+    "$binary": {
+      "base64": "RZSov4FnQYOaRctk322VuA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db4d"
+  },
+  "KBOB_ID": 6.008,
+  "Name": "Kupferblech, blank",
+  "GWP": 2.2,
+  "UBP": 24.5,
+  "PENRE": 10.5,
+  "kg/unit": 8900,
+  "uuid": {
+    "$binary": {
+      "base64": "kuEdm5vFQDK7BiCCzj2K/Q==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db4e"
+  },
+  "KBOB_ID": 6.009,
+  "Name": "Messing-/Baubronzeblech",
+  "GWP": 2.71,
+  "UBP": 25.5,
+  "PENRE": 13,
+  "kg/unit": 8300,
+  "uuid": {
+    "$binary": {
+      "base64": "654ebm9ATLezc11m/RRs9Q==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db4f"
+  },
+  "KBOB_ID": 6.01,
+  "Name": "Stahlblech, blank",
+  "GWP": 2.8,
+  "UBP": 5.26,
+  "PENRE": 8.4,
+  "kg/unit": 7850,
+  "uuid": {
+    "$binary": {
+      "base64": "OMFXKjzoR8CyTl6SSorZfg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db50"
+  },
+  "KBOB_ID": 6.011,
+  "Name": "Stahlblech, verzinkt",
+  "GWP": 4.49,
+  "UBP": 15.2,
+  "PENRE": 17,
+  "kg/unit": 7850,
+  "uuid": {
+    "$binary": {
+      "base64": "aPjUaCpJQwqpSqMHOoWwKQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db51"
+  },
+  "KBOB_ID": 6.012,
+  "Name": "Stahlprofil, blank",
+  "GWP": 0.737,
+  "UBP": 1.29,
+  "PENRE": 3.6,
+  "kg/unit": 7850,
+  "uuid": {
+    "$binary": {
+      "base64": "TccJebbKTaWikW8aCC7kdQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db52"
+  },
+  "KBOB_ID": 6.013,
+  "Name": "Titanzinkblech",
+  "GWP": 4.03,
+  "UBP": 27.8,
+  "PENRE": 20.1,
+  "kg/unit": 7200,
+  "uuid": {
+    "$binary": {
+      "base64": "OgF+446uSVeZdjnqchV5GA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db53"
+  },
+  "KBOB_ID": 7.001,
+  "Name": "3- und 5-Schicht Massivholzplatte",
+  "GWP": 0.469,
+  "UBP": 1.01,
+  "PENRE": 15.4,
+  "kg/unit": 453,
+  "uuid": {
+    "$binary": {
+      "base64": "u6l5a7CERz2zYucD+tN8qg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db54"
+  },
+  "KBOB_ID": 7.021,
+  "Name": "Balkenschichtholz",
+  "GWP": 0.342,
+  "UBP": 790,
+  "PENRE": 10.2,
+  "kg/unit": 439,
+  "uuid": {
+    "$binary": {
+      "base64": "80bLc2H7RGi1ADv8Fh2Apg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db55"
+  },
+  "KBOB_ID": 7.003,
+  "Name": "Brettschichtholz",
+  "GWP": 0.335,
+  "UBP": 769,
+  "PENRE": 9.7,
+  "kg/unit": 439,
+  "uuid": {
+    "$binary": {
+      "base64": "dfjCsgtOQkOT1p2LchtNEg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db56"
+  },
+  "KBOB_ID": "07.003.01",
+  "Name": "Brettschichtholz, Produktion Schweiz",
+  "GWP": 0.25,
+  "UBP": 681,
+  "PENRE": 9.2,
+  "kg/unit": 439,
+  "uuid": {
+    "$binary": {
+      "base64": "XQqsZpZhTXqiOYqJMbTP8w==",
+      "subType": "04"
+    }
+  },
+  "userDensity": {}
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db57"
+  },
+  "KBOB_ID": 7.002,
+  "Name": "Brettschichtholz",
+  "GWP": 0.335,
+  "UBP": 769,
+  "PENRE": 9.7,
+  "kg/unit": 439,
+  "uuid": {
+    "$binary": {
+      "base64": "EJW5X2A2Rcq0UHo6jhiXuw==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db58"
+  },
+  "KBOB_ID": "07.002.01",
+  "Name": "Brettschichtholz, Produktion Schweiz",
+  "GWP": 0.25,
+  "UBP": 681,
+  "PENRE": 9.2,
+  "kg/unit": 439,
+  "uuid": {
+    "$binary": {
+      "base64": "1sb1OZPdTAevQD72Mh1PvQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db59"
+  },
+  "KBOB_ID": 7.02,
+  "Name": "Brettsperrholz",
+  "GWP": 0.395,
+  "UBP": 882,
+  "PENRE": 9.9,
+  "kg/unit": 436,
+  "uuid": {
+    "$binary": {
+      "base64": "g8cuzmZBRnWX8KYjbK9+fw==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db5a"
+  },
+  "KBOB_ID": "07.020.01",
+  "Name": "Brettsperrholz, Produktion Schweiz",
+  "GWP": 0.281,
+  "UBP": 744,
+  "PENRE": 7.3,
+  "kg/unit": 424,
+  "uuid": {
+    "$binary": {
+      "base64": "JXVKM1FlTTOy0uhCJVe4SQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db5b"
+  },
+  "KBOB_ID": 7.022,
+  "Name": "Furniersperrholz",
+  "GWP": 1.02,
+  "UBP": 1.97,
+  "PENRE": 14.3,
+  "kg/unit": 823,
+  "uuid": {
+    "$binary": {
+      "base64": "uRS1+M6STaCMlAVe5mixVA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db5c"
+  },
+  "KBOB_ID": 7.004,
+  "Name": "Hartfaserplatte",
+  "GWP": 1.07,
+  "UBP": 1.77,
+  "PENRE": 11.2,
+  "kg/unit": 955,
+  "uuid": {
+    "$binary": {
+      "base64": "mbL35CLzTI6cdtPLragw4g==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db5d"
+  },
+  "KBOB_ID": 7.005,
+  "Name": "Holzwolle-Leichtbauplatte, zementgebunden",
+  "GWP": 0.534,
+  "UBP": 770,
+  "PENRE": 3.3,
+  "kg/unit": 400,
+  "uuid": {
+    "$binary": {
+      "base64": "yRb7+OuPQ6edEZ6Sz58IPQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db5e"
+  },
+  "KBOB_ID": "07.025.01",
+  "Name": "Holzwolle Quickquader-Faschine Howolis Lindner Suisse GmbH",
+  "GWP": 0.296,
+  "UBP": 964,
+  "PENRE": 7.8,
+  "kg/unit": 12.6,
+  "uuid": {
+    "$binary": {
+      "base64": "iaJKJ3zxSVuN2y6cGgYbKg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db5f"
+  },
+  "KBOB_ID": 7.023,
+  "Name": "Konstruktionsvollholz",
+  "GWP": 0.288,
+  "UBP": 689,
+  "PENRE": 9.5,
+  "kg/unit": 436,
+  "uuid": {
+    "$binary": {
+      "base64": "3/JD386SQpy29KHjyhFLFg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db60"
+  },
+  "KBOB_ID": 7.008,
+  "Name": "Massivholz Buche / Eiche, kammergetrocknet, gehobelt",
+  "GWP": 0.152,
+  "UBP": 436,
+  "PENRE": 7.9,
+  "kg/unit": 675,
+  "uuid": {
+    "$binary": {
+      "base64": "VFL//xPJTYuAO+ZE81ozJQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db61"
+  },
+  "KBOB_ID": "07.008.01",
+  "Name": "Massivholz Buche / Eiche, kammergetrocknet, gehobelt, Produktion Schweiz",
+  "GWP": 0.12,
+  "UBP": 396,
+  "PENRE": 8,
+  "kg/unit": 675,
+  "uuid": {
+    "$binary": {
+      "base64": "NItpJg0qSCCqBcgV/mWkIQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db62"
+  },
+  "KBOB_ID": 7.007,
+  "Name": "Massivholz Buche / Eiche, kammergetrocknet, rau",
+  "GWP": 0.135,
+  "UBP": 392,
+  "PENRE": 7.7,
+  "kg/unit": 675,
+  "uuid": {
+    "$binary": {
+      "base64": "mslaWGQ4SLe7arB7b0z7ag==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db63"
+  },
+  "KBOB_ID": "07.007.01",
+  "Name": "Massivholz Buche / Eiche, kammergetrocknet, rau, Produktion Schweiz",
+  "GWP": 0.11,
+  "UBP": 356,
+  "PENRE": 7.7,
+  "kg/unit": 675,
+  "uuid": {
+    "$binary": {
+      "base64": "aY2KQ4mDQy6lG9kMm6I6wQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db64"
+  },
+  "KBOB_ID": 7.006,
+  "Name": "Massivholz Buche / Eiche, luftgetrocknet, rau",
+  "GWP": 0.12,
+  "UBP": 323,
+  "PENRE": 6.7,
+  "kg/unit": 705,
+  "uuid": {
+    "$binary": {
+      "base64": "UxyFeA1LRpqs5Y46U2/EfA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db65"
+  },
+  "KBOB_ID": "07.006.01",
+  "Name": "Massivholz Buche / Eiche, luftgetrocknet, rau, Produktion Schweiz",
+  "GWP": 0.1,
+  "UBP": 290,
+  "PENRE": 6.7,
+  "kg/unit": 705,
+  "uuid": {
+    "$binary": {
+      "base64": "+VR72ikMRMWHlMkhot7Qug==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db66"
+  },
+  "KBOB_ID": 7.011,
+  "Name": "Massivholz Fichte / Tanne / Lärche, kammergetr., gehobelt",
+  "GWP": 0.173,
+  "UBP": 476,
+  "PENRE": 6.8,
+  "kg/unit": 465,
+  "uuid": {
+    "$binary": {
+      "base64": "PYncfxY4TJSvqNwxysIQvA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db67"
+  },
+  "KBOB_ID": "07.011.01",
+  "Name": "Massivholz Fichte / Tanne / Lärche, kammergetr., gehobelt, Produktion Schweiz",
+  "GWP": 0.16,
+  "UBP": 459,
+  "PENRE": 6.7,
+  "kg/unit": 465,
+  "uuid": {
+    "$binary": {
+      "base64": "0SLHhgiHS3G+vVE5VbXxhA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db68"
+  },
+  "KBOB_ID": "07.011.02",
+  "Name": "Massivholz Fichte / Tanne, kammergetr., Vollholzhaus holzpur",
+  "GWP": 0.13,
+  "UBP": 430,
+  "PENRE": 10.4,
+  "kg/unit": 420,
+  "uuid": {
+    "$binary": {
+      "base64": "xN6UwjbWS7mXUyKGIkAagg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db69"
+  },
+  "KBOB_ID": 7.01,
+  "Name": "Massivholz Fichte / Tanne / Lärche, luftgetr., gehobelt",
+  "GWP": 0.156,
+  "UBP": 401,
+  "PENRE": 5.9,
+  "kg/unit": 485,
+  "uuid": {
+    "$binary": {
+      "base64": "xv4XuhK9RFSw8HTKjGZdaw==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db6a"
+  },
+  "KBOB_ID": "07.010.01",
+  "Name": "Massivholz Fichte / Tanne / Lärche, luftgetr., gehobelt, Produktion Schweiz",
+  "GWP": 0.14,
+  "UBP": 385,
+  "PENRE": 5.7,
+  "kg/unit": 485,
+  "uuid": {
+    "$binary": {
+      "base64": "Cqv0MJF4SXWDkLTFhXOd4g==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db6b"
+  },
+  "KBOB_ID": 7.009,
+  "Name": "Massivholz Fichte / Tanne / Lärche, luftgetrocknet, rau",
+  "GWP": 0.129,
+  "UBP": 317,
+  "PENRE": 5.5,
+  "kg/unit": 485,
+  "uuid": {
+    "$binary": {
+      "base64": "64LxZgSxSfClhv2PkoJBlg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db6c"
+  },
+  "KBOB_ID": "07.009.01",
+  "Name": "Massivholz Fichte / Tanne / Lärche, luftgetrocknet, rau, Produktion Schweiz",
+  "GWP": 0.12,
+  "UBP": 306,
+  "PENRE": 5.4,
+  "kg/unit": 485,
+  "uuid": {
+    "$binary": {
+      "base64": "rb2yMqyUSbGetmUgdsIrqw==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db6d"
+  },
+  "KBOB_ID": 7.012,
+  "Name": "Mitteldichte Faserplatte (MDF), UF-gebunden",
+  "GWP": 0.954,
+  "UBP": 1.55,
+  "PENRE": 10.3,
+  "kg/unit": 685,
+  "uuid": {
+    "$binary": {
+      "base64": "liuBbNvURF+DkuT4UyBpyA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db6e"
+  },
+  "KBOB_ID": 7.013,
+  "Name": "OSB Platte, PF-gebunden, Feuchtbereich",
+  "GWP": 0.563,
+  "UBP": 1.03,
+  "PENRE": 11,
+  "kg/unit": 605,
+  "uuid": {
+    "$binary": {
+      "base64": "vWawXSfjSt+FouCru6aGpQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db6f"
+  },
+  "KBOB_ID": 7.024,
+  "Name": "Röhrenspanplatte",
+  "GWP": 0.813,
+  "UBP": 1.34,
+  "PENRE": 10.5,
+  "kg/unit": 272,
+  "uuid": {
+    "$binary": {
+      "base64": "LsThtFaUQWm3NLOMI2WqrA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db70"
+  },
+  "KBOB_ID": 7.015,
+  "Name": "Spanplatte, PF-gebunden, Feuchtbereich",
+  "GWP": 0.529,
+  "UBP": 886,
+  "PENRE": 6.9,
+  "kg/unit": 640,
+  "uuid": {
+    "$binary": {
+      "base64": "9Uruyns7Ss60y4hSexyQPA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db71"
+  },
+  "KBOB_ID": 7.016,
+  "Name": "Spanplatte, UF-gebunden, beschichtet, Trockenbereich",
+  "GWP": 0.735,
+  "UBP": 1.21,
+  "PENRE": 8.4,
+  "kg/unit": 640,
+  "uuid": {
+    "$binary": {
+      "base64": "+4MDUgNQRvm/RnNzPFdjhg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db72"
+  },
+  "KBOB_ID": 7.014,
+  "Name": "Spanplatte, UF-gebunden, Trockenbereich",
+  "GWP": 0.529,
+  "UBP": 886,
+  "PENRE": 6.9,
+  "kg/unit": 640,
+  "uuid": {
+    "$binary": {
+      "base64": "6Iz/DQWbToqTvKTjqRei9g==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db73"
+  },
+  "KBOB_ID": 7.018,
+  "Name": "Sperrholz/Multiplex, PF-gebunden, Feuchtbereich",
+  "GWP": 1.43,
+  "UBP": 2.87,
+  "PENRE": 17,
+  "kg/unit": 500,
+  "uuid": {
+    "$binary": {
+      "base64": "MrF7AIPJQS+JmwO42zeBvw==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db74"
+  },
+  "KBOB_ID": 7.017,
+  "Name": "Sperrholz/Multiplex, UF-gebunden, Trockenbereich",
+  "GWP": 0.95,
+  "UBP": 2.14,
+  "PENRE": 14.7,
+  "kg/unit": 500,
+  "uuid": {
+    "$binary": {
+      "base64": "VcP7NifFQLu1HHFcnymE/g==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db75"
+  },
+  "KBOB_ID": "07.019.01",
+  "Name": "Stabschichtholz, Buche, fagus",
+  "GWP": 0.37,
+  "UBP": 1.01,
+  "PENRE": 11.3,
+  "kg/unit": 700,
+  "uuid": {
+    "$binary": {
+      "base64": "myVDLUDvTzuMW3EErUttUg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db76"
+  },
+  "KBOB_ID": 8.001,
+  "Name": "2-Komponenten Klebstoff",
+  "GWP": 4.84,
+  "UBP": 10.1,
+  "PENRE": 24.6,
+  "kg/unit": 1500,
+  "uuid": "21330D47-1D7A-36C8-7F0E-CB11F4CB2767"
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db77"
+  },
+  "KBOB_ID": 8.002,
+  "Name": "Heissbitumen",
+  "GWP": 1.09,
+  "UBP": 2.04,
+  "PENRE": 15,
+  "kg/unit": 1000,
+  "uuid": {
+    "$binary": {
+      "base64": "ygzIwAzwTeSp6MO0FjZRGQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db78"
+  },
+  "KBOB_ID": 8.003,
+  "Name": "Kautschukdichtungsmasse",
+  "GWP": 2.42,
+  "UBP": 6.87,
+  "PENRE": 24.7,
+  "kg/unit": 1500,
+  "uuid": {
+    "$binary": {
+      "base64": "mDHBAzrFQ5ub8TwZdjKMmA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db79"
+  },
+  "KBOB_ID": 8.004,
+  "Name": "Polysulfiddichtungsmasse",
+  "GWP": 1.72,
+  "UBP": 2.89,
+  "PENRE": 8.2,
+  "kg/unit": 1600,
+  "uuid": {
+    "$binary": {
+      "base64": "BzL6JBCLQaWoa3GtuItfIQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db7a"
+  },
+  "KBOB_ID": 8.005,
+  "Name": "Silicon-Fugenmasse",
+  "GWP": 2.91,
+  "UBP": 4.57,
+  "PENRE": 16.3,
+  "kg/unit": 1000,
+  "uuid": {
+    "$binary": {
+      "base64": "hec8oPjQT026TwdOO72KMQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db7b"
+  },
+  "KBOB_ID": 9.001,
+  "Name": "Dampfbremse bituminös",
+  "GWP": 3.64,
+  "UBP": 5.22,
+  "PENRE": 14.1,
+  "kg/unit": 1100,
+  "uuid": {
+    "$binary": {
+      "base64": "Ac1vPb1XQAKj+2zW31ho1w==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db7c"
+  },
+  "KBOB_ID": 9.002,
+  "Name": "Dampfbremse Polyethylen (PE)",
+  "GWP": 5.42,
+  "UBP": 6.93,
+  "PENRE": 25.7,
+  "kg/unit": 920,
+  "uuid": {
+    "$binary": {
+      "base64": "UVW/guvnT+mgwztS/zcoJw==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db7d"
+  },
+  "KBOB_ID": 9.003,
+  "Name": "Dichtungsbahn bituminös",
+  "GWP": 3.33,
+  "UBP": 4.35,
+  "PENRE": 12.6,
+  "kg/unit": 1100,
+  "uuid": {
+    "$binary": {
+      "base64": "e6XdOgbvQQiFOzaHtpj/Ig==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db7e"
+  },
+  "KBOB_ID": "09.003.11",
+  "Name": "Bituminöse Dichtungsbahn, swissporBIKUPLAN ECO",
+  "GWP": 2.92,
+  "UBP": 3.51,
+  "PENRE": 6.4,
+  "kg/unit": 1267,
+  "uuid": {
+    "$binary": {
+      "base64": "dzTAwn0vRgShqNjLnnMQxw==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db7f"
+  },
+  "KBOB_ID": "09.003.01",
+  "Name": "Bituminöse Dichtungsbahn, swissporBIKUTOP",
+  "GWP": 3.24,
+  "UBP": 4.06,
+  "PENRE": 10.5,
+  "kg/unit": 1269,
+  "uuid": {
+    "$binary": {
+      "base64": "g2ODH/uGTN2x8hOOR480sA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db80"
+  },
+  "KBOB_ID": "09.003.02",
+  "Name": "Bituminöse Dichtungsbahn, swissporBIKUTOP ECO",
+  "GWP": 2.88,
+  "UBP": 3.42,
+  "PENRE": 5.8,
+  "kg/unit": 1256,
+  "uuid": {
+    "$binary": {
+      "base64": "NzTqUqPFSgWgQAMyKjSK4Q==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db81"
+  },
+  "KBOB_ID": "09.003.03",
+  "Name": "Bituminöse Dichtungsbahn, swissporBIKUTOP",
+  "GWP": 3.24,
+  "UBP": 4.06,
+  "PENRE": 10.5,
+  "kg/unit": 1269,
+  "uuid": {
+    "$binary": {
+      "base64": "uhQJtYrAQBaaweOvwtIMUg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db82"
+  },
+  "KBOB_ID": "09.003.04",
+  "Name": "Bituminöse Dichtungsbahn, swissporBIKUTOP ECO",
+  "GWP": 2.88,
+  "UBP": 3.42,
+  "PENRE": 5.8,
+  "kg/unit": 1256,
+  "uuid": {
+    "$binary": {
+      "base64": "KutwDYwKRVSX04C1zDZ8rQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db83"
+  },
+  "KBOB_ID": "09.003.05",
+  "Name": "Bituminöse Dichtungsbahn, swissporBIKUTOP",
+  "GWP": 3.24,
+  "UBP": 4.06,
+  "PENRE": 10.5,
+  "kg/unit": 1269,
+  "uuid": {
+    "$binary": {
+      "base64": "DFp7prdNRtei8V9+lYCOgw==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db84"
+  },
+  "KBOB_ID": "09.003.06",
+  "Name": "Bituminöse Dichtungsbahn, swissporBIKUTOP ECO",
+  "GWP": 2.88,
+  "UBP": 3.42,
+  "PENRE": 5.8,
+  "kg/unit": 1256,
+  "uuid": {
+    "$binary": {
+      "base64": "dEobCxBbRbqQnnnkkPJpFw==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db85"
+  },
+  "KBOB_ID": "09.003.07",
+  "Name": "Bituminöse Dichtungsbahn, swissporBIKUTOP",
+  "GWP": 3.24,
+  "UBP": 4.06,
+  "PENRE": 10.5,
+  "kg/unit": 1269,
+  "uuid": {
+    "$binary": {
+      "base64": "32zzgHj3Rm2tlNo+11NsqQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db86"
+  },
+  "KBOB_ID": "09.003.08",
+  "Name": "Bituminöse Dichtungsbahn, swissporBIKUTOP ECO",
+  "GWP": 2.88,
+  "UBP": 3.42,
+  "PENRE": 5.8,
+  "kg/unit": 1256,
+  "uuid": {
+    "$binary": {
+      "base64": "7cFfKoNTS5KJ6vWI8ILVKA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db87"
+  },
+  "KBOB_ID": "09.003.09",
+  "Name": "Bituminöse Dichtungsbahn, swissporBIKUTOP",
+  "GWP": 3.24,
+  "UBP": 4.06,
+  "PENRE": 10.5,
+  "kg/unit": 1269,
+  "uuid": {
+    "$binary": {
+      "base64": "KwfvgoAQTGWvfJAFWTLahg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db88"
+  },
+  "KBOB_ID": "09.003.10",
+  "Name": "Bituminöse Dichtungsbahn, swissporBIKUTOP ECO",
+  "GWP": 2.88,
+  "UBP": 3.42,
+  "PENRE": 5.8,
+  "kg/unit": 1256,
+  "uuid": {
+    "$binary": {
+      "base64": "5pVmiNAsQUyOxrD671LIuA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db89"
+  },
+  "KBOB_ID": "09.003.12",
+  "Name": "Elastomerbitumen-Dichtungsbahn Sopravap EVA 35 flam",
+  "GWP": 3.05,
+  "UBP": 3.75,
+  "PENRE": 8.6,
+  "kg/unit": 4.6,
+  "uuid": {
+    "$binary": {
+      "base64": "mWvKI9UwTo608W9vV7ieCg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db8a"
+  },
+  "KBOB_ID": "09.003.13",
+  "Name": "Elastomerbitumen-Dichtungsbahn Sopralen EGV 3",
+  "GWP": 3.02,
+  "UBP": 3.68,
+  "PENRE": 8.4,
+  "kg/unit": 4,
+  "uuid": {
+    "$binary": {
+      "base64": "RfWe8MMQRhG9n5bD8p/2ow==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db8b"
+  },
+  "KBOB_ID": "09.003.14",
+  "Name": "Elastomerbitumen-Dichtungsbahn Sopralen EGV 3.5",
+  "GWP": 3.01,
+  "UBP": 3.66,
+  "PENRE": 8.4,
+  "kg/unit": 4.8,
+  "uuid": {
+    "$binary": {
+      "base64": "QX8rjEXIQGuXrO8UkyHo9w==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db8c"
+  },
+  "KBOB_ID": "09.003.15",
+  "Name": "Elastomerbitumen-Dichtungsbahn Sopralen Premier EP 5 ard flam",
+  "GWP": 3.06,
+  "UBP": 3.69,
+  "PENRE": 8,
+  "kg/unit": 4.8,
+  "uuid": {
+    "$binary": {
+      "base64": "DZT1phtqRp6/AQ3auPA9EA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db8d"
+  },
+  "KBOB_ID": "09.003.16",
+  "Name": "Elastomerbitumen-Dichtungsbahn Sopralen Jardin EP 5 ard flam",
+  "GWP": 3.07,
+  "UBP": 3.72,
+  "PENRE": 8.1,
+  "kg/unit": 5.4,
+  "uuid": {
+    "$binary": {
+      "base64": "oGuHA5xWSES7vTiOFXctZw==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db8e"
+  },
+  "KBOB_ID": "09.003.17",
+  "Name": "Elastomerbitumen-Dichtungsbahn Sopragum Flam HT-O Jardin S5",
+  "GWP": 3.38,
+  "UBP": 4.24,
+  "PENRE": 10.4,
+  "kg/unit": 5.6,
+  "uuid": {
+    "$binary": {
+      "base64": "EaVg0kzFTNabmQlFGG0iTg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db8f"
+  },
+  "KBOB_ID": "09.003.18",
+  "Name": "Elastomerbitumen-Dichtungsbahn SOPREMA Vapro Alpino",
+  "GWP": 3.38,
+  "UBP": 4.19,
+  "PENRE": 9.6,
+  "kg/unit": 5.8,
+  "uuid": {
+    "$binary": {
+      "base64": "MDDXlUIxQLyAP09iGLmRBA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db90"
+  },
+  "KBOB_ID": "09.003.19",
+  "Name": "Elastomerbitumen-Dichtungsbahn SOPREMA Vapro Nature",
+  "GWP": 3.38,
+  "UBP": 4.19,
+  "PENRE": 9.6,
+  "kg/unit": 5.8,
+  "uuid": {
+    "$binary": {
+      "base64": "QxVUs88eQiyFk/LFlGy4Lw==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db91"
+  },
+  "KBOB_ID": 9.004,
+  "Name": "Dichtungsbahn Gummi (EPDM)",
+  "GWP": 5.84,
+  "UBP": 8.11,
+  "PENRE": 25.5,
+  "kg/unit": 1100,
+  "uuid": {
+    "$binary": {
+      "base64": "kBWa90VbSZahrG1bbjJC9A==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db92"
+  },
+  "KBOB_ID": 9.005,
+  "Name": "Dichtungsbahn Polyolefin (FPO)",
+  "GWP": 5.18,
+  "UBP": 7.88,
+  "PENRE": 23.6,
+  "kg/unit": 1000,
+  "uuid": {
+    "$binary": {
+      "base64": "z6DKNBWmTZmuw8pg9G2+TQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db93"
+  },
+  "KBOB_ID": "09.010.01",
+  "Name": "Holzwolle-Erosionsschutzvlies Howolis Lindner Suisse GmbH",
+  "GWP": 0.84,
+  "UBP": 3.08,
+  "PENRE": 21.1,
+  "kg/unit": 0.28,
+  "uuid": {
+    "$binary": {
+      "base64": "uql1HGQ8TGCAFofnPyBD9w==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db94"
+  },
+  "KBOB_ID": "09.010.02",
+  "Name": "Holzwolle-Erosionsschutz-/Abdeck-/Schutz-/Dämmvlies Lindner Suisse GmbH",
+  "GWP": 0.55,
+  "UBP": 2.01,
+  "PENRE": 16.1,
+  "kg/unit": 0.54,
+  "uuid": {
+    "$binary": {
+      "base64": "UnG4Q9fyQLiwYMHdI6uBSA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db95"
+  },
+  "KBOB_ID": 9.006,
+  "Name": "Kraftpapier",
+  "GWP": 1.67,
+  "UBP": 3.45,
+  "PENRE": 20.8,
+  "kg/unit": 650,
+  "uuid": {
+    "$binary": {
+      "base64": "XCbJetEMSaiBXgajQMzESA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db96"
+  },
+  "KBOB_ID": 9.007,
+  "Name": "Polyethylenfolie (PE)",
+  "GWP": 5.42,
+  "UBP": 6.93,
+  "PENRE": 25.7,
+  "kg/unit": 920,
+  "uuid": {
+    "$binary": {
+      "base64": "1L9lmWYjSuWdUI7dtrBfQQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db97"
+  },
+  "KBOB_ID": 9.008,
+  "Name": "Polyethylenvlies (PE)",
+  "GWP": 5.63,
+  "UBP": 7.09,
+  "PENRE": 26.5,
+  "kg/unit": 920,
+  "uuid": {
+    "$binary": {
+      "base64": "/XG2KbmOR8itpFE2McCJaw==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db98"
+  },
+  "KBOB_ID": 10.014,
+  "Name": "Aerogel-Vlies",
+  "GWP": 48.7,
+  "UBP": 73600,
+  "PENRE": 242,
+  "kg/unit": 150,
+  "uuid": {
+    "$binary": {
+      "base64": "nsThK151SguE2qGl8VKkvA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db99"
+  },
+  "KBOB_ID": 10.012,
+  "Name": "Blähperlit",
+  "GWP": 1.05,
+  "UBP": 1460,
+  "PENRE": 4.6,
+  "min density": 65,
+  "max density": 140,
+  "uuid": {
+    "$binary": {
+      "base64": "5nc5aPnJR4KlzXi5sRZFcQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db9a"
+  },
+  "KBOB_ID": 10.011,
+  "Name": "Blähvermiculit",
+  "GWP": 0.394,
+  "UBP": 687,
+  "PENRE": 1.6,
+  "min density": 65,
+  "max density": 140,
+  "uuid": {
+    "$binary": {
+      "base64": "oKabM7LJTeS6LncMKk73ag==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db9b"
+  },
+  "KBOB_ID": 10.016,
+  "Name": "Flachsfasern",
+  "GWP": 1.01,
+  "UBP": 2.94,
+  "PENRE": 11.3,
+  "kg/unit": 30,
+  "uuid": {
+    "$binary": {
+      "base64": "ehaBty80S1G/LdTJwzz8pQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db9c"
+  },
+  "KBOB_ID": "10.016.01",
+  "Name": "Flachsfasern, MAGRIPOL, Premium",
+  "GWP": 0.98,
+  "UBP": 2.88,
+  "PENRE": 11.1,
+  "kg/unit": 30,
+  "uuid": {
+    "$binary": {
+      "base64": "EJ58pJ2xRuCqqO9uFZp6Yw==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db9d"
+  },
+  "KBOB_ID": 10.017,
+  "Name": "Flachsfasern, feuerfest",
+  "GWP": 1.45,
+  "UBP": 3.53,
+  "PENRE": 13,
+  "kg/unit": 30,
+  "uuid": {
+    "$binary": {
+      "base64": "zFE/F3R/R3ar+px4/yalVw==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db9e"
+  },
+  "KBOB_ID": "10.017.01",
+  "Name": "Flachsfasern, feuerfest, MAGRIPOL, Premium+",
+  "GWP": 1.42,
+  "UBP": 3.46,
+  "PENRE": 12.8,
+  "kg/unit": 30,
+  "uuid": {
+    "$binary": {
+      "base64": "xc8XMTCRT8WVUt5zaPKWpg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29db9f"
+  },
+  "KBOB_ID": 10.001,
+  "Name": "Glaswolle",
+  "GWP": 1.1,
+  "UBP": 1.96,
+  "PENRE": 7.8,
+  "min density": 20,
+  "max density": 100,
+  "uuid": {
+    "$binary": {
+      "base64": "Q7A/YZGhQ465WG4nTxOyQQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dba0"
+  },
+  "KBOB_ID": "10.001.01",
+  "Name": "Glaswolle, Isover, phenolbasiertes Bindemittel",
+  "GWP": 1.03,
+  "UBP": 1.83,
+  "PENRE": 7.4,
+  "min density": 20,
+  "max density": 100,
+  "uuid": {
+    "$binary": {
+      "base64": "whQKTeJbThO9cofBxaNyhg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dba1"
+  },
+  "KBOB_ID": "10.001.03",
+  "Name": "Glaswolle, Isover, pflanzliches Bindemittel",
+  "GWP": 0.89,
+  "UBP": 1.7,
+  "PENRE": 6.1,
+  "min density": 20,
+  "max density": 100,
+  "uuid": {
+    "$binary": {
+      "base64": "iUKQxX0aQraLJ8+rzW+lcw==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dba2"
+  },
+  "KBOB_ID": "10.001.02",
+  "Name": "Glaswolle, SUPAFIL",
+  "GWP": 1.14,
+  "UBP": 2.06,
+  "PENRE": 6.2,
+  "kg/unit": 35,
+  "uuid": {
+    "$binary": {
+      "base64": "sLaTtgyTSbytdQ3jSSBCuA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dba3"
+  },
+  "KBOB_ID": 10.002,
+  "Name": "Korkplatte",
+  "GWP": 1.11,
+  "UBP": 2.17,
+  "PENRE": 14.2,
+  "kg/unit": 120,
+  "uuid": {
+    "$binary": {
+      "base64": "QqiRHGL/Skus2DHkFIeH6A==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dba4"
+  },
+  "KBOB_ID": 10.003,
+  "Name": "Phenolharz (PF)",
+  "GWP": 7.26,
+  "UBP": 10,
+  "PENRE": 34,
+  "kg/unit": 40,
+  "uuid": {
+    "$binary": {
+      "base64": "TzUtyp6LSeSYtvELp5cYDg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dba5"
+  },
+  "KBOB_ID": 10.004,
+  "Name": "Polystyrol expandiert (EPS)",
+  "GWP": 7.6,
+  "UBP": 9.8,
+  "PENRE": 31,
+  "min density": 15,
+  "max density": 40,
+  "uuid": {
+    "$binary": {
+      "base64": "n2y1R9wASQCPtKNxNfUQtA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dba6"
+  },
+  "KBOB_ID": "10.004.01",
+  "Name": "Polystyrol expandiert, SwissporEPS",
+  "GWP": 6.95,
+  "UBP": 8.79,
+  "PENRE": 27.4,
+  "kg/unit": 16.8,
+  "uuid": {
+    "$binary": {
+      "base64": "BG/p9WX8SKCAL44u5gDNpg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dba7"
+  },
+  "KBOB_ID": "10.004.02",
+  "Name": "Polystyrol expandiert, 44% Recyclinganteil, SwissporEPS Roof Eco",
+  "kg/unit": 26,
+  "uuid": {
+    "$binary": {
+      "base64": "Bcu0/2z+QoWG4Y1epZNjfQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dba8"
+  },
+  "KBOB_ID": "10.004.03",
+  "Name": "Polystyrol expandiert, 100% Recyclinganteil, SwissporEPS R 100%",
+  "kg/unit": 27,
+  "uuid": {
+    "$binary": {
+      "base64": "meOitM4PTnquy5qjXS+rrw==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dba9"
+  },
+  "KBOB_ID": 10.005,
+  "Name": "Polystyrol extrudiert (XPS)",
+  "GWP": 14.4,
+  "UBP": 19.7,
+  "PENRE": 30,
+  "min density": 30,
+  "max density": 35,
+  "uuid": {
+    "$binary": {
+      "base64": "YE8uyviIScSfpcIGvDfoiQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbaa"
+  },
+  "KBOB_ID": "10.005.01",
+  "Name": "Polystyrol extrudiert, SwissporXPS",
+  "GWP": 6.96,
+  "UBP": 8.88,
+  "PENRE": 26.9,
+  "kg/unit": 34.3,
+  "uuid": {
+    "$binary": {
+      "base64": "rPZCA7A4Tq+yl1PYxI+KQg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbab"
+  },
+  "KBOB_ID": 10.006,
+  "Name": "Polyurethan (PUR/PIR)",
+  "GWP": 7.44,
+  "UBP": 10.4,
+  "PENRE": 31,
+  "kg/unit": 30,
+  "uuid": {
+    "$binary": {
+      "base64": "0juNCWzMQre1TbZ77uxU3Q==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbac"
+  },
+  "KBOB_ID": "10.006.01",
+  "Name": "Polyurethan, SwissporPIR",
+  "GWP": 7.08,
+  "UBP": 9.83,
+  "PENRE": 29,
+  "kg/unit": 30,
+  "uuid": {
+    "$binary": {
+      "base64": "V1oy8NmaSt6jYI53Bjml4w==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbad"
+  },
+  "KBOB_ID": 10.007,
+  "Name": "Schaumglas",
+  "GWP": 1.19,
+  "UBP": 1.76,
+  "PENRE": 7,
+  "min density": 100,
+  "max density": 165,
+  "uuid": {
+    "$binary": {
+      "base64": "Moxvp9qSRiqcx20Ntczi0w==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbae"
+  },
+  "KBOB_ID": "10.007.01",
+  "Name": "Schaumglas, GLAPOR",
+  "GWP": 0.71,
+  "UBP": 1.02,
+  "PENRE": 3.4,
+  "kg/unit": 120,
+  "uuid": {
+    "$binary": {
+      "base64": "a78gH0joSGad//by4xBexg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbaf"
+  },
+  "KBOB_ID": 10.013,
+  "Name": "Schaumglasschotter",
+  "GWP": 0.16,
+  "UBP": 499,
+  "PENRE": 2,
+  "min density": 125,
+  "max density": 150,
+  "uuid": {
+    "$binary": {
+      "base64": "vrWyIoXgRNuJHYUd8W7qMQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbb0"
+  },
+  "KBOB_ID": "10.013.01",
+  "Name": "Schaumglasschotter, Misapor",
+  "GWP": 0.13,
+  "UBP": 434,
+  "PENRE": 1.8,
+  "min density": 125,
+  "max density": 150,
+  "uuid": {
+    "$binary": {
+      "base64": "YvkTmnodQN2Q+Di1KvmTxA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbb1"
+  },
+  "KBOB_ID": 10.008,
+  "Name": "Steinwolle",
+  "GWP": 0.82,
+  "UBP": 1.36,
+  "PENRE": 4.9,
+  "min density": 32,
+  "max density": 160,
+  "uuid": {
+    "$binary": {
+      "base64": "o7ugQpevS1yvAOBJzvGlVw==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbb2"
+  },
+  "KBOB_ID": "10.008.01",
+  "Name": "Steinwolle, Flumroc",
+  "GWP": 0.62,
+  "UBP": 1.1,
+  "PENRE": 4.6,
+  "min density": 32,
+  "max density": 160,
+  "uuid": {
+    "$binary": {
+      "base64": "GU9F5KCKQnukkJmZNNXWEA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbb3"
+  },
+  "KBOB_ID": 10.015,
+  "Name": "Strohballenwand",
+  "GWP": 0.1,
+  "UBP": 586,
+  "PENRE": 5.1,
+  "kg/unit": 215,
+  "uuid": {
+    "$binary": {
+      "base64": "knZsFl0NRO2fksFaoy3szg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbb4"
+  },
+  "KBOB_ID": 10.009,
+  "Name": "Weichfaserplatte",
+  "GWP": 0.725,
+  "UBP": 1400,
+  "PENRE": 10.5,
+  "kg/unit": 148,
+  "uuid": {
+    "$binary": {
+      "base64": "uWiVgoveT+GEnbu+2EDkEA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbb5"
+  },
+  "KBOB_ID": 10.01,
+  "Name": "Zellulosefasern",
+  "GWP": 0.28,
+  "UBP": 556,
+  "PENRE": 1.31,
+  "min density": 35,
+  "max density": 60,
+  "uuid": {
+    "$binary": {
+      "base64": "hYdx1Zb1Qsmu41HTvhh59w==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbb6"
+  },
+  "KBOB_ID": "10.010.01",
+  "Name": "Zellulosefasern, Isofloc",
+  "GWP": 0.233,
+  "UBP": 470,
+  "PENRE": 1.09,
+  "min density": 35,
+  "max density": 60,
+  "uuid": {
+    "$binary": {
+      "base64": "HzHDg7KhSQ2rD7PqKiTYBA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbb7"
+  },
+  "KBOB_ID": 11.001,
+  "Name": "2K-Fliessbelag Industrie (Epoxidharz), 2.25 mm",
+  "GWP": 18.4,
+  "UBP": 41.7,
+  "PENRE": 67,
+  "kg/unit": 4.55,
+  "uuid": {
+    "$binary": {
+      "base64": "1WYL3exHTWqzwT6gb3fqiQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbb8"
+  },
+  "KBOB_ID": 11.002,
+  "Name": "2K-Fliessbelag Wohnen/Verwaltung (Epoxidharz, PU), 2 mm",
+  "GWP": 13.9,
+  "UBP": 25.8,
+  "PENRE": 64,
+  "kg/unit": 3.6,
+  "uuid": {
+    "$binary": {
+      "base64": "Tox9LC/HTjirOQSeWOnPzA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbb9"
+  },
+  "KBOB_ID": 11.003,
+  "Name": "Gummigranulat versiegelt, 7.5 mm",
+  "GWP": 26.8,
+  "UBP": 38.8,
+  "PENRE": 115,
+  "kg/unit": 8.25,
+  "uuid": {
+    "$binary": {
+      "base64": "L3Hbd889SdyNysJSA+2GCw==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbba"
+  },
+  "KBOB_ID": 11.004,
+  "Name": "Gussasphalt, 27.5 mm",
+  "GWP": 15.9,
+  "UBP": 33.7,
+  "PENRE": 129,
+  "kg/unit": 63.3,
+  "uuid": {
+    "$binary": {
+      "base64": "sMdJ2ikrQX2OOGV2bgUvvA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbbb"
+  },
+  "KBOB_ID": 11.005,
+  "Name": "Hartbeton einschichtig, 27.5 mm",
+  "GWP": 16.4,
+  "UBP": 26.6,
+  "PENRE": 49,
+  "kg/unit": 57.8,
+  "uuid": {
+    "$binary": {
+      "base64": "/Hi1Z//yQy+YogehQgqovQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbbc"
+  },
+  "KBOB_ID": 11.006,
+  "Name": "Hartbeton zweischichtig, 35 mm",
+  "GWP": 16.4,
+  "UBP": 27.2,
+  "PENRE": 44,
+  "kg/unit": 73.5,
+  "uuid": {
+    "$binary": {
+      "base64": "Fg7zZbt0QcivQFJWgR2Dww==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbbd"
+  },
+  "KBOB_ID": 11.007,
+  "Name": "Kautschuk, 2 mm",
+  "GWP": 14.1,
+  "UBP": 24.2,
+  "PENRE": 71,
+  "kg/unit": 3.36,
+  "uuid": {
+    "$binary": {
+      "base64": "Y+4lFwB4Qka4MwjSU1KGUw==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbbe"
+  },
+  "KBOB_ID": 11.008,
+  "Name": "Keramik-/Steinzeugplatte, 9 mm",
+  "GWP": 18.2,
+  "UBP": 86.8,
+  "PENRE": 88,
+  "kg/unit": 18,
+  "uuid": {
+    "$binary": {
+      "base64": "QU7rvoXESGmkESnACXraOA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbbf"
+  },
+  "KBOB_ID": 11.009,
+  "Name": "Kork Fertigparkett, 10.5 mm",
+  "GWP": 9.07,
+  "UBP": 15.5,
+  "PENRE": 84,
+  "kg/unit": 7.8,
+  "uuid": {
+    "$binary": {
+      "base64": "CbhHOt20QtSXfsnKkUtUrA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbc0"
+  },
+  "KBOB_ID": 11.01,
+  "Name": "Kork PVC-beschichtet, 3.2 mm",
+  "GWP": 8.28,
+  "UBP": 12,
+  "PENRE": 43,
+  "kg/unit": 2.7,
+  "uuid": {
+    "$binary": {
+      "base64": "v2RWFBUvSCCKqUW0dMYM4g==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbc1"
+  },
+  "KBOB_ID": 11.011,
+  "Name": "Korkparkett geölt/versiegelt, 5.3 mm",
+  "GWP": 3.26,
+  "UBP": 5.97,
+  "PENRE": 24.4,
+  "kg/unit": 2.7,
+  "uuid": {
+    "$binary": {
+      "base64": "Mtibz7vaTsGyuOTucxtdgg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbc2"
+  },
+  "KBOB_ID": 11.012,
+  "Name": "Kunststeinplatte zementgebunden, 10 mm",
+  "GWP": 10.4,
+  "UBP": 25.7,
+  "PENRE": 32.1,
+  "kg/unit": 21.5,
+  "uuid": {
+    "$binary": {
+      "base64": "1uQ+f5SjRryDJ6N9wig+Og==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbc3"
+  },
+  "KBOB_ID": 11.013,
+  "Name": "Laminat, 8.5 mm",
+  "GWP": 10.4,
+  "UBP": 16.6,
+  "PENRE": 81,
+  "kg/unit": 8.5,
+  "uuid": {
+    "$binary": {
+      "base64": "kn575+F/S3e2pfHnVe1MnQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbc4"
+  },
+  "KBOB_ID": 11.014,
+  "Name": "Linoleum, 2.5 mm",
+  "GWP": 6.36,
+  "UBP": 15.8,
+  "PENRE": 46,
+  "kg/unit": 2.9,
+  "uuid": {
+    "$binary": {
+      "base64": "IZ7NFtl0RSudNMuTocIIfQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbc5"
+  },
+  "KBOB_ID": 11.015,
+  "Name": "Natursteinplatte geschliffen, 15 mm",
+  "GWP": 16.8,
+  "UBP": 41.9,
+  "PENRE": 138,
+  "kg/unit": 40.5,
+  "uuid": {
+    "$binary": {
+      "base64": "qUvffIKqSbun2LpsneU9SQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbc6"
+  },
+  "KBOB_ID": "11.015.01",
+  "Name": "Natursteinplatte geschliffen, Europa, 15 mm",
+  "GWP": 16.6,
+  "UBP": 40700,
+  "PENRE": 137,
+  "kg/unit": 40.5,
+  "uuid": {
+    "$binary": {
+      "base64": "xSSPt0d6QU6XZ9UgpZKtjw==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbc7"
+  },
+  "KBOB_ID": "11.015.02",
+  "Name": "Natursteinplatte geschliffen, Schweiz, 15 mm",
+  "GWP": 13.4,
+  "UBP": 34800,
+  "PENRE": 123,
+  "kg/unit": 40.5,
+  "uuid": {
+    "$binary": {
+      "base64": "MebYdRzsSri6n0UV9UDvZA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbc8"
+  },
+  "KBOB_ID": "11.015.03",
+  "Name": "Natursteinplatte geschliffen, Ãœbersee, 15 mm",
+  "GWP": 17.9,
+  "UBP": 44500,
+  "PENRE": 142,
+  "kg/unit": 40.5,
+  "uuid": {
+    "$binary": {
+      "base64": "gkgxP9kNTei0pLnb4/0dRw==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbc9"
+  },
+  "KBOB_ID": 11.016,
+  "Name": "Natursteinplatte geschnitten, 15 mm",
+  "GWP": 13.4,
+  "UBP": 32,
+  "PENRE": 101,
+  "kg/unit": 40.5,
+  "uuid": {
+    "$binary": {
+      "base64": "CcOSxvHHQh+02lNsl6s2xw==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbca"
+  },
+  "KBOB_ID": 11.017,
+  "Name": "Natursteinplatte poliert, 15 mm",
+  "GWP": 19.6,
+  "UBP": 69.7,
+  "PENRE": 169,
+  "kg/unit": 40.5,
+  "uuid": {
+    "$binary": {
+      "base64": "CQmHhI9MTGC9jTnrIUXYxA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbcb"
+  },
+  "KBOB_ID": 11.018,
+  "Name": "Parkett 2-Schicht werkversiegelt, 11 mm",
+  "GWP": 7.8,
+  "UBP": 16.1,
+  "PENRE": 130,
+  "kg/unit": 6.1,
+  "uuid": {
+    "$binary": {
+      "base64": "5+ZTmqmcQcqzZ58j6Vq2Cw==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbcc"
+  },
+  "KBOB_ID": 11.019,
+  "Name": "Parkett 3-Schicht werkversiegelt, 15 mm",
+  "GWP": 8.1,
+  "UBP": 18.1,
+  "PENRE": 186,
+  "kg/unit": 7.9,
+  "uuid": {
+    "$binary": {
+      "base64": "OhbuUHjSQcOwTAgZOARRKA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbcd"
+  },
+  "KBOB_ID": 11.02,
+  "Name": "Parkett Mosaik werkversiegelt, 8 mm",
+  "GWP": 3.6,
+  "UBP": 9.02,
+  "PENRE": 113,
+  "kg/unit": 5.6,
+  "uuid": {
+    "$binary": {
+      "base64": "PL9t9/sOQ+yyl9+6a55Cgw==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbce"
+  },
+  "KBOB_ID": 11.021,
+  "Name": "PVC homogen, 2 mm",
+  "GWP": 14.4,
+  "UBP": 20.6,
+  "PENRE": 61,
+  "kg/unit": 3.1,
+  "uuid": {
+    "$binary": {
+      "base64": "B3FOqBZZTpK/W85SEgx7Tw==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbcf"
+  },
+  "KBOB_ID": 11.022,
+  "Name": "Steinholz versiegelt, 16.5 mm",
+  "GWP": 12.9,
+  "UBP": 16.4,
+  "PENRE": 26.1,
+  "kg/unit": 22,
+  "uuid": {
+    "$binary": {
+      "base64": "nHonQ3fdTOixx6QSFXuQfA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbd0"
+  },
+  "KBOB_ID": 11.023,
+  "Name": "Synthetische thermoplastische Beläge (TPO), 2 mm",
+  "GWP": 16,
+  "UBP": 20,
+  "PENRE": 47,
+  "kg/unit": 3.4,
+  "uuid": {
+    "$binary": {
+      "base64": "yBQMvcXTQLCa70mMmK15CQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbd1"
+  },
+  "KBOB_ID": 11.024,
+  "Name": "Teppich Kunstfaser getuftet",
+  "GWP": 16.7,
+  "UBP": 21.1,
+  "PENRE": 51,
+  "kg/unit": 2.1,
+  "uuid": {
+    "$binary": {
+      "base64": "kuRaPZAMRJKtqGGy3QAZyA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbd2"
+  },
+  "KBOB_ID": 11.025,
+  "Name": "Teppich Nadelfilz",
+  "GWP": 9.84,
+  "UBP": 12.7,
+  "PENRE": 35,
+  "kg/unit": 1.3,
+  "uuid": {
+    "$binary": {
+      "base64": "5f1kUMWsSEe8zdDwKcFU5g==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbd3"
+  },
+  "KBOB_ID": 11.026,
+  "Name": "Teppich Naturfaser",
+  "GWP": 5.08,
+  "UBP": 15.3,
+  "PENRE": 26.4,
+  "kg/unit": 2.7,
+  "uuid": {
+    "$binary": {
+      "base64": "nCLUH7uKQo2gmoU9gZq83w==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbd4"
+  },
+  "KBOB_ID": 11.027,
+  "Name": "Terrazzo versiegelt, 40 mm",
+  "GWP": 17.3,
+  "UBP": 28.1,
+  "PENRE": 45,
+  "kg/unit": 95,
+  "uuid": {
+    "$binary": {
+      "base64": "PJg46SprRu+2t+MQobCmuA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbd5"
+  },
+  "KBOB_ID": 12.005,
+  "Name": "Aussentüre, Aluminium, Glaseinsatz",
+  "GWP": 216,
+  "UBP": 394,
+  "PENRE": 1.03,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "NYgWY42/RyyGkJV9FXpUog==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbd6"
+  },
+  "KBOB_ID": 12.006,
+  "Name": "Aussentüre, Aluminium, Paneelfüllung",
+  "GWP": 192,
+  "UBP": 385,
+  "PENRE": 980,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "LE0cKklrTS+On85iHkoa+w==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbd7"
+  },
+  "KBOB_ID": 12.008,
+  "Name": "Aussentüre, Holz",
+  "GWP": 62.2,
+  "UBP": 125,
+  "PENRE": 548,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "/yene7rcRSeTcyn3mQaATA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbd8"
+  },
+  "KBOB_ID": 12.001,
+  "Name": "Aussentüre, Holz, aluminiumbeplankt",
+  "GWP": 116,
+  "UBP": 231,
+  "PENRE": 834,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "TEn8wU7xQdyHVOGdEtET+g==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbd9"
+  },
+  "KBOB_ID": 12.002,
+  "Name": "Aussentüre, Holz, Glaseinsatz",
+  "GWP": 85.7,
+  "UBP": 161,
+  "PENRE": 606,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "G1NaFAkrSwGYgkWWcdcjeQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbda"
+  },
+  "KBOB_ID": 12.007,
+  "Name": "Innentüre, Aluminium, Glaseinsatz",
+  "GWP": 166,
+  "UBP": 316,
+  "PENRE": 827,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "cBYRRxFWSy25VNZZKSmo7w==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbdb"
+  },
+  "KBOB_ID": 12.009,
+  "Name": "Innentüre, Funktionstüre, Holz, Holzrahmen",
+  "GWP": 44.3,
+  "UBP": 87.8,
+  "PENRE": 470,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "v6jQA8QcTFOYdVySRoOh0g==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbdc"
+  },
+  "KBOB_ID": 12.012,
+  "Name": "Innentüre, Funktionstüre, Holz, Stahlzarge",
+  "GWP": 96.8,
+  "UBP": 181,
+  "PENRE": 589,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "C+Bd3rpySsy/jSeOUmWE1w==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbdd"
+  },
+  "KBOB_ID": 12.004,
+  "Name": "Innentüre, Zimmertüre, Holz, Glaseinsatz, Holzrahmen",
+  "GWP": 59.7,
+  "UBP": 109,
+  "PENRE": 455,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "oYaNxZRWQpGGWkmbM6X80Q==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbde"
+  },
+  "KBOB_ID": 12.011,
+  "Name": "Innentüre, Zimmertüre, Holz, Glaseinsatz, Stahlzarge",
+  "GWP": 112,
+  "UBP": 202,
+  "PENRE": 574,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "uvXat2otR/amTIZ+Iie5aQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbdf"
+  },
+  "KBOB_ID": 12.003,
+  "Name": "Innentüre, Zimmertüre, Holz, Holzrahmen",
+  "GWP": 32.3,
+  "UBP": 64.5,
+  "PENRE": 347,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "dn2Jy5knS92s0/zHnDK5fg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbe0"
+  },
+  "KBOB_ID": 12.01,
+  "Name": "Innentüre, Zimmertüre, Holz, Stahlzarge",
+  "GWP": 84.8,
+  "UBP": 158,
+  "PENRE": 466,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "DqCq7MemQquXy9AoSCd+tg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbe1"
+  },
+  "KBOB_ID": 13.001,
+  "Name": "Acrylnitril-Butadien-Styrol (ABS)",
+  "GWP": 7.67,
+  "UBP": 9.77,
+  "PENRE": 30,
+  "kg/unit": 1050,
+  "uuid": {
+    "$binary": {
+      "base64": "0UXMPjgoSH2MlMLNwjv5Ig==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbe2"
+  },
+  "KBOB_ID": 13.005,
+  "Name": "Gusseisen",
+  "GWP": 2.09,
+  "UBP": 5.67,
+  "PENRE": 5.8,
+  "kg/unit": 7850,
+  "uuid": {
+    "$binary": {
+      "base64": "v1reUL2tQZu35Zo/f2k4ow==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbe3"
+  },
+  "KBOB_ID": 13.002,
+  "Name": "Polyethylen (PE)",
+  "GWP": 4.75,
+  "UBP": 6.02,
+  "PENRE": 23.8,
+  "kg/unit": 960,
+  "uuid": {
+    "$binary": {
+      "base64": "DbNxKzt+RLu1bKSd3tPUZQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbe4"
+  },
+  "KBOB_ID": 13.003,
+  "Name": "Polypropylen (PP)",
+  "GWP": 4.78,
+  "UBP": 6.05,
+  "PENRE": 23.2,
+  "kg/unit": 910,
+  "uuid": {
+    "$binary": {
+      "base64": "krLvuJ+VR+yWPRFMvkMCRg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbe5"
+  },
+  "KBOB_ID": 13.004,
+  "Name": "Polyvinylchlorid (PVC)",
+  "GWP": 4.49,
+  "UBP": 6.24,
+  "PENRE": 20.2,
+  "kg/unit": 1390,
+  "uuid": {
+    "$binary": {
+      "base64": "WmRJwmKgSkK/bfHjP1+UgA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbe6"
+  },
+  "KBOB_ID": 14.002,
+  "Name": "Anstrich, lösemittelverdünnbar, 2 Anstriche",
+  "GWP": 0.975,
+  "UBP": 2.26,
+  "PENRE": 7,
+  "kg/unit": 0.3,
+  "uuid": {
+    "$binary": {
+      "base64": "B90vVhM6T7+jmx03QkjrKg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbe7"
+  },
+  "KBOB_ID": 14.001,
+  "Name": "Anstrich, wasserverdünnbar, 2 Anstriche",
+  "GWP": 0.701,
+  "UBP": 1.22,
+  "PENRE": 4.3,
+  "kg/unit": 0.3,
+  "uuid": {
+    "$binary": {
+      "base64": "EKygt7ddT1Gjq5drkjrKig==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbe8"
+  },
+  "KBOB_ID": 14.003,
+  "Name": "Bitumenemulsion, 1 Anstrich",
+  "GWP": 0.181,
+  "UBP": 428,
+  "PENRE": 1.87,
+  "kg/unit": 0.25,
+  "uuid": {
+    "$binary": {
+      "base64": "EWXvWuGiTA2TB2It7hB5mQ==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbe9"
+  },
+  "KBOB_ID": 14.004,
+  "Name": "Emaillieren, Metall",
+  "GWP": 8.11,
+  "UBP": 16.4,
+  "PENRE": 48,
+  "kg/unit": "-",
+  "uuid": "F45B12F5-FF80-528A-2C76-A6DABD38F684"
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbea"
+  },
+  "KBOB_ID": 14.005,
+  "Name": "Pulverbeschichten, Aluminium",
+  "GWP": 3.64,
+  "UBP": 6.26,
+  "PENRE": 17.2,
+  "kg/unit": "-",
+  "uuid": "68569EAE-A2FA-E096-D678-497AB362BCCF",
+  "userDensity": {}
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbeb"
+  },
+  "KBOB_ID": 14.006,
+  "Name": "Pulverbeschichten, Stahl",
+  "GWP": 4.38,
+  "UBP": 6.76,
+  "PENRE": 21.8,
+  "kg/unit": "-",
+  "uuid": "E9266136-2E91-997B-5E48-CA88AB77279C"
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbec"
+  },
+  "KBOB_ID": 14.007,
+  "Name": "Verchromen, Stahl",
+  "GWP": 0.609,
+  "UBP": 6.32,
+  "PENRE": 5.3,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "P92IO47aRzWYfF189G8QBA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbed"
+  },
+  "KBOB_ID": 14.008,
+  "Name": "Verzinken, Stahl",
+  "GWP": 6.09,
+  "UBP": 29.5,
+  "PENRE": 28,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "qvd/mv54Qc261RbapiOMwg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbee"
+  },
+  "KBOB_ID": 15.001,
+  "Name": "Plexiglas (PMMA, Acrylglas)",
+  "GWP": 11.6,
+  "UBP": 14.8,
+  "PENRE": 41,
+  "kg/unit": 1180,
+  "uuid": {
+    "$binary": {
+      "base64": "eAh5ZUF+R2O4tUp5EJQzYw==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbef"
+  },
+  "KBOB_ID": 15.002,
+  "Name": "Polyamid (PA) glasfaserverstärkt",
+  "GWP": 11.5,
+  "UBP": 15.2,
+  "PENRE": 41,
+  "kg/unit": 1360,
+  "uuid": "A5671823-5D7E-A4B1-2A9F-C32E6CA3BCB9"
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbf0"
+  },
+  "KBOB_ID": 15.003,
+  "Name": "Polycarbonat (PC)",
+  "GWP": 11.4,
+  "UBP": 15.9,
+  "PENRE": 32,
+  "kg/unit": 1200,
+  "uuid": {
+    "$binary": {
+      "base64": "RkyJhdMMQOyLJn4Qe89/Gg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbf1"
+  },
+  "KBOB_ID": 15.004,
+  "Name": "Polyester (UP) glasfaserverstärkt",
+  "GWP": 9.84,
+  "UBP": 13.8,
+  "PENRE": 32.9,
+  "kg/unit": 1500,
+  "uuid": {
+    "$binary": {
+      "base64": "mTpyJ/F9S/qLN8YsE9xC9Q==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbf2"
+  },
+  "KBOB_ID": 15.005,
+  "Name": "Polystyrol (PS)",
+  "GWP": 6.72,
+  "UBP": 8.17,
+  "PENRE": 25,
+  "kg/unit": 1050,
+  "uuid": "CBDADEEB-3B93-32E4-6504-08EF289B6D9B"
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbf3"
+  },
+  "KBOB_ID": 21.001,
+  "Name": "Abfalltrennsystem",
+  "GWP": 24.2,
+  "UBP": 35.3,
+  "PENRE": 130,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "PDbKUDtORMqCQOtLdahLaA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbf4"
+  },
+  "KBOB_ID": 21.002,
+  "Name": "Arbeitsplatte Chromstahl, high-end",
+  "GWP": 332,
+  "UBP": 837,
+  "PENRE": 1710,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "/HxHJ7a5RamauVPuXAOfsg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbf5"
+  },
+  "KBOB_ID": 21.003,
+  "Name": "Arbeitsplatte Chromstahl, Standard",
+  "GWP": 56.8,
+  "UBP": 137,
+  "PENRE": 314,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "WVUGWJfZRNChnmnBQ0lT8A==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbf6"
+  },
+  "KBOB_ID": 21.004,
+  "Name": "Arbeitsplatte Kompositwerkstoff (auf Aluminiumhydroxidbasis)",
+  "GWP": 95.5,
+  "UBP": 137,
+  "PENRE": 361,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "uouQsJ3ySyScLidxZi6Vjw==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbf7"
+  },
+  "KBOB_ID": 21.005,
+  "Name": "Arbeitsplatte kunstharzbeschichtet",
+  "GWP": 20.2,
+  "UBP": 34.2,
+  "PENRE": 250,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "d9zOvXYORTSb+ZdeA36zoA==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbf8"
+  },
+  "KBOB_ID": 21.006,
+  "Name": "Arbeitsplatte Massivholz",
+  "GWP": 12.6,
+  "UBP": 27.5,
+  "PENRE": 396,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "/49wJ+nBStSeR33bD0TM7g==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbf9"
+  },
+  "KBOB_ID": 21.007,
+  "Name": "Arbeitsplatte Naturstein",
+  "GWP": 41.1,
+  "UBP": 159,
+  "PENRE": 429,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "9uPZIpq5Q6+JE9rupPvnIg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbfa"
+  },
+  "KBOB_ID": 21.008,
+  "Name": "Dampfabzug",
+  "GWP": 151,
+  "UBP": 356,
+  "PENRE": 668,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "hO2QtsvfT42EWycjRiaGdg==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbfb"
+  },
+  "KBOB_ID": 21.009,
+  "Name": "Küche, Massivholz, 16-teilig",
+  "GWP": 470,
+  "PENRE": 7020,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "F57zmv9gSEWVNI1z7yB8Rw==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbfc"
+  },
+  "KBOB_ID": 21.01,
+  "Name": "Küche, Metall, 16-teilig",
+  "GWP": 2770,
+  "PENRE": 11000,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "aSe5IwzpQE2zqZiRTtMegw==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbfd"
+  },
+  "KBOB_ID": 21.011,
+  "Name": "Küche, Spanplatte, 16-teilig",
+  "GWP": 632,
+  "PENRE": 5400,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "+twWQfhVSIiwu0KyMVPtlw==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbfe"
+  },
+  "KBOB_ID": 21.012,
+  "Name": "Spüle Chromstahl",
+  "GWP": 48.6,
+  "UBP": 110,
+  "PENRE": 255,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "Eq3jSyMYTgGJwEppDfQW0w==",
+      "subType": "04"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6732e1b19c1e980eec29dbff"
+  },
+  "KBOB_ID": 21.013,
+  "Name": "Spüle Kompositwerkstoff (auf Gesteinsmehlbasis)",
+  "GWP": 30.7,
+  "UBP": 46.6,
+  "PENRE": 160,
+  "kg/unit": "-",
+  "uuid": {
+    "$binary": {
+      "base64": "d2A2FRwhTxWppzGU6hPu6A==",
+      "subType": "04"
+    }
+  }
+}]

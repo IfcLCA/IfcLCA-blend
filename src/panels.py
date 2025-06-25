@@ -22,19 +22,27 @@ class IFCLCA_UL_MaterialMappingList(UIList):
         props = context.scene.ifclca_props
         
         if self.layout_type in {'DEFAULT', 'COMPACT'}:
-            row = layout.row(align=True)
+            # Use split layout for better width utilization
+            split = layout.split(factor=0.4)
             
-            # Material name
-            row.label(text=item.ifc_material_name, icon='MATERIAL')
+            # Left side - IFC material name
+            left = split.row()
+            left.label(text=item.ifc_material_name, icon='MATERIAL')
             
-            # Mapping status/button
+            # Right side - mapping info and button
+            right = split.row(align=True)
+            
             if item.is_mapped:
-                row.label(text=item.database_name, icon='CHECKMARK')
+                # Show mapped material name with icon
+                right.label(text=item.database_name, icon='CHECKMARK')
+                # Edit button
+                op = right.operator("ifclca.search_material", text="Change", icon='GREASEPENCIL')
             else:
-                row.label(text="Not mapped", icon='ERROR')
+                # Show unmapped status
+                right.label(text="Not mapped", icon='ERROR')
+                # Map button
+                op = right.operator("ifclca.search_material", text="Select Material", icon='VIEWZOOM')
             
-            # Map button
-            op = row.operator("ifclca.map_material", text="", icon='EYEDROPPER')
             # Find the index of this item
             for idx, mapping in enumerate(active_data.material_mappings):
                 if mapping == item:
