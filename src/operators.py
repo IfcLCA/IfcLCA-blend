@@ -54,13 +54,13 @@ except ImportError:
     ifcopenshell = None
     logger.error("ifcopenshell not available - IFC functionality will be limited")
 
-# Import our modules
+# Try relative imports first (when used as addon)
 try:
-    from .database_reader import get_database_reader
+    from .ifclca_core import get_database_reader
     from .logic import IfcMaterialExtractor, run_lca_analysis, format_results
 except ImportError:
-    # For testing, use absolute imports
-    from database_reader import get_database_reader
+    # Fallback to absolute imports (for testing)
+    from ifclca_core import get_database_reader
     from logic import IfcMaterialExtractor, run_lca_analysis, format_results
 
 # Try to import Bonsai tools if available
@@ -407,13 +407,32 @@ class IFCLCA_OT_RunAnalysis(Operator):
             self.report({'INFO'}, "Running LCA analysis...")
             results, detailed_results = run_lca_analysis(_ifc_file, db_reader, mapping)
             
+            # Add compatibility layer for web interface
+            # The web interface expects 'total_carbon' but new analysis returns 'gwp'
+            for material_name, details in detailed_results.items():
+                if 'gwp' in details and 'total_carbon' not in details:
+                    details['total_carbon'] = details['gwp']
+                # Also ensure 'elements' key exists for compatibility
+                if 'element_count' in details and 'elements' not in details:
+                    details['elements'] = details['element_count']
+                # Add density information for element calculations
+                material_data = db_reader.get_material_data(details.get('database_id', ''))
+                if material_data and 'density' not in details:
+                    details['density'] = material_data.get('density', 0)
+                # Ensure carbon_per_unit for calculations
+                if 'carbon_per_unit' not in details and material_data:
+                    details['carbon_per_unit'] = material_data.get('gwp', material_data.get('carbon_per_unit', 0))
+            
             # Format and store results
             results_text = format_results(results, detailed_results, db_reader)
             props.results_text = results_text
             props.results_json = json.dumps(detailed_results)
             
-            # Calculate total
-            total_carbon = sum(detailed_results[m]['total_carbon'] for m in detailed_results)
+            # Calculate total - handle both 'gwp' and 'total_carbon' keys for compatibility
+            total_carbon = sum(
+                detailed_results[m].get('gwp', detailed_results[m].get('total_carbon', 0)) 
+                for m in detailed_results
+            )
             props.total_carbon = total_carbon
             props.show_results = True
             
@@ -517,7 +536,10 @@ class IFCLCA_OT_AutoMapMaterials(Operator):
                 
                 if matches:
                     # Use first match
-                    mat_id, mat_name, mat_category = matches[0]
+                    match = matches[0]
+                    mat_id = match['id']
+                    mat_name = match['name']
+                    mat_category = match['category']
                     mat_mapping.database_id = mat_id
                     mat_mapping.database_name = mat_name
                     mat_mapping.is_mapped = True
@@ -667,6 +689,7 @@ class IFCLCA_OT_ViewWebResults(Operator):
     bl_options = {'REGISTER', 'UNDO'}
 
     def execute(self, context):
+        global _ifc_file
         props = context.scene.ifclca_props
         if not props.results_json:
             self.report({'ERROR'}, "No results available")
@@ -676,10 +699,22 @@ class IFCLCA_OT_ViewWebResults(Operator):
         except ImportError:
             import web_interface
 
-        data = json.loads(props.results_json)
-        server = web_interface.launch_results_browser(data)
+        # Parse results
+        detailed_results = json.loads(props.results_json)
+        
+        # Debug logging
+        logger.info(f"Launching web interface with {len(detailed_results)} materials")
+        logger.debug(f"Sample data: {list(detailed_results.keys())[:3]}")
+        
+        # Launch browser with detailed results and IFC file
+        server = web_interface.launch_results_browser(
+            results=detailed_results,  # For backward compatibility
+            detailed_results=detailed_results,
+            ifc_file=_ifc_file
+        )
         # Store server on context to keep alive
         context.scene.ifclca_web_server = server
+        self.report({'INFO'}, "Opening results in web browser...")
         return {'FINISHED'}
 
 

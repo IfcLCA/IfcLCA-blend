@@ -12,9 +12,11 @@ try:
         EnumProperty,
         CollectionProperty,
         IntProperty,
-        BoolProperty
+        BoolProperty,
+        PointerProperty
     )
     from bpy.types import PropertyGroup
+    
 except ImportError:
     # For testing, use mock
     from unittest.mock import MagicMock
@@ -25,6 +27,7 @@ except ImportError:
     CollectionProperty = MagicMock()
     IntProperty = MagicMock()
     BoolProperty = MagicMock()
+    PointerProperty = MagicMock()
 
 
 class MaterialResult(PropertyGroup):

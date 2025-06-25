@@ -81,7 +81,7 @@ class KBOBDatabaseReader(CarbonDatabaseReader):
                 "name": "Glulam timber",
                 "category": "Wood",
                 "density": 470,
-                "carbon_per_unit": -0.655,  # Negative due to carbon storage
+                "carbon_per_unit": -0.655,
                 "unit": "kg CO₂-eq/kg"
             },
             "KBOB_TIMBER_CLT": {

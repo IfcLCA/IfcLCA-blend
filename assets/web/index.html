@@ -1,47 +1,101 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-<meta charset="utf-8">
-<title>IfcLCA Results</title>
-<style>
-body { font-family: Arial, sans-serif; margin: 20px; }
-table { border-collapse: collapse; width: 100%; }
-th, td { border: 1px solid #ccc; padding: 8px; }
-th { background: #eee; cursor:pointer; }
-</style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IfcLCA Interactive Results</title>
+
+    <!-- External Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="css/main.css">
 </head>
+
 <body>
-<h1>IfcLCA Results</h1>
-<table id="results">
-<thead>
-<tr><th data-key="name">Material</th><th data-key="total_volume">Volume (m³)</th><th data-key="total_mass">Mass (kg)</th><th data-key="total_carbon">Carbon (kg CO₂e)</th></tr>
-</thead>
-<tbody></tbody>
-</table>
-<script>
-function load(){
-  fetch('/results').then(r=>r.json()).then(data=>{
-    const tbody=document.querySelector('#results tbody');
-    tbody.innerHTML='';
-    Object.entries(data).forEach(([name,info])=>{
-      const tr=document.createElement('tr');
-      tr.innerHTML=`<td>${name}</td><td>${info.total_volume.toFixed(2)}</td><td>${info.total_mass.toFixed(0)}</td><td>${info.total_carbon.toFixed(1)}</td>`;
-      tbody.appendChild(tr);
-    });
-  });
-}
-function sortTable(key){
-  const rows=Array.from(document.querySelectorAll('#results tbody tr'));
-  const idx={name:0,total_volume:1,total_mass:2,total_carbon:3}[key];
-  rows.sort((a,b)=>parseFloat(b.children[idx].textContent)-parseFloat(a.children[idx].textContent));
-  const tbody=document.querySelector('#results tbody');
-  tbody.innerHTML='';
-  rows.forEach(r=>tbody.appendChild(r));
-}
-document.querySelectorAll('th').forEach(th=>{
-  th.addEventListener('click',()=>sortTable(th.dataset.key));
-});
-load();
-</script>
+    <div class="container">
+        <h1>IfcLCA Results Dashboard</h1>
+
+        <!-- Global View Mode Selector -->
+        <div class="view-mode-selector">
+            <h3>View Mode - This affects all charts and tables</h3>
+            <div class="view-toggle">
+                <button class="active" onclick="setGlobalView('material')">By Material</button>
+                <button onclick="setGlobalView('class')">By Class</button>
+                <button onclick="setGlobalView('element')">By Element</button>
+            </div>
+        </div>
+
+        <!-- Summary Cards -->
+        <div class="summary-cards" id="summaryCards">
+            <div class="loading">Loading data...</div>
+        </div>
+
+        <!-- Charts -->
+        <div class="charts-container">
+            <div class="chart-wrapper">
+                <h2 id="doughnutTitle">Carbon Impact by Material</h2>
+                <div class="chart-container">
+                    <canvas id="doughnutChart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-wrapper">
+                <h2 id="barTitle">Top 10 Materials by Carbon</h2>
+                <div class="chart-container">
+                    <canvas id="barChart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-wrapper" style="grid-column: span 2;">
+                <h2 id="bubbleTitle">Material Analysis (Volume vs Carbon vs Mass)</h2>
+                <div class="chart-container" style="height: 400px;">
+                    <canvas id="bubbleChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Table -->
+        <div class="table-container">
+            <div class="table-controls">
+                <h2 id="tableTitle">Materials Table</h2>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <div id="expandControls" style="display: none;">
+                        <button onclick="toggleAllElementGroups(true)"
+                            style="padding: 6px 12px; border: 1px solid #ddd; background: white; border-radius: 4px; cursor: pointer;">
+                            Expand All
+                        </button>
+                        <button onclick="toggleAllElementGroups(false)"
+                            style="padding: 6px 12px; border: 1px solid #ddd; background: white; border-radius: 4px; cursor: pointer;">
+                            Collapse All
+                        </button>
+                    </div>
+                    <div>
+                        <label>Show:</label>
+                        <select class="page-size-select" id="pageSize" onchange="updatePageSize()">
+                            <option value="10">10</option>
+                            <option value="20" selected>20</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                            <option value="all">All</option>
+                        </select>
+                        <span>entries</span>
+                    </div>
+                </div>
+            </div>
+
+            <table id="resultsTable">
+                <thead id="tableHeader"></thead>
+                <tbody id="tableBody"></tbody>
+            </table>
+
+            <div class="pagination" id="pagination"></div>
+        </div>
+    </div>
+
+    <!-- External JavaScript Modules -->
+    <script type="module" src="js/app.js"></script>
 </body>
+
 </html>

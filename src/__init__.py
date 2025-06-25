@@ -2,12 +2,12 @@ bl_info = {
     "name": "IfcLCA Integration",
     "author": "louistrue",
     "version": (0, 1, 0),
-    "blender": (3, 6, 0),
+    "blender": (4, 0, 0),
     "location": "View3D > Sidebar > IfcLCA Tab",
     "description": "Life Cycle Assessment for IFC models using IfcLCA",
     "warning": "",
     "doc_url": "https://github.com/IfcLCA",
-    "category": "LCA",
+    "category": "Import-Export",
 }
 
 # Only import bpy when running inside Blender
@@ -57,15 +57,29 @@ _logger = setup_ifclca_logger()
 
 # Import our modules - handle relative imports carefully
 if _BPY_AVAILABLE:
+    # Add addon directory to path to ensure modules can find each other
+    import os
+    addon_dir = os.path.dirname(os.path.realpath(__file__))
+    if addon_dir not in sys.path:
+        sys.path.insert(0, addon_dir)
+    
     # Normal Blender imports
     try:
         from . import panels
         from . import operators
         from . import properties
-    except Exception:
-        import panels
-        import operators
-        import properties
+        _logger.info("Successfully imported addon modules")
+    except ImportError as e:
+        _logger.error(f"Failed to import addon modules: {e}")
+        # Try direct import as fallback
+        try:
+            import panels
+            import operators
+            import properties
+            _logger.info("Successfully imported modules using direct import")
+        except ImportError as e2:
+            _logger.error(f"Failed direct import: {e2}")
+            raise ImportError(f"Cannot import required modules. Original error: {e}, Fallback error: {e2}")
 else:
     # For testing, use absolute imports
     try:
@@ -111,6 +125,10 @@ def register():
     # Register property groups
     bpy.types.Scene.ifclca_props = PointerProperty(type=properties.IfcLCAProperties)
     
+    # Register web server property as a generic Python object
+    # This allows storing the server reference without needing a custom property type
+    bpy.types.Scene.ifclca_web_server = None
+    
     # Make logger available in console
     bpy.ifclca_logger = get_ifclca_logger()
     
@@ -135,6 +153,10 @@ def unregister():
     
     # Remove property groups
     del bpy.types.Scene.ifclca_props
+    
+    # Remove web server property
+    if hasattr(bpy.types.Scene, 'ifclca_web_server'):
+        del bpy.types.Scene.ifclca_web_server
     
     # Remove logger from bpy
     if hasattr(bpy, 'ifclca_logger'):
