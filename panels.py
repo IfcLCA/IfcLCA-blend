@@ -349,6 +349,7 @@ class IFCLCA_PT_AnalysisPanel(Panel):
             row = col.row(align=True)
             row.operator("ifclca.clear_results", text="Clear", icon='X')
             row.operator("ifclca.export_results", text="Export", icon='EXPORT')
+            row.operator("ifclca.view_web_results", text="Web", icon='WORLD')
     
     def _parse_carbon_value(self, carbon_str):
         """Parse carbon value from string like '31.59 t CO₂-eq' or '669.7 kg CO₂-eq'"""
