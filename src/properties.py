@@ -48,6 +48,15 @@ class MaterialMapping(PropertyGroup):
     density: FloatProperty(name="Density")
 
 
+class MaterialDatabaseItem(PropertyGroup):
+    """Item for material database list"""
+    material_id: StringProperty(name="Material ID")
+    name: StringProperty(name="Name")
+    category: StringProperty(name="Category")
+    gwp: FloatProperty(name="GWP", default=0.0)
+    density: FloatProperty(name="Density", default=0.0)
+
+
 class IfcLCAProperties(PropertyGroup):
     """Main property group for IfcLCA"""
     
@@ -178,5 +187,31 @@ class IfcLCAProperties(PropertyGroup):
 classes = [
     MaterialResult,
     MaterialMapping,
+    MaterialDatabaseItem,
     IfcLCAProperties
-] 
+]
+
+
+def register():
+    """Register properties"""
+    for cls in classes:
+        bpy.utils.register_class(cls)
+    
+    # Add properties to Scene
+    bpy.types.Scene.ifclca_props = PointerProperty(type=IfcLCAProperties)
+    
+    # Add collection property for material database browser
+    bpy.types.Scene.ifclca_material_database = CollectionProperty(type=MaterialDatabaseItem)
+    bpy.types.Scene.ifclca_material_database_index = IntProperty(default=0)
+
+
+def unregister():
+    """Unregister properties"""
+    # Remove scene properties
+    del bpy.types.Scene.ifclca_props
+    del bpy.types.Scene.ifclca_material_database
+    del bpy.types.Scene.ifclca_material_database_index
+    
+    # Unregister classes
+    for cls in reversed(classes):
+        bpy.utils.unregister_class(cls) 

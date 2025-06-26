@@ -7,7 +7,7 @@ bl_info = {
     "description": "Life Cycle Assessment for IFC models using IfcLCA",
     "warning": "",
     "doc_url": "https://github.com/IfcLCA",
-    "category": "Import-Export",
+    "category": "LCA",
 }
 
 # Only import bpy when running inside Blender
@@ -110,9 +110,8 @@ def register():
     if not _BPY_AVAILABLE or not all([panels, operators, properties]):
         return
         
-    # Register property classes first
-    for cls in properties.classes:
-        bpy.utils.register_class(cls)
+    # Register properties module (handles all property registration)
+    properties.register()
         
     # Register operators
     for cls in operators.classes:
@@ -121,9 +120,6 @@ def register():
     # Register panels
     for cls in panels.classes:
         bpy.utils.register_class(cls)
-    
-    # Register property groups
-    bpy.types.Scene.ifclca_props = PointerProperty(type=properties.IfcLCAProperties)
     
     # Register web server property as a generic Python object
     # This allows storing the server reference without needing a custom property type
@@ -148,11 +144,8 @@ def unregister():
     for cls in reversed(operators.classes):
         bpy.utils.unregister_class(cls)
         
-    for cls in reversed(properties.classes):
-        bpy.utils.unregister_class(cls)
-    
-    # Remove property groups
-    del bpy.types.Scene.ifclca_props
+    # Unregister properties module (handles all property cleanup)
+    properties.unregister()
     
     # Remove web server property
     if hasattr(bpy.types.Scene, 'ifclca_web_server'):

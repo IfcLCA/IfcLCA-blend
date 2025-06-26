@@ -36,12 +36,12 @@ class IFCLCA_UL_MaterialMappingList(UIList):
                 # Show mapped material name with icon
                 right.label(text=item.database_name, icon='CHECKMARK')
                 # Edit button
-                op = right.operator("ifclca.search_material", text="Change", icon='GREASEPENCIL')
+                op = right.operator("ifclca.browse_materials", text="Change", icon='GREASEPENCIL')
             else:
                 # Show unmapped status
                 right.label(text="Not mapped", icon='ERROR')
                 # Map button
-                op = right.operator("ifclca.search_material", text="Select Material", icon='VIEWZOOM')
+                op = right.operator("ifclca.browse_materials", text="Select Material", icon='VIEWZOOM')
             
             # Find the index of this item
             for idx, mapping in enumerate(active_data.material_mappings):
@@ -71,6 +71,90 @@ class IFCLCA_UL_MaterialMappingList(UIList):
                     flt_flags.append(0)
         else:
             flt_flags = [self.bitflag_filter_item] * len(mappings)
+            
+        return flt_flags, flt_neworder
+
+
+class IFCLCA_UL_MaterialDatabaseList(UIList):
+    """UI List for material database browser"""
+    
+    def draw_item(self, context, layout, data, item, icon, active_data, active_propname):
+        # Force filter to show
+        self.use_filter_show = True
+        if self.layout_type in {'DEFAULT', 'COMPACT'}:
+            # Use split for better layout
+            split = layout.split(factor=0.3)
+            
+            # Category and name
+            split.label(text=item.category, icon='DOT')
+            name_row = split.row()
+            name_row.label(text=item.name, icon='MATERIAL_DATA')
+            
+            # Environmental data
+            if item.gwp > 0 or item.density > 0:
+                info_row = split.row()
+                info_row.scale_x = 0.8
+                if item.gwp > 0:
+                    info_row.label(text=f"{item.gwp*1000:.3f} g CO₂/kg")
+                if item.density > 0:
+                    info_row.label(text=f"{item.density:.0f} kg/m³")
+                    
+        elif self.layout_type == 'GRID':
+            layout.alignment = 'CENTER'
+            layout.label(text="", icon='MATERIAL')
+    
+    def draw_filter(self, context, layout):
+        """Draw filter options"""
+        # Always show filter
+        self.use_filter_show = True
+        
+        row = layout.row()
+        
+        subrow = row.row(align=True)
+        subrow.prop(self, "filter_name", text="")
+        subrow.prop(self, "use_filter_invert", text="", icon='ARROW_LEFTRIGHT')
+        
+        subrow = row.row(align=True) 
+        subrow.prop(self, "use_filter_sort_alpha", text="", icon='SORTALPHA')
+        subrow.prop(self, "use_filter_sort_reverse", text="", icon='SORT_DESC')
+        
+    def filter_items(self, context, data, propname):
+        """Filter and sort items"""
+        # Get the collection
+        items = getattr(data, propname)
+        
+        # Initialize flags
+        flt_flags = []
+        flt_neworder = []
+        
+        # Filter by name/category
+        if self.filter_name:
+            # Manual filtering implementation
+            filter_lower = self.filter_name.lower()
+            
+            for idx, item in enumerate(items):
+                # Check if filter matches name or category
+                name_match = filter_lower in item.name.lower()
+                category_match = filter_lower in item.category.lower()
+                
+                if name_match or category_match:
+                    # Show item if it matches (or hide if inverted)
+                    flt_flags.append(self.bitflag_filter_item if not self.use_filter_invert else 0)
+                else:
+                    # Hide item if it doesn't match (or show if inverted)
+                    flt_flags.append(0 if not self.use_filter_invert else self.bitflag_filter_item)
+        else:
+            # No filter - show all items
+            flt_flags = [self.bitflag_filter_item] * len(items)
+        
+        # Sort items
+        if self.use_filter_sort_alpha:
+            # Sort by category first, then name
+            indices = list(range(len(items)))
+            indices.sort(key=lambda i: (items[i].category, items[i].name))
+            if self.use_filter_sort_reverse:
+                indices.reverse()
+            flt_neworder = indices
             
         return flt_flags, flt_neworder
 
@@ -409,6 +493,7 @@ class IFCLCA_PT_PreferencesPanel(Panel):
 # List of classes to register
 classes = [
     IFCLCA_UL_MaterialMappingList,
+    IFCLCA_UL_MaterialDatabaseList,
     IFCLCA_PT_MainPanel,
     IFCLCA_PT_IFCPanel,
     IFCLCA_PT_MaterialMappingPanel,

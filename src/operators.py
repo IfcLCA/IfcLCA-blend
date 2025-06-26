@@ -263,45 +263,14 @@ class IFCLCA_OT_UseActiveIFC(Operator):
             return {'CANCELLED'}
 
 
-class IFCLCA_OT_SearchMaterial(Operator):
-    """Search for materials in the database with fuzzy matching"""
-    bl_idname = "ifclca.search_material"
-    bl_label = "Search Material"
-    bl_description = "Search for a material in the LCA database"
+class IFCLCA_OT_BrowseMaterials(Operator):
+    """Browse and select materials from database"""
+    bl_idname = "ifclca.browse_materials"
+    bl_label = "Browse Materials"
+    bl_description = "Browse and select a material from the database"
     bl_options = {'REGISTER', 'UNDO'}
-    bl_property = "search_results"
     
     material_index: StringProperty()
-    
-    search_query: StringProperty(
-        name="Search",
-        description="Type to search for materials",
-        default=""
-    )
-    
-    @staticmethod
-    def fuzzy_match(query, text):
-        """Simple fuzzy matching - checks if all query chars appear in order"""
-        query = query.lower()
-        text = text.lower()
-        
-        # Direct substring match
-        if query in text:
-            return True
-        
-        # Fuzzy match - all chars in order
-        j = 0
-        for char in query:
-            found = False
-            while j < len(text):
-                if text[j] == char:
-                    found = True
-                    j += 1
-                    break
-                j += 1
-            if not found:
-                return False
-        return True
     
     @staticmethod
     def is_valid_material_name(name):
@@ -329,326 +298,110 @@ class IFCLCA_OT_SearchMaterial(Operator):
             
         return True
     
-    def get_search_results(self, context):
-        """Get filtered search results"""
-        props = context.scene.ifclca_props
-        items = []
-        
-        try:
-            # Get appropriate database reader
-            if props.database_type == 'KBOB':
-                db_reader = get_database_reader('KBOB', props.kbob_data_path)
-            elif props.database_type == 'OKOBAUDAT':
-                if not props.okobaudat_csv_path:
-                    return [('', "No database loaded", "")]
-                db_reader = get_database_reader('OKOBAUDAT', props.okobaudat_csv_path)
-            else:
-                return [('', "No database selected", "")]
-            
-            # Get all materials
-            all_materials = db_reader.get_materials_list()
-            
-            # Filter out invalid materials
-            filtered_materials = []
-            for mat_id, mat_name, mat_category in all_materials:
-                # Use the static method to check validity
-                if IFCLCA_OT_SearchMaterial.is_valid_material_name(mat_name):
-                    filtered_materials.append((mat_id, mat_name, mat_category))
-            
-            # Apply search filter
-            if self.search_query:
-                # Search in both name and category
-                search_matches = []
-                for mat_id, mat_name, mat_category in filtered_materials:
-                    if (IFCLCA_OT_SearchMaterial.fuzzy_match(self.search_query, mat_name) or 
-                        IFCLCA_OT_SearchMaterial.fuzzy_match(self.search_query, mat_category)):
-                        # Calculate relevance score
-                        score = 0
-                        query_lower = self.search_query.lower()
-                        name_lower = mat_name.lower()
-                        
-                        # Exact match scores highest
-                        if query_lower == name_lower:
-                            score = 100
-                        # Starting with query scores high
-                        elif name_lower.startswith(query_lower):
-                            score = 90
-                        # Contains as whole word
-                        elif f" {query_lower} " in f" {name_lower} ":
-                            score = 80
-                        # Contains anywhere
-                        elif query_lower in name_lower:
-                            score = 70
-                        # Fuzzy match
-                        else:
-                            score = 50
-                        
-                        search_matches.append((mat_id, mat_name, mat_category, score))
-                
-                # Sort by relevance score
-                search_matches.sort(key=lambda x: (-x[3], x[2], x[1]))
-                # Remove the 50-item limit for search results
-                filtered_materials = [(m[0], m[1], m[2]) for m in search_matches]
-            else:
-                # No search query - show all materials grouped by category
-                filtered_materials = sorted(filtered_materials, key=lambda x: (x[2], x[1]))
-            
-            # Build enum items
-            if not filtered_materials:
-                items.append(('', "No materials found", ""))
-            else:
-                # Group by category
-                from collections import defaultdict
-                by_category = defaultdict(list)
-                for mat_id, mat_name, mat_category in filtered_materials:
-                    by_category[mat_category].append((mat_id, mat_name))
-                
-                # Sort categories
-                sorted_categories = sorted(by_category.keys())
-                
-                # Add a summary item first
-                total_count = len(filtered_materials)
-                if self.search_query:
-                    items.append(('', f"Found {total_count} materials", ""))
-                else:
-                    items.append(('', f"Total: {total_count} materials", ""))
-                
-                # Add materials by category
-                for category in sorted_categories:
-                    # Add category header - make it non-selectable
-                    items.append(('', f"━━━ {category} ({len(by_category[category])}) ━━━", ""))
-                    
-                    # Add materials in this category
-                    for mat_id, mat_name in by_category[category]:
-                        material_data = db_reader.get_material_data(mat_id)
-                        gwp = material_data.get('gwp', 0)
-                        density = material_data.get('density', 0)
-                        
-                        desc_parts = []
-                        if gwp > 0:
-                            desc_parts.append(f"GWP: {gwp*1000:.1f} g CO₂/kg")
-                        if density > 0:
-                            desc_parts.append(f"Density: {density:.0f} kg/m³")
-                        
-                        description = " | ".join(desc_parts) if desc_parts else f"ID: {mat_id}"
-                        items.append((mat_id, mat_name, description))
-                    
-        except Exception as e:
-            logger.error(f"Error in material search: {e}")
-            import traceback
-            logger.error(f"Search error traceback: {traceback.format_exc()}")
-            items.append(('', f"Error: {str(e)}", ""))
-        
-        return items
-    
-    search_results: EnumProperty(
-        name="Results",
-        description="Search results",
-        items=get_search_results
-    )
-    
     def invoke(self, context, event):
-        # Reset search
-        self.search_query = ""
-        # Make the dialog wider for better material display
-        context.window_manager.invoke_props_dialog(self, width=600)
-        return {'RUNNING_MODAL'}
-    
-    def draw(self, context):
-        layout = self.layout
-        
-        # Search box with icon and clear option
-        col = layout.column()
-        row = col.row(align=True)
-        row.prop(self, "search_query", text="", icon='VIEWZOOM')
-        
-        # Results section
-        col.separator()
-        
-        # Get the search results to check if we have categories
-        items = self.get_search_results(context)
-        
-        # Material selection - use a box for better visibility
-        box = col.box()
-        
-        # If there are many results, add a note about scrolling
-        if len(items) > 20:
-            info_row = box.row()
-            info_row.label(text="Scroll to see all materials", icon='INFO')
-        
-        # The enum property for results - make it taller for more items
-        box.prop(self, "search_results", text="")
-        
-        # Help section at the bottom
-        col.separator()
-        help_box = col.box()
-        help_col = help_box.column(align=True)
-        help_col.scale_y = 0.9
-        
-        # Dynamic help based on search state
-        if self.search_query:
-            help_col.label(text=f"Searching for: '{self.search_query}'", icon='VIEWZOOM')
-            help_col.label(text="• Clear search to browse all materials")
-            help_col.label(text="• Results sorted by relevance")
-        else:
-            help_col.label(text="Browse Material Database", icon='INFO')
-            help_col.label(text="• Type to search by name or category")
-            help_col.label(text="• Materials grouped by category")
-            help_col.label(text="• Examples: 'beton', 'holz', 'steel'")
-        
-        # Add material count info
-        material_count = sum(1 for item in items if item[0] and not item[1].startswith('━'))
-        if material_count > 0:
-            help_col.separator()
-            help_col.label(text=f"Showing {material_count} materials")
-    
-    def execute(self, context):
+        # Load materials into the collection
         props = context.scene.ifclca_props
         
-        # Check if valid selection (not empty, not category header)
-        if not self.search_results or self.search_results == '' or '━━━' in self.search_results:
-            self.report({'WARNING'}, "Please select a material")
-            return {'CANCELLED'}
+        # Clear existing
+        if hasattr(context.scene, 'ifclca_material_database'):
+            context.scene.ifclca_material_database.clear()
         
         try:
-            idx = int(self.material_index)
-            mapping = props.material_mappings[idx]
-            
             # Get database reader
             if props.database_type == 'KBOB':
                 db_reader = get_database_reader('KBOB', props.kbob_data_path)
             elif props.database_type == 'OKOBAUDAT':
+                if not props.okobaudat_csv_path:
+                    self.report({'ERROR'}, "No database loaded")
+                    return {'CANCELLED'}
                 db_reader = get_database_reader('OKOBAUDAT', props.okobaudat_csv_path)
             else:
+                self.report({'ERROR'}, "No database selected")
                 return {'CANCELLED'}
             
-            # Update mapping
-            material_data = db_reader.get_material_data(self.search_results)
-            mapping.database_id = self.search_results
-            mapping.database_name = material_data.get('name', self.search_results)
-            mapping.is_mapped = True
+            # Get all materials
+            all_materials = db_reader.get_all_materials()
             
-            self.report({'INFO'}, f"Mapped to: {mapping.database_name}")
-            return {'FINISHED'}
-            
-        except Exception as e:
-            self.report({'ERROR'}, f"Failed to map material: {str(e)}")
-            return {'CANCELLED'}
-    
-    def check(self, context):
-        """Called when search_query changes"""
-        return True
-
-
-class IFCLCA_OT_MapMaterial(Operator):
-    """Map a material to an LCA database entry"""
-    bl_idname = "ifclca.map_material"
-    bl_label = "Map Material"
-    bl_description = "Map this material to an LCA database entry"
-    bl_options = {'REGISTER', 'UNDO'}
-    
-    material_index: StringProperty()
-    
-    def get_database_items(self, context):
-        """Get database entries for enum property"""
-        props = context.scene.ifclca_props
-        items = [('', "Not mapped", "No mapping selected")]
-        
-        try:
-            # Get appropriate database reader
-            if props.database_type == 'KBOB':
-                db_reader = get_database_reader('KBOB', props.kbob_data_path)
-            elif props.database_type == 'OKOBAUDAT':
-                if not props.okobaudat_csv_path:
-                    return items
-                db_reader = get_database_reader('OKOBAUDAT', props.okobaudat_csv_path)
-            else:
-                return items
-            
-            # Get materials list
-            materials = db_reader.get_materials_list()
-            
-            # Debug: Log total materials
-            logger.debug(f"Total materials from database: {len(materials)}")
-            
-            # Filter and group by category
-            from collections import defaultdict
-            by_category = defaultdict(list)
+            # Filter and add to collection
             valid_count = 0
-            
-            for mat_id, mat_name, mat_category in materials:
-                # Use the same validation as SearchMaterial
-                if IFCLCA_OT_SearchMaterial.is_valid_material_name(mat_name):
-                    by_category[mat_category].append((mat_id, mat_name))
+            for mat in all_materials:
+                name = mat.get('name', '')
+                # Use the same validation
+                if self.is_valid_material_name(name):
+                    item = context.scene.ifclca_material_database.add()
+                    item.material_id = mat.get('id', '')
+                    item.name = name
+                    item.category = mat.get('category', 'Uncategorized')
+                    item.gwp = mat.get('gwp', 0)
+                    item.density = mat.get('density', 0)
                     valid_count += 1
-                else:
-                    logger.debug(f"Filtered out invalid material: {repr(mat_name)} (ID: {mat_id})")
             
-            logger.debug(f"Valid materials after filtering: {valid_count}")
+            logger.info(f"Loaded {valid_count} materials into browser")
             
-            # Sort categories and build items
-            sorted_categories = sorted(by_category.keys())
+            # Show the browser dialog
+            return context.window_manager.invoke_props_dialog(self, width=800)
             
-            for category in sorted_categories:
-                # Add category separator with better formatting
-                items.append((f'__category__{category}', f"━━━ {category} ({len(by_category[category])}) ━━━", ""))
-                
-                # Add materials in this category
-                for mat_id, mat_name in sorted(by_category[category], key=lambda x: x[1]):
-                    items.append((mat_id, mat_name, f"Category: {category}"))
-                
         except Exception as e:
-            logger.error(f"Error loading database: {e}")
-            import traceback
-            logger.error(f"Database error traceback: {traceback.format_exc()}")
-        
-        return items
-    
-    database_entry: EnumProperty(
-        name="Database Entry",
-        description="Select the corresponding database entry",
-        items=get_database_items
-    )
-    
-    def invoke(self, context, event):
-        # Show dropdown menu
-        return context.window_manager.invoke_props_dialog(self)
+            self.report({'ERROR'}, f"Failed to load materials: {str(e)}")
+            return {'CANCELLED'}
     
     def draw(self, context):
         layout = self.layout
-        layout.prop(self, "database_entry")
+        
+        # Header
+        row = layout.row()
+        row.label(text="Select Material from Database", icon='VIEWZOOM')
+        
+        # Info about current selection
+        db = context.scene.ifclca_material_database
+        idx = context.scene.ifclca_material_database_index
+        if 0 <= idx < len(db):
+            box = layout.box()
+            box.label(text=f"Selected: {db[idx].name}", icon='MATERIAL_DATA')
+            if db[idx].gwp > 0:
+                box.label(text=f"GWP: {db[idx].gwp*1000:.3f} g CO₂/kg")
+            if db[idx].density > 0:
+                box.label(text=f"Density: {db[idx].density:.0f} kg/m³")
+        
+        # Material list with search
+        layout.template_list(
+            "IFCLCA_UL_MaterialDatabaseList", "material_browser_list",
+            context.scene, "ifclca_material_database",
+            context.scene, "ifclca_material_database_index",
+            rows=15,
+            maxrows=15
+        )
+        
+        # Help text
+        box = layout.box()
+        col = box.column(align=True)
+        col.scale_y = 0.9
+        col.label(text="Tips:", icon='INFO')
+        col.label(text="• Use search box to filter materials")
+        col.label(text="• Click column headers to sort")
+        col.label(text="• Double-click to select")
     
     def execute(self, context):
         props = context.scene.ifclca_props
+        db = context.scene.ifclca_material_database
+        idx = context.scene.ifclca_material_database_index
+        
+        if idx < 0 or idx >= len(db):
+            self.report({'WARNING'}, "No material selected")
+            return {'CANCELLED'}
         
         try:
-            idx = int(self.material_index)
-            mapping = props.material_mappings[idx]
-            
-            # Don't allow selecting category separators
-            if self.database_entry.startswith('__category__'):
-                return {'CANCELLED'}
+            # Get selected material
+            selected = db[idx]
+            mat_idx = int(self.material_index)
+            mapping = props.material_mappings[mat_idx]
             
             # Update mapping
-            if self.database_entry:
-                mapping.database_id = self.database_entry
-                
-                # Get database reader to fetch the name
-                if props.database_type == 'KBOB':
-                    db_reader = get_database_reader('KBOB', props.kbob_data_path)
-                elif props.database_type == 'OKOBAUDAT':
-                    db_reader = get_database_reader('OKOBAUDAT', props.okobaudat_csv_path)
-                else:
-                    return {'CANCELLED'}
-                
-                material_data = db_reader.get_material_data(self.database_entry)
-                mapping.database_name = material_data.get('name', self.database_entry)
-                mapping.is_mapped = True
-            else:
-                mapping.database_id = ""
-                mapping.database_name = ""
-                mapping.is_mapped = False
+            mapping.database_id = selected.material_id
+            mapping.database_name = selected.name
+            mapping.is_mapped = True
             
+            self.report({'INFO'}, f"Mapped to: {mapping.database_name}")
             return {'FINISHED'}
             
         except Exception as e:
@@ -1016,8 +769,7 @@ class IFCLCA_OT_ViewWebResults(Operator):
 classes = [
     IFCLCA_OT_LoadIFC,
     IFCLCA_OT_UseActiveIFC,
-    IFCLCA_OT_SearchMaterial,
-    IFCLCA_OT_MapMaterial,
+    IFCLCA_OT_BrowseMaterials,
     IFCLCA_OT_RunAnalysis,
     IFCLCA_OT_ClearResults,
     IFCLCA_OT_AutoMapMaterials,
