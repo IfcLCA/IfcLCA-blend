@@ -19,12 +19,12 @@ blender_version_min = "4.2.0"
 
 # License conforming to SPDX identifier
 license = [
-  "SPDX:AGPL-3.0-or-later",
+  "SPDX:GPL-3.0-or-later",
 ]
 
 # Copyright information
 copyright = [
-  "2025 louistrue",
+  "2024 louistrue",
 ]
 
 # Supported platforms - omitting means all platforms

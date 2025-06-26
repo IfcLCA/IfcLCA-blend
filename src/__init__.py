@@ -55,15 +55,9 @@ def get_ifclca_logger():
 # Initialize logger
 _logger = setup_ifclca_logger()
 
-# Import our modules - handle relative imports carefully
+# Import our modules using relative imports (Blender 5.0 extension system)
 if _BPY_AVAILABLE:
-    # Add addon directory to path to ensure modules can find each other
-    import os
-    addon_dir = os.path.dirname(os.path.realpath(__file__))
-    if addon_dir not in sys.path:
-        sys.path.insert(0, addon_dir)
-    
-    # Normal Blender imports
+    # Use relative imports for extension system
     try:
         from . import panels
         from . import operators
@@ -71,14 +65,14 @@ if _BPY_AVAILABLE:
         _logger.info("Successfully imported addon modules")
     except ImportError as e:
         _logger.error(f"Failed to import addon modules: {e}")
-        # Try direct import as fallback
+        # For older Blender versions or special cases, try absolute imports
         try:
             import panels
             import operators
             import properties
-            _logger.info("Successfully imported modules using direct import")
+            _logger.info("Successfully imported modules using absolute import")
         except ImportError as e2:
-            _logger.error(f"Failed direct import: {e2}")
+            _logger.error(f"Failed absolute import: {e2}")
             raise ImportError(f"Cannot import required modules. Original error: {e}, Fallback error: {e2}")
 else:
     # For testing, use absolute imports
