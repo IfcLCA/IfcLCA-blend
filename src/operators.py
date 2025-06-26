@@ -1,7 +1,7 @@
 try:
     import bpy
     from bpy.types import Operator
-    from bpy.props import StringProperty, EnumProperty
+    from bpy.props import StringProperty, EnumProperty, IntProperty
     from bpy_extras.io_utils import ImportHelper
 except ImportError:
     # For testing
@@ -56,12 +56,20 @@ except ImportError:
 
 # Try relative imports first (when used as addon)
 try:
-    from .ifclca_core import get_database_reader
+    from .ifclca_core import get_database_reader as get_core_database_reader
     from .logic import IfcMaterialExtractor, run_lca_analysis, format_results
 except ImportError:
     # Fallback to absolute imports (for testing)
-    from ifclca_core import get_database_reader
+    from ifclca_core import get_database_reader as get_core_database_reader
     from logic import IfcMaterialExtractor, run_lca_analysis, format_results
+
+# Import the extended database reader that supports OKOBAUDAT_API
+try:
+    from database_reader import get_extended_database_reader
+except ImportError:
+    from database_reader import get_extended_database_reader
+
+
 
 # Try to import Bonsai tools if available
 try:
@@ -75,6 +83,57 @@ except ImportError:
 # Global storage for IFC file (could also use Bonsai's IfcStore)
 _ifc_file = None
 _web_server = None
+
+# Global cache for Ökobaudat materials
+class OkobaudatCache:
+    """Simple cache manager for Ökobaudat material data"""
+    def __init__(self):
+        self.cache = {}  # material_id -> full_data
+        self.last_query = ""
+        self.last_results = []
+        
+    def get(self, material_id):
+        """Get cached material data"""
+        return self.cache.get(material_id)
+    
+    def set(self, material_id, data):
+        """Cache material data"""
+        self.cache[material_id] = data
+        
+    def has(self, material_id):
+        """Check if material is cached"""
+        return material_id in self.cache
+    
+    def clear(self):
+        """Clear all cached data"""
+        self.cache.clear()
+        self.last_query = ""
+        self.last_results = []
+        
+    def get_query_results(self, query):
+        """Get cached query results"""
+        if query == self.last_query:
+            return self.last_results
+        return None
+    
+    def set_query_results(self, query, results):
+        """Cache query results"""
+        self.last_query = query
+        self.last_results = results
+
+# Initialize global cache
+_okobaudat_cache = OkobaudatCache()
+
+
+def safe_float(value, default=0.0):
+    """Safely convert a value to float, handling None and other edge cases"""
+    if value is None:
+        return default
+    try:
+        return float(value)
+    except (TypeError, ValueError):
+        logger.debug(f"Could not convert {value} to float, using default {default}")
+        return default
 
 
 class IFCLCA_OT_LoadIFC(Operator, ImportHelper):
@@ -294,6 +353,11 @@ class IFCLCA_OT_BrowseMaterials(Operator):
     bl_options = {'REGISTER', 'UNDO'}
     
     material_index: StringProperty()
+    search_query: StringProperty(
+        name="Search",
+        description="Search for materials",
+        default=""
+    )
     
     @staticmethod
     def is_valid_material_name(name):
@@ -332,12 +396,13 @@ class IFCLCA_OT_BrowseMaterials(Operator):
         try:
             # Get database reader
             if props.database_type == 'KBOB':
-                db_reader = get_database_reader('KBOB', props.kbob_data_path)
-            elif props.database_type == 'OKOBAUDAT':
-                if not props.okobaudat_csv_path:
-                    self.report({'ERROR'}, "No database loaded")
+                db_reader = get_core_database_reader('KBOB', props.kbob_data_path)
+            elif props.database_type == 'OKOBAUDAT_API':
+                from database_reader import HAS_REQUESTS
+                if not HAS_REQUESTS:
+                    self.report({'ERROR'}, "The 'requests' module could not be loaded. Ökobaudat API functionality is disabled.")
                     return {'CANCELLED'}
-                db_reader = get_database_reader('OKOBAUDAT', props.okobaudat_csv_path)
+                db_reader = get_extended_database_reader('OKOBAUDAT_API', props.okobaudat_api_key)
             else:
                 self.report({'ERROR'}, "No database selected")
                 return {'CANCELLED'}
@@ -345,19 +410,52 @@ class IFCLCA_OT_BrowseMaterials(Operator):
             # Get all materials
             all_materials = db_reader.get_all_materials()
             
-            # Filter and add to collection
+            # For OKOBAUDAT_API, limit initial load to prevent slowness
+            if props.database_type == 'OKOBAUDAT_API' and len(all_materials) == 0:
+                # Check cache first
+                cached_results = _okobaudat_cache.get_query_results("")
+                if cached_results:
+                    all_materials = cached_results
+                    logger.info("Using cached default materials")
+                else:
+                    # Initial load - just get a reasonable default set
+                    db_reader.load_materials(limit=50)
+                    all_materials = db_reader.get_all_materials()
+                    _okobaudat_cache.set_query_results("", all_materials)
+            
+            # Clear existing materials before adding new ones
+            context.scene.ifclca_material_database.clear()
+            
             valid_count = 0
             for mat in all_materials:
                 name = mat.get('name', '')
                 # Use the same validation
                 if self.is_valid_material_name(name):
+                    # For OKOBAUDAT_API, DON'T fetch full data here - too slow!
+                    # Data will be fetched on-demand when needed
                     item = context.scene.ifclca_material_database.add()
                     item.material_id = mat.get('id', '')
                     item.name = name
                     item.category = mat.get('category', 'Uncategorized')
-                    item.gwp = mat.get('gwp', 0)
-                    item.density = mat.get('density', 0)
+                    
+                                    # Check if we have cached data for this material
+                if props.database_type == 'OKOBAUDAT_API':
+                    cached_data = _okobaudat_cache.get(item.material_id)
+                    if cached_data:
+                        item.gwp = safe_float(cached_data.get('carbon_per_unit'))
+                        item.density = safe_float(cached_data.get('density'))
+                    else:
+                        item.gwp = safe_float(mat.get('gwp'))
+                        item.density = safe_float(mat.get('density'))
+                else:
+                    item.gwp = safe_float(mat.get('gwp'))
+                    item.density = safe_float(mat.get('density'))
+                        
                     valid_count += 1
+            
+            # Force UI refresh
+            for area in context.screen.areas:
+                area.tag_redraw()
             
             logger.info(f"Loaded {valid_count} materials into browser")
             
@@ -384,13 +482,48 @@ class IFCLCA_OT_BrowseMaterials(Operator):
         # Title row
         title_row = header_col.row()
         title_row.label(text="Material Database Browser", icon='VIEWZOOM')
-        title_row.prop(props, "show_impact_indicators", text="", icon='WORLD')
+        # Only show impact indicators toggle for non-Ökobaudat databases
+        if props.database_type != 'OKOBAUDAT_API':
+            title_row.prop(props, "show_impact_indicators", text="", icon='WORLD')
         
-        # Search instruction
-        header_col.label(text="Search by material name or category:", icon='INFO')
+        # API Search for Ökobaudat
+        if props.database_type == 'OKOBAUDAT_API':
+            header_col.separator()
+            
+            # Search instruction - moved here to be above the search field
+            header_col.label(text="Search by material name or category:", icon='INFO')
+            
+            search_row = header_col.row(align=True)
+            search_row.label(text="Search Ökobaudat:", icon='VIEWZOOM')
+            search_row.prop(self, "search_query", text="", icon='NONE')
+            search_op = search_row.operator("ifclca.search_okobaudat", text="Search", icon='VIEWZOOM')
+            search_op.search_query = self.search_query
+            
+            # Info about EN 15804+A2 compliance
+            header_col.label(text="Results filtered for EN 15804+A2 compliance", icon='INFO')
+            
+            # Info about on-demand loading
+            info_box = header_col.box()
+            info_box.scale_y = 0.8
+            info_col = info_box.column()
+            info_col.label(text="Data loads on-demand when you:", icon='INFO')
+            info_col.label(text="    • Click on a material")
+            info_col.label(text="    • Confirm material selection")
+            
+            # Cache status
+            cache_row = info_col.row(align=True)
+            cache_count = len(_okobaudat_cache.cache)
+            if cache_count > 0:
+                cache_row.label(text=f"{cache_count} materials cached", icon='FILE_CACHE')
+                cache_row.operator("ifclca.clear_material_cache", text="Clear", icon='X')
+            else:
+                cache_row.label(text="No cached data", icon='FILE_CACHE')
+        else:
+            # For non-API databases, still show the search instruction
+            header_col.label(text="Search by material name or category:", icon='INFO')
         
-        # Impact legend (only if indicators are enabled)
-        if props.show_impact_indicators:
+        # Impact legend (only if indicators are enabled and not using Ökobaudat)
+        if props.show_impact_indicators and props.database_type != 'OKOBAUDAT_API':
             header_col.separator()
             legend_row = header_col.row()
             legend_row.scale_y = 0.7
@@ -497,7 +630,13 @@ class IFCLCA_OT_BrowseMaterials(Operator):
             if db[idx].gwp > 0:
                 right.label(text=f"GWP: {db[idx].gwp:.3f} kg CO₂/kg")
             else:
-                right.label(text="GWP: No data")
+                if props.database_type == 'OKOBAUDAT_API':
+                    row = right.row(align=True)
+                    row.label(text="GWP: No data")
+                    op = row.operator("ifclca.fetch_material_data", text="", icon='IMPORT')
+                    op.material_index = idx
+                else:
+                    right.label(text="GWP: No data")
             if db[idx].density > 0:
                 right.label(text=f"Density: {db[idx].density:.0f} kg/m³")
             else:
@@ -534,6 +673,19 @@ class IFCLCA_OT_BrowseMaterials(Operator):
             selected = db[idx]
             mat_idx = int(self.material_index)
             mapping = props.material_mappings[mat_idx]
+            
+            # For OKOBAUDAT_API, fetch data if we don't have it yet
+            if props.database_type == 'OKOBAUDAT_API' and selected.gwp == 0:
+                self.report({'INFO'}, "Fetching material data...")
+                db_reader = get_extended_database_reader('OKOBAUDAT_API', props.okobaudat_api_key)
+                full_data = db_reader.get_full_material_data(selected.material_id)
+                
+                # Update with fetched data
+                selected.gwp = safe_float(full_data.get('carbon_per_unit'))
+                selected.density = safe_float(full_data.get('density'))
+                
+                if selected.gwp == 0:
+                    self.report({'WARNING'}, "No GWP data available for this material")
             
             # Update mapping
             mapping.database_id = selected.material_id
@@ -576,12 +728,13 @@ class IFCLCA_OT_RunAnalysis(Operator):
         try:
             # Get database reader
             if props.database_type == 'KBOB':
-                db_reader = get_database_reader('KBOB', props.kbob_data_path)
-            elif props.database_type == 'OKOBAUDAT':
-                if not props.okobaudat_csv_path:
-                    self.report({'ERROR'}, "Please set ÖKOBAUDAT CSV path in preferences")
+                db_reader = get_core_database_reader('KBOB', props.kbob_data_path)
+            elif props.database_type == 'OKOBAUDAT_API':
+                from database_reader import HAS_REQUESTS
+                if not HAS_REQUESTS:
+                    self.report({'ERROR'}, "The 'requests' module could not be loaded. Ökobaudat API functionality is disabled.")
                     return {'CANCELLED'}
-                db_reader = get_database_reader('OKOBAUDAT', props.okobaudat_csv_path)
+                db_reader = get_extended_database_reader('OKOBAUDAT_API', props.okobaudat_api_key)
             else:
                 self.report({'ERROR'}, "Invalid database type")
                 return {'CANCELLED'}
@@ -670,12 +823,13 @@ class IFCLCA_OT_AutoMapMaterials(Operator):
         try:
             # Get database reader
             if props.database_type == 'KBOB':
-                db_reader = get_database_reader('KBOB', props.kbob_data_path)
-            elif props.database_type == 'OKOBAUDAT':
-                if not props.okobaudat_csv_path:
-                    self.report({'ERROR'}, "Please set ÖKOBAUDAT CSV path in preferences")
+                db_reader = get_core_database_reader('KBOB', props.kbob_data_path)
+            elif props.database_type == 'OKOBAUDAT_API':
+                from database_reader import HAS_REQUESTS
+                if not HAS_REQUESTS:
+                    self.report({'ERROR'}, "The 'requests' module is not installed. See console for installation instructions.")
                     return {'CANCELLED'}
-                db_reader = get_database_reader('OKOBAUDAT', props.okobaudat_csv_path)
+                db_reader = get_extended_database_reader('OKOBAUDAT_API', props.okobaudat_api_key)
             else:
                 self.report({'ERROR'}, "Invalid database type")
                 return {'CANCELLED'}
@@ -907,6 +1061,241 @@ class IFCLCA_OT_ViewWebResults(Operator):
         return {'FINISHED'}
 
 
+class IFCLCA_OT_SearchOkobaudat(Operator):
+    """Search Ökobaudat API for materials"""
+    bl_idname = "ifclca.search_okobaudat"
+    bl_label = "Search Ökobaudat"
+    bl_description = "Search Ökobaudat API for materials"
+    bl_options = {'REGISTER', 'INTERNAL'}
+    
+    search_query: StringProperty(
+        name="Search Query",
+        description="Search for materials by name",
+        default=""
+    )
+    
+    def execute(self, context):
+        props = context.scene.ifclca_props
+        
+        if props.database_type != 'OKOBAUDAT_API':
+            return {'CANCELLED'}
+        
+        # Check if requests is available
+        from database_reader import HAS_REQUESTS
+        if not HAS_REQUESTS:
+            self.report({'ERROR'}, "The 'requests' module could not be loaded. Ökobaudat API functionality is disabled.")
+            return {'CANCELLED'}
+        
+        # Clear existing materials
+        context.scene.ifclca_material_database.clear()
+        
+        try:
+            # Check cache first for this query
+            cached_results = _okobaudat_cache.get_query_results(self.search_query)
+            
+            if cached_results:
+                # Use cached results
+                logger.info(f"Using cached results for query: {self.search_query}")
+                all_materials = cached_results
+            else:
+                # Get API reader
+                db_reader = get_extended_database_reader('OKOBAUDAT_API', props.okobaudat_api_key)
+                
+                # Perform search
+                if self.search_query:
+                    db_reader.load_materials(search_query=self.search_query, limit=50)
+                else:
+                    db_reader.load_materials(limit=20)  # Load some default materials
+                
+                # Get all materials
+                all_materials = db_reader.get_all_materials()
+                
+                # Cache the query results
+                _okobaudat_cache.set_query_results(self.search_query, all_materials)
+            
+            valid_count = 0
+            for mat in all_materials:
+                item = context.scene.ifclca_material_database.add()
+                item.material_id = mat.get('id', '')
+                item.name = mat.get('name', '')
+                item.category = mat.get('category', 'Uncategorized')
+                
+                # Check if we have cached data for this material
+                cached_data = _okobaudat_cache.get(item.material_id)
+                if cached_data:
+                    item.gwp = safe_float(cached_data.get('carbon_per_unit'))
+                    item.density = safe_float(cached_data.get('density'))
+                else:
+                    item.gwp = safe_float(mat.get('gwp'))
+                    item.density = safe_float(mat.get('density'))
+                    
+                valid_count += 1
+            
+            # Force UI refresh
+            for area in context.screen.areas:
+                area.tag_redraw()
+            
+            self.report({'INFO'}, f"Found {valid_count} materials")
+            return {'FINISHED'}
+            
+        except Exception as e:
+            self.report({'ERROR'}, f"Search failed: {str(e)}")
+            return {'CANCELLED'}
+
+
+class IFCLCA_OT_FetchMaterialData(Operator):
+    """Fetch detailed data for selected material"""
+    bl_idname = "ifclca.fetch_material_data"
+    bl_label = "Fetch Material Data"
+    bl_description = "Fetch environmental data for the selected material"
+    bl_options = {'REGISTER', 'INTERNAL'}
+    
+    material_index: IntProperty()
+    
+    def execute(self, context):
+        props = context.scene.ifclca_props
+        db = context.scene.ifclca_material_database
+        
+        if self.material_index < 0 or self.material_index >= len(db):
+            return {'CANCELLED'}
+        
+        item = db[self.material_index]
+        
+        # Check cache first
+        cached_data = _okobaudat_cache.get(item.material_id)
+        if cached_data:
+            # Use cached data
+            item.gwp = safe_float(cached_data.get('carbon_per_unit'))
+            item.density = safe_float(cached_data.get('density'))
+            logger.info(f"  ✓ Using cached data - GWP: {item.gwp:.2f} kg CO₂/kg")
+            
+            # Force UI refresh
+            for area in context.screen.areas:
+                area.tag_redraw()
+            return {'FINISHED'}
+        
+        # Only fetch if we don't have data yet
+        if item.gwp > 0:
+            return {'FINISHED'}
+        
+        try:
+            # Get API reader
+            db_reader = get_extended_database_reader('OKOBAUDAT_API', props.okobaudat_api_key)
+            
+            # Fetch full data
+            logger.info(f"Fetching data for: {item.name[:50]}...")
+            full_data = db_reader.get_full_material_data(item.material_id)
+            
+            # Cache the data
+            _okobaudat_cache.set(item.material_id, full_data)
+            
+            # Update the item with full data
+            item.gwp = safe_float(full_data.get('carbon_per_unit'))
+            item.density = safe_float(full_data.get('density'))
+            
+            if item.gwp > 0:
+                logger.info(f"  ✓ GWP: {item.gwp:.2f} kg CO₂/kg")
+            else:
+                logger.warning(f"  ⚠ No GWP data found")
+            
+            # Force UI refresh
+            for area in context.screen.areas:
+                area.tag_redraw()
+            
+            return {'FINISHED'}
+            
+        except Exception as e:
+            logger.error(f"Failed to fetch material data: {str(e)}")
+            self.report({'ERROR'}, f"Failed to fetch data: {str(e)}")
+            return {'CANCELLED'}
+
+
+class IFCLCA_OT_PreloadVisibleMaterials(Operator):
+    """Preload data for visible materials"""
+    bl_idname = "ifclca.preload_visible_materials"
+    bl_label = "Preload Visible Materials"
+    bl_description = "Preload environmental data for visible materials"
+    bl_options = {'REGISTER', 'INTERNAL'}
+    
+    start_index: IntProperty()
+    end_index: IntProperty()
+    
+    def execute(self, context):
+        props = context.scene.ifclca_props
+        db = context.scene.ifclca_material_database
+        
+        if props.database_type != 'OKOBAUDAT_API':
+            return {'FINISHED'}
+        
+        # Limit to valid range
+        start = max(0, self.start_index)
+        end = min(len(db), self.end_index)
+        
+        # Add buffer for smooth scrolling (preload 5 items above and below)
+        buffer = 5
+        start = max(0, start - buffer)
+        end = min(len(db), end + buffer)
+        
+        try:
+            # Get API reader
+            db_reader = get_extended_database_reader('OKOBAUDAT_API', props.okobaudat_api_key)
+            
+            # Preload data for visible range
+            preloaded = 0
+            for i in range(start, end):
+                item = db[i]
+                
+                # Skip if already has data or is cached
+                if item.gwp > 0 or _okobaudat_cache.has(item.material_id):
+                    continue
+                
+                # Fetch and cache data
+                try:
+                    full_data = db_reader.get_full_material_data(item.material_id)
+                    _okobaudat_cache.set(item.material_id, full_data)
+                    
+                    # Update item
+                    item.gwp = safe_float(full_data.get('carbon_per_unit'))
+                    item.density = safe_float(full_data.get('density'))
+                    preloaded += 1
+                    
+                except Exception as e:
+                    logger.debug(f"Failed to preload {item.name}: {str(e)}")
+            
+            if preloaded > 0:
+                logger.info(f"Preloaded {preloaded} materials")
+                # Force UI refresh
+                for area in context.screen.areas:
+                    area.tag_redraw()
+            
+            return {'FINISHED'}
+            
+        except Exception as e:
+            logger.error(f"Preload failed: {str(e)}")
+            return {'CANCELLED'}
+
+
+class IFCLCA_OT_ClearMaterialCache(Operator):
+    """Clear cached material data"""
+    bl_idname = "ifclca.clear_material_cache"
+    bl_label = "Clear Material Cache"
+    bl_description = "Clear all cached Ökobaudat material data"
+    bl_options = {'REGISTER'}
+    
+    def execute(self, context):
+        cache_size = len(_okobaudat_cache.cache)
+        _okobaudat_cache.clear()
+        
+        self.report({'INFO'}, f"Cleared {cache_size} cached materials")
+        logger.info(f"Cleared material cache ({cache_size} items)")
+        
+        # Force UI refresh
+        for area in context.screen.areas:
+            area.tag_redraw()
+        
+        return {'FINISHED'}
+
+
 # List of classes to register
 classes = [
     IFCLCA_OT_LoadIFC,
@@ -917,5 +1306,9 @@ classes = [
     IFCLCA_OT_ClearResults,
     IFCLCA_OT_AutoMapMaterials,
     IFCLCA_OT_ExportResults,
-    IFCLCA_OT_ViewWebResults
+    IFCLCA_OT_ViewWebResults,
+    IFCLCA_OT_SearchOkobaudat,
+    IFCLCA_OT_FetchMaterialData,
+    IFCLCA_OT_PreloadVisibleMaterials,
+    IFCLCA_OT_ClearMaterialCache
 ]

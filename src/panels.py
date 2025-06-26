@@ -79,7 +79,7 @@ class IFCLCA_UL_MaterialMappingList(UIList):
 
 
 class IFCLCA_UL_MaterialDatabaseList(UIList):
-    """UI List for material database browser"""
+    """UI List for material database"""
     
     def draw_item(self, context, layout, data, item, icon, active_data, active_propname):
         """Draw each item in the list"""
@@ -96,67 +96,59 @@ class IFCLCA_UL_MaterialDatabaseList(UIList):
             cat_row = split.row()
             
             # Calculate relative impact if indicators are enabled
+            # Don't show indicators for Ökobaudat API
             impact_icon = 'DOT'
-            if props.show_impact_indicators and item.gwp > 0:
+            if props.show_impact_indicators and props.database_type != 'OKOBAUDAT_API' and item.gwp > 0:
                 # Get all items in the same category with GWP data
                 all_items = context.scene.ifclca_material_database
-                category_gwps = [mat.gwp for mat in all_items 
-                               if mat.category == item.category and mat.gwp > 0]
+                category_items = [i for i in all_items if i.category == item.category and i.gwp > 0]
                 
-                if category_gwps:
-                    # Calculate percentile within category
-                    sorted_gwps = sorted(category_gwps)
-                    # Count how many materials have lower GWP
-                    lower_count = sum(1 for gwp in category_gwps if gwp < item.gwp)
-                    percentile = lower_count / len(category_gwps)
+                if category_items:
+                    # Calculate relative position (0-1) within category
+                    gwp_values = sorted([i.gwp for i in category_items])
+                    position = gwp_values.index(item.gwp) / len(gwp_values)
                     
-                    # Assign icon based on relative performance in category
-                    if percentile >= 0.75:  # Top 25% worst performers
-                        cat_row.alert = True
-                        impact_icon = 'ORPHAN_DATA'
-                    elif percentile >= 0.5:  # 50-75th percentile
-                        impact_icon = 'ERROR'
-                    elif percentile >= 0.25:  # 25-50th percentile
-                        impact_icon = 'INFO'
-                    else:  # Bottom 25% best performers
-                        impact_icon = 'CHECKMARK'
-                else:
-                    impact_icon = 'QUESTION'
-            elif props.show_impact_indicators and item.gwp == 0:
-                impact_icon = 'QUESTION'
+                    # Choose icon based on quartile
+                    if position < 0.25:
+                        impact_icon = 'CHECKMARK'  # Best 25%
+                    elif position < 0.5:
+                        impact_icon = 'INFO'     # Good
+                    elif position < 0.75:
+                        impact_icon = 'ERROR'        # Fair/Average
+                    else:
+                        impact_icon = 'ORPHAN_DATA'     # Poor/Worst 25%
             
-            cat_row.label(text=item.category, icon=impact_icon)
+            if props.show_impact_indicators and props.database_type != 'OKOBAUDAT_API':
+                cat_row.label(text=item.category, icon=impact_icon)
+            else:
+                cat_row.label(text=item.category)
             
             # Material name
-            name_split = split.split(factor=0.5)
-            name_row = name_split.row()
-            name_row.label(text=item.name, icon='MATERIAL_DATA')
-            
-            # Environmental data with better formatting
-            data_row = name_split.row(align=True)
-            data_row.scale_x = 0.9
-            
-            if item.gwp > 0:
-                # GWP is stored in kg CO₂-eq/kg
-                gwp_text = f"{item.gwp:.3f} kg CO₂/kg"
-                data_row.label(text=gwp_text)
+            name_row = split.row()
+            # Add tooltip with full name by setting the text property multiple times
+            if len(item.name) > 40:
+                # Truncate long names for display
+                display_name = item.name[:37] + "..."
+                name_label = name_row.label(text=display_name)
             else:
-                data_row.label(text="No GWP data")
-                
-            if item.density > 0:
-                data_row.label(text=f"• {item.density:.0f} kg/m³")
-                    
-        elif self.layout_type == 'GRID':
-            layout.alignment = 'CENTER'
-            layout.label(text="", icon='MATERIAL')
+                name_label = name_row.label(text=item.name)
+            
+            # GWP value with loading indicator
+            gwp_row = split.row(align=True)
+            if item.gwp > 0:
+                gwp_row.label(text=f"{item.gwp:.3f} kg CO₂/kg")
+            else:
+                # For OKOBAUDAT_API, show loading state
+                if props.database_type == 'OKOBAUDAT_API':
+                    gwp_row.label(text="Click to load", icon='TIME')
+                else:
+                    gwp_row.label(text="No GWP data")
     
     def draw_filter(self, context, layout):
-        """Draw filter UI - search only"""
-        # Create a prominent search row
-        row = layout.row(align=True)
-        
-        # Search icon and input field
-        row.prop(self, "filter_name", text="", icon='VIEWZOOM')
+        """Draw filter options"""
+        row = layout.row()
+        row.prop(self, "filter_name", text="")
+        row.prop(self, "use_filter_invert", text="", icon='ARROW_LEFTRIGHT')
 
     def filter_items(self, context, data, propname):
         """Filter items in the list and apply sorting"""
@@ -252,11 +244,24 @@ class IFCLCA_PT_MainPanel(Panel):
         col.prop(props, "database_type", text="")
         
         # Show database path configuration based on selection
-        if props.database_type == 'OKOBAUDAT':
-            if not props.okobaudat_csv_path:
-                col.label(text="Please set ÖKOBAUDAT path in preferences", icon='ERROR')
-            else:
-                col.label(text="ÖKOBAUDAT loaded", icon='CHECKMARK')
+        if props.database_type == 'OKOBAUDAT_API':
+            col.prop(props, "okobaudat_api_key", text="API Key")
+            col.label(text="Uses EN 15804+A2 compliant data", icon='INFO')
+            if not props.okobaudat_api_key:
+                col.label(text="API key optional but recommended", icon='INFO')
+            
+            # Check if requests module is available
+            try:
+                from database_reader import HAS_REQUESTS
+                if not HAS_REQUESTS:
+                    col.separator()
+                    box = col.box()
+                    box.alert = True
+                    box.label(text="Ökobaudat API not available!", icon='ERROR')
+                    box.label(text="The bundled 'requests' module could not be loaded.")
+                    box.label(text="Please check the console for error details.")
+            except:
+                pass
         elif props.database_type == 'KBOB':
             col.label(text="Using built-in KBOB data", icon='CHECKMARK')
 
@@ -552,8 +557,11 @@ class IFCLCA_PT_PreferencesPanel(Panel):
         col = layout.column()
         
         # Database paths
-        if props.database_type == 'OKOBAUDAT':
-            col.prop(props, "okobaudat_csv_path")
+        if props.database_type == 'OKOBAUDAT_API':
+            col.prop(props, "okobaudat_api_key", text="API Key")
+            col.label(text="Uses EN 15804+A2 compliant data", icon='INFO')
+            if not props.okobaudat_api_key:
+                col.label(text="API key optional but recommended", icon='INFO')
         elif props.database_type == 'KBOB':
             col.prop(props, "kbob_data_path")
         elif props.database_type == 'CUSTOM':
@@ -562,11 +570,48 @@ class IFCLCA_PT_PreferencesPanel(Panel):
         # UI settings
         col.separator()
         col.label(text="Display Options:", icon='PREFERENCES')
-        col.prop(props, "show_impact_indicators")
+        # Only show impact indicators option for non-Ökobaudat databases
+        if props.database_type != 'OKOBAUDAT_API':
+            col.prop(props, "show_impact_indicators")
         
         # Link to full preferences
         col.separator()
         col.operator("preferences.addon_show", text="Open Add-on Preferences").module = "ifclca_integration"
+
+
+def material_database_index_update(self, context):
+    """Callback when material database index changes"""
+    props = context.scene.ifclca_props
+    db = context.scene.ifclca_material_database
+    idx = context.scene.ifclca_material_database_index
+    
+    # Only for OKOBAUDAT_API and valid index
+    if props.database_type == 'OKOBAUDAT_API' and 0 <= idx < len(db):
+        item = db[idx]
+        # Fetch data if not already loaded
+        if item.gwp == 0:
+            bpy.ops.ifclca.fetch_material_data(material_index=idx)
+    
+    # Also trigger preload of visible items
+    if props.database_type == 'OKOBAUDAT_API' and len(db) > 0:
+        # Estimate visible range (typically 10-15 items visible)
+        visible_count = 15
+        start = max(0, idx - visible_count // 2)
+        end = min(len(db), start + visible_count)
+        
+        # Use a timer to avoid blocking the UI
+        bpy.app.timers.register(
+            lambda: bpy.ops.ifclca.preload_visible_materials(
+                start_index=start,
+                end_index=end
+            ),
+            first_interval=0.1  # Small delay to let UI update first
+        )
+
+
+def update_file_path(self, context):
+    # Implementation of update_file_path method
+    pass
 
 
 # List of classes to register

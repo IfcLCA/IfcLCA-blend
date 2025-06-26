@@ -7,7 +7,7 @@ bl_info = {
     "description": "Life Cycle Assessment for IFC models using IfcLCA",
     "warning": "",
     "doc_url": "https://github.com/IfcLCA",
-    "category": "LCA",
+    "category": "User Interface",
 }
 
 # Only import bpy when running inside Blender

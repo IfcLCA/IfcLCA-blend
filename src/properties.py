@@ -29,6 +29,12 @@ except ImportError:
     BoolProperty = MagicMock()
     PointerProperty = MagicMock()
 
+# Import the callback
+try:
+    from .panels import material_database_index_update
+except ImportError:
+    from panels import material_database_index_update
+
 
 class MaterialResult(PropertyGroup):
     """Property group for storing material LCA results"""
@@ -77,11 +83,11 @@ class IfcLCAProperties(PropertyGroup):
     # Database settings
     database_type: EnumProperty(
         name="Database Type",
-        description="Environmental database to use",
+        description="Select carbon database",
         items=[
             ('KBOB', "KBOB (Swiss)", "Swiss KBOB database"),
-            ('OKOBAUDAT', "ÖKOBAUDAT (German)", "German ÖKOBAUDAT database"),
-            ('CUSTOM', "Custom", "Custom JSON database")
+            ('OKOBAUDAT_API', "ÖKOBAUDAT (German)", "German ÖKOBAUDAT via API (EN 15804+A2)"),
+            ('CUSTOM', "Custom", "Custom database"),
         ],
         default='KBOB'
     )
@@ -93,16 +99,23 @@ class IfcLCAProperties(PropertyGroup):
         default=""
     )
     
-    okobaudat_csv_path: StringProperty(
-        name="ÖKOBAUDAT CSV File",
-        description="Path to ÖKOBAUDAT CSV file",
-        subtype='FILE_PATH',
-        default=""
+    okobaudat_api_key: StringProperty(
+        name="ÖKOBAUDAT API Key",
+        description="API key for ÖKOBAUDAT access (optional)",
+        default="",
+        subtype='PASSWORD'
     )
     
     database_file: StringProperty(
         name="Database File",
-        description="Path to database file (for ÖKOBAUDAT CSV or custom JSON)",
+        description="Path to custom JSON database file",
+        subtype='FILE_PATH',
+        default=""
+    )
+    
+    custom_data_path: StringProperty(
+        name="Custom Database Path",
+        description="Path to custom JSON database file",
         subtype='FILE_PATH',
         default=""
     )
@@ -228,7 +241,10 @@ def register():
     
     # Add collection property for material database browser
     bpy.types.Scene.ifclca_material_database = CollectionProperty(type=MaterialDatabaseItem)
-    bpy.types.Scene.ifclca_material_database_index = IntProperty(default=0)
+    bpy.types.Scene.ifclca_material_database_index = IntProperty(
+        default=0,
+        update=lambda self, context: material_database_index_update(self, context)
+    )
 
 
 def unregister():

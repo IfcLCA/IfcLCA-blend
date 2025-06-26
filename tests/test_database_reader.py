@@ -89,6 +89,9 @@ class TestBlendDatabaseReader:
         finally:
             os.unlink(temp_path)
     
+    # NOTE: OkobaudatDatabaseReader has been removed in favor of OkobaudatAPIReader
+    # The following tests are commented out as they reference the removed class
+    '''
     def test_load_okobaudat_csv(self):
         """Test loading ÖKOBAUDAT CSV file"""
         from database_reader import OkobaudatDatabaseReader
@@ -115,6 +118,7 @@ class TestBlendDatabaseReader:
             assert concrete_data['carbon_per_unit'] == pytest.approx(0.0896)
         finally:
             os.unlink(temp_path)
+    '''
     
     def test_search_materials(self):
         """Test material search functionality"""
@@ -157,6 +161,7 @@ class TestBlendDatabaseReader:
         material = reader.get_material_data('INVALID_ID')
         assert material == {}
     
+    '''
     def test_missing_database_file(self):
         """Test handling missing database file"""
         from database_reader import OkobaudatDatabaseReader
@@ -164,6 +169,7 @@ class TestBlendDatabaseReader:
         # Invalid file path should raise ValueError
         with pytest.raises(ValueError, match="ÖKOBAUDAT CSV file not found"):
             OkobaudatDatabaseReader('/non/existent/file.csv')
+    '''
     
     def test_database_categories(self):
         """Test getting material categories"""
@@ -246,10 +252,10 @@ class TestDatabaseIntegration:
     
     def test_database_with_properties(self):
         """Test database reader with Blender properties"""
-        from database_reader import get_database_reader
+        from database_reader import get_extended_database_reader
         
         # Get appropriate reader based on type
-        reader = get_database_reader('KBOB')
+        reader = get_extended_database_reader('KBOB')
         
         assert reader is not None
         # Check it's an instance of the expected class
@@ -259,6 +265,8 @@ class TestDatabaseIntegration:
         # Materials list may be empty if JSON not found
         assert hasattr(reader, 'materials_list')
     
+    '''
+    # This test is also removed as it references the old OKOBAUDAT database type and get_database_reader
     def test_okobaudat_with_file_property(self):
         """Test ÖKOBAUDAT loading from property"""
         from database_reader import get_database_reader
@@ -280,4 +288,17 @@ class TestDatabaseIntegration:
             with pytest.raises(ValueError):
                 get_database_reader('OKOBAUDAT')
         finally:
-            os.unlink(temp_path) 
+            os.unlink(temp_path)
+    '''
+
+    # NOTE: OkobaudatDatabaseReader has been removed in favor of OkobaudatAPIReader
+    # The old tests are kept commented for reference
+    '''
+    def test_okobaudat_reader_init(self, temp_csv_okobaudat):
+        """Test ÖKOBAUDAT reader initialization"""
+        from database_reader import OkobaudatDatabaseReader
+        
+        reader = OkobaudatDatabaseReader(temp_csv_okobaudat)
+        assert len(reader.data) == 1
+        assert 'OKOBAUDAT_001' in reader.data
+    ''' 

@@ -6,6 +6,7 @@ IfcLCA-blend is a Blender addon for performing Life Cycle Assessment (LCA) calcu
 
 - Load IFC models and analyze building elements
 - Assign materials from environmental databases (KBOB, ÖKOBAUDAT)
+- **NEW: Direct API access to Ökobaudat database (EN 15804+A2 compliant)**
 - Calculate carbon footprint and other environmental indicators
 - Web-based visualization interface
 - Export results for further analysis
@@ -53,10 +54,19 @@ IfcLCA-blend/
 - Import from CSV format
 - See `assets/okobaudat_sample.csv` for format
 
+### ÖKOBAUDAT API (NEW)
+- Direct API access without CSV files
+- Real-time material search
+- EN 15804+A2 compliant data only
+- Optional API key support
+- Bundled dependencies (works out of the box!)
+- See `docs/OKOBAUDAT_API.md` for details
+
 ## Examples
 
 See the `examples/` directory for standalone scripts:
 - `explore_kbob_database.py` - Browse and search the KBOB database
+- `okobaudat_api_example.py` - Example of using the Ökobaudat API
 
 ## Testing
 

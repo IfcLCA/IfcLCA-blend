@@ -92,16 +92,20 @@ def create_addon_zip():
                 file_path = root_path / file
                 
                 if should_include(file_path):
+                    # Calculate the relative path from addon_dir
+                    rel_path = file_path.relative_to(addon_dir)
+                    
                     # Handle the new structure - map src/ files to root of addon
-                    if "src/" in str(file_path):
-                        # Map src/ files to the root of the addon in the zip
-                        rel_path = file_path.relative_to(addon_dir / "src")
-                        arcname = Path("IfcLCA-blend") / rel_path
+                    if rel_path.parts[0] == "src":
+                        # Remove "src" from the path and map to addon root
+                        new_parts = rel_path.parts[1:]
+                        if new_parts:
+                            arcname = Path("IfcLCA-blend") / Path(*new_parts)
+                        else:
+                            continue  # Skip empty paths
                     else:
                         # Keep other files in their relative positions
-                        arcname = Path("IfcLCA-blend") / file_path.relative_to(addon_dir)
-                    
-                    # No special file renaming needed
+                        arcname = Path("IfcLCA-blend") / rel_path
                     
                     print(f"  Adding: {arcname}")
                     zipf.write(file_path, arcname)
