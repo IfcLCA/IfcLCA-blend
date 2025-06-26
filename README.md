@@ -3,7 +3,7 @@
 <div align="center">
   <img src="https://github.com/IfcLCA/IfcLCA-blend/raw/main/assets/logo.png" alt="IfcLCA Logo" width="120"/>
   
-  <h3>Life Cycle Assessment for IFC building models in Blender</h3>
+  <h3>Life Cycle Assessment for IFC models in Blender</h3>
   
   [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
   [![Blender](https://img.shields.io/badge/Blender-4.2%2B-orange)](https://www.blender.org/)
