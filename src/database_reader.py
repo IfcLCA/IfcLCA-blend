@@ -228,6 +228,17 @@ class OkobaudatAPIReader(CarbonDatabaseReader):
             print("Warning: 'requests' module not available. Ökobaudat API functionality will be disabled.")
             return {}
         
+        # Check if online access is allowed (Blender 4.2+ requirement)
+        try:
+            import bpy
+            if hasattr(bpy.app, 'online_access') and not bpy.app.online_access:
+                print("Warning: Online access is disabled in Blender preferences. Ökobaudat API will not work.")
+                print("Enable 'Allow Online Access' in Preferences > System to use this feature.")
+                return {}
+        except ImportError:
+            # Not running in Blender, allow for testing
+            pass
+        
         url = f"{self.base_url}/{endpoint}"
         headers = {}
         if self.api_key:

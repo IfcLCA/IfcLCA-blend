@@ -252,7 +252,7 @@ class IFCLCA_PT_MainPanel(Panel):
             
             # Check if requests module is available
             try:
-                from database_reader import HAS_REQUESTS
+                from .database_reader import HAS_REQUESTS
                 if not HAS_REQUESTS:
                     col.separator()
                     box = col.box()

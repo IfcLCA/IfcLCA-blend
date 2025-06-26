@@ -60,14 +60,14 @@ try:
     from .logic import IfcMaterialExtractor, run_lca_analysis, format_results
 except ImportError:
     # Fallback to absolute imports (for testing)
-    from ifclca_core import get_database_reader as get_core_database_reader
-    from logic import IfcMaterialExtractor, run_lca_analysis, format_results
+    from .ifclca_core import get_database_reader as get_core_database_reader
+    from .logic import IfcMaterialExtractor, run_lca_analysis, format_results
 
 # Import the extended database reader that supports OKOBAUDAT_API
 try:
-    from database_reader import get_extended_database_reader
+    from .database_reader import get_extended_database_reader
 except ImportError:
-    from database_reader import get_extended_database_reader
+    from .database_reader import get_extended_database_reader
 
 
 
@@ -398,10 +398,16 @@ class IFCLCA_OT_BrowseMaterials(Operator):
             if props.database_type == 'KBOB':
                 db_reader = get_core_database_reader('KBOB', props.kbob_data_path)
             elif props.database_type == 'OKOBAUDAT_API':
-                from database_reader import HAS_REQUESTS
+                from .database_reader import HAS_REQUESTS
                 if not HAS_REQUESTS:
                     self.report({'ERROR'}, "The 'requests' module could not be loaded. Ökobaudat API functionality is disabled.")
                     return {'CANCELLED'}
+                
+                # Check online access permission
+                if hasattr(bpy.app, 'online_access') and not bpy.app.online_access:
+                    self.report({'ERROR'}, "Online access is disabled. Enable 'Allow Online Access' in Preferences > System to use Ökobaudat API.")
+                    return {'CANCELLED'}
+                
                 db_reader = get_extended_database_reader('OKOBAUDAT_API', props.okobaudat_api_key)
             else:
                 self.report({'ERROR'}, "No database selected")
@@ -730,7 +736,7 @@ class IFCLCA_OT_RunAnalysis(Operator):
             if props.database_type == 'KBOB':
                 db_reader = get_core_database_reader('KBOB', props.kbob_data_path)
             elif props.database_type == 'OKOBAUDAT_API':
-                from database_reader import HAS_REQUESTS
+                from .database_reader import HAS_REQUESTS
                 if not HAS_REQUESTS:
                     self.report({'ERROR'}, "The 'requests' module could not be loaded. Ökobaudat API functionality is disabled.")
                     return {'CANCELLED'}
@@ -825,7 +831,7 @@ class IFCLCA_OT_AutoMapMaterials(Operator):
             if props.database_type == 'KBOB':
                 db_reader = get_core_database_reader('KBOB', props.kbob_data_path)
             elif props.database_type == 'OKOBAUDAT_API':
-                from database_reader import HAS_REQUESTS
+                from .database_reader import HAS_REQUESTS
                 if not HAS_REQUESTS:
                     self.report({'ERROR'}, "The 'requests' module is not installed. See console for installation instructions.")
                     return {'CANCELLED'}
@@ -1081,7 +1087,7 @@ class IFCLCA_OT_SearchOkobaudat(Operator):
             return {'CANCELLED'}
         
         # Check if requests is available
-        from database_reader import HAS_REQUESTS
+        from .database_reader import HAS_REQUESTS
         if not HAS_REQUESTS:
             self.report({'ERROR'}, "The 'requests' module could not be loaded. Ökobaudat API functionality is disabled.")
             return {'CANCELLED'}

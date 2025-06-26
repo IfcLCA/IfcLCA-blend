@@ -1,0 +1,67 @@
+schema_version = "1.0.0"
+
+# IfcLCA-blend extension manifest
+id = "ifclca_blend"
+version = "0.1.0"
+name = "IfcLCA Integration"
+tagline = "Life Cycle Assessment for IFC models"
+maintainer = "louistrue"
+# Extension type
+type = "add-on"
+
+# Optional: link to documentation and source
+website = "https://github.com/IfcLCA/IfcLCA-blend"
+
+# Tags from the supported list
+tags = ["Import-Export", "User Interface"]
+
+blender_version_min = "4.2.0"
+
+# License conforming to SPDX identifier
+license = [
+  "SPDX:AGPL-3.0-or-later",
+]
+
+# Copyright information
+copyright = [
+  "2025 louistrue",
+]
+
+# Supported platforms - omitting means all platforms
+# platforms = ["windows-x64", "macos-arm64", "linux-x64"]
+
+# Bundle 3rd party Python modules for Ökobaudat API access
+wheels = [
+  "./libs/requests-2.32.4-py3-none-any.whl",
+  "./libs/certifi-2025.6.15-py3-none-any.whl",
+  "./libs/charset_normalizer-3.4.2-py3-none-any.whl",
+  "./libs/idna-3.10-py3-none-any.whl",
+  "./libs/urllib3-2.5.0-py3-none-any.whl",
+]
+
+# Permissions required by the addon
+[permissions]
+network = "Access Ökobaudat API for environmental material data"
+files = "Import/export IFC files and read material databases"
+
+# Build configuration
+[build]
+paths_exclude_pattern = [
+  "__pycache__/",
+  "*.pyc",
+  "*.pyo",
+  ".DS_Store",
+  "/.git/",
+  "/*.zip",
+  "/test_*.py",
+  "/debug_*.py",
+  "/tests/",
+  "/tools/",
+  "/.github/",
+  "/examples/",
+  "/docs/",
+  "*.egg-info/",
+  ".pytest_cache/",
+  ".coverage",
+  "htmlcov/",
+] 

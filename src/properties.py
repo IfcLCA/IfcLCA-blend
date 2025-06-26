@@ -33,7 +33,7 @@ except ImportError:
 try:
     from .panels import material_database_index_update
 except ImportError:
-    from panels import material_database_index_update
+    from .panels import material_database_index_update
 
 
 class MaterialResult(PropertyGroup):

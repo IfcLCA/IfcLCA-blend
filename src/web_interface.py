@@ -135,7 +135,7 @@ class ResultsHandler(http.server.SimpleHTTPRequestHandler):
                 try:
                     from .logic import IfcMaterialExtractor
                 except ImportError:
-                    from logic import IfcMaterialExtractor
+                    from .logic import IfcMaterialExtractor
                 
                 print(f"IFC file type: {type(self.ifc_file)}")
                 print(f"Has by_type method: {hasattr(self.ifc_file, 'by_type')}")
