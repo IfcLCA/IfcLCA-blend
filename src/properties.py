@@ -55,7 +55,7 @@ class MaterialDatabaseItem(PropertyGroup):
     category: StringProperty(name="Category")
     gwp: FloatProperty(name="GWP", default=0.0)
     density: FloatProperty(name="Density", default=0.0)
-
+    
 
 class IfcLCAProperties(PropertyGroup):
     """Main property group for IfcLCA"""
@@ -179,6 +179,32 @@ class IfcLCAProperties(PropertyGroup):
     use_net_volumes: BoolProperty(
         name="Use Net Volumes",
         description="Use net volumes instead of gross volumes where available",
+        default=False
+    )
+    
+    show_impact_indicators: BoolProperty(
+        name="Show Impact Indicators",
+        description="Show visual indicators for material environmental impact",
+        default=True
+    )
+    
+    # Material database sorting
+    material_sort_column: EnumProperty(
+        name="Sort Column",
+        description="Column to sort by",
+        items=[
+            ('NONE', "None", "No sorting"),
+            ('CATEGORY', "Category", "Sort by category"),
+            ('NAME', "Name", "Sort by material name"),
+            ('GWP', "GWP", "Sort by Global Warming Potential"),
+            ('DENSITY', "Density", "Sort by density"),
+        ],
+        default='NONE'
+    )
+    
+    material_sort_reverse: BoolProperty(
+        name="Sort Reverse",
+        description="Reverse sort order",
         default=False
     )
 

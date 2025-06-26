@@ -74,6 +74,7 @@ except ImportError:
 
 # Global storage for IFC file (could also use Bonsai's IfcStore)
 _ifc_file = None
+_web_server = None
 
 
 class IFCLCA_OT_LoadIFC(Operator, ImportHelper):
@@ -263,6 +264,28 @@ class IFCLCA_OT_UseActiveIFC(Operator):
             return {'CANCELLED'}
 
 
+class IFCLCA_OT_SortMaterialDatabase(Operator):
+    """Sort material database by column"""
+    bl_idname = "ifclca.sort_material_database"
+    bl_label = "Sort Materials"
+    bl_description = "Sort material database by this column"
+    bl_options = {'REGISTER', 'INTERNAL'}
+    
+    column: StringProperty()
+    
+    def execute(self, context):
+        props = context.scene.ifclca_props
+        
+        # Toggle sort direction if clicking same column
+        if props.material_sort_column == self.column:
+            props.material_sort_reverse = not props.material_sort_reverse
+        else:
+            props.material_sort_column = self.column
+            props.material_sort_reverse = False
+            
+        return {'FINISHED'}
+
+
 class IFCLCA_OT_BrowseMaterials(Operator):
     """Browse and select materials from database"""
     bl_idname = "ifclca.browse_materials"
@@ -338,8 +361,13 @@ class IFCLCA_OT_BrowseMaterials(Operator):
             
             logger.info(f"Loaded {valid_count} materials into browser")
             
-            # Show the browser dialog
-            return context.window_manager.invoke_props_dialog(self, width=800)
+            # Set initial selection to first item if available
+            if valid_count > 0:
+                context.scene.ifclca_material_database_index = 0
+            
+            # Show dialog
+            wm = context.window_manager
+            return wm.invoke_props_dialog(self, width=700)
             
         except Exception as e:
             self.report({'ERROR'}, f"Failed to load materials: {str(e)}")
@@ -347,47 +375,158 @@ class IFCLCA_OT_BrowseMaterials(Operator):
     
     def draw(self, context):
         layout = self.layout
+        props = context.scene.ifclca_props
         
-        # Header
-        row = layout.row()
-        row.label(text="Select Material from Database", icon='VIEWZOOM')
+        # Main header with integrated search label
+        header_box = layout.box()
+        header_col = header_box.column()
         
-        # Info about current selection
-        db = context.scene.ifclca_material_database
-        idx = context.scene.ifclca_material_database_index
-        if 0 <= idx < len(db):
-            box = layout.box()
-            box.label(text=f"Selected: {db[idx].name}", icon='MATERIAL_DATA')
-            if db[idx].gwp > 0:
-                box.label(text=f"GWP: {db[idx].gwp*1000:.3f} g CO₂/kg")
-            if db[idx].density > 0:
-                box.label(text=f"Density: {db[idx].density:.0f} kg/m³")
+        # Title row
+        title_row = header_col.row()
+        title_row.label(text="Material Database Browser", icon='VIEWZOOM')
+        title_row.prop(props, "show_impact_indicators", text="", icon='WORLD')
         
-        # Material list with search
+        # Search instruction
+        header_col.label(text="Search by material name or category:", icon='INFO')
+        
+        # Impact legend (only if indicators are enabled)
+        if props.show_impact_indicators:
+            header_col.separator()
+            legend_row = header_col.row()
+            legend_row.scale_y = 0.7
+            legend_row.label(text="Impact indicators:", icon='WORLD')
+            sub_row = legend_row.row(align=True)
+            sub_row.label(text="Best", icon='CHECKMARK')
+            sub_row.label(text="Good", icon='INFO')
+            sub_row.label(text="Fair", icon='ERROR')
+            sub_row.label(text="Poor", icon='ORPHAN_DATA')
+        
+        # Clickable Table Headers
+        headers_box = layout.box()
+        headers_split = headers_box.split(factor=0.3)
+        
+        # Category header button
+        cat_col = headers_split.column()
+        cat_row = cat_col.row(align=True)
+        cat_op = cat_row.operator("ifclca.sort_material_database", text="Category", emboss=False)
+        cat_op.column = 'CATEGORY'
+        
+        # Add sort indicator as clickable button
+        if props.material_sort_column == 'CATEGORY':
+            sort_icon_op = cat_row.operator("ifclca.sort_material_database", text="▼" if props.material_sort_reverse else "▲", emboss=False)
+            sort_icon_op.column = 'CATEGORY'
+        else:
+            sort_icon_op = cat_row.operator("ifclca.sort_material_database", text="♢", emboss=False)
+            sort_icon_op.column = 'CATEGORY'
+        
+        # Name and data headers
+        name_data_split = headers_split.split(factor=0.5)
+        
+        # Name header button
+        name_col = name_data_split.column()
+        name_row = name_col.row(align=True)
+        name_op = name_row.operator("ifclca.sort_material_database", text="Material Name", emboss=False)
+        name_op.column = 'NAME'
+        
+        # Add sort indicator as clickable button
+        if props.material_sort_column == 'NAME':
+            sort_icon_op = name_row.operator("ifclca.sort_material_database", text="▼" if props.material_sort_reverse else "▲", emboss=False)
+            sort_icon_op.column = 'NAME'
+        else:
+            sort_icon_op = name_row.operator("ifclca.sort_material_database", text="♢", emboss=False)
+            sort_icon_op.column = 'NAME'
+        
+        # Environmental data headers
+        data_col = name_data_split.column()
+        data_row = data_col.row(align=True)
+        
+        # GWP sort button
+        gwp_op = data_row.operator("ifclca.sort_material_database", text="GWP", emboss=False)
+        gwp_op.column = 'GWP'
+        # Add sort indicator as clickable button
+        if props.material_sort_column == 'GWP':
+            sort_icon_op = data_row.operator("ifclca.sort_material_database", text="▼" if props.material_sort_reverse else "▲", emboss=False)
+            sort_icon_op.column = 'GWP'
+        else:
+            sort_icon_op = data_row.operator("ifclca.sort_material_database", text="♢", emboss=False)
+            sort_icon_op.column = 'GWP'
+            
+        # Density sort button
+        density_op = data_row.operator("ifclca.sort_material_database", text="Density", emboss=False)
+        density_op.column = 'DENSITY'
+        # Add sort indicator as clickable button
+        if props.material_sort_column == 'DENSITY':
+            sort_icon_op = data_row.operator("ifclca.sort_material_database", text="▼" if props.material_sort_reverse else "▲", emboss=False)
+            sort_icon_op.column = 'DENSITY'
+        else:
+            sort_icon_op = data_row.operator("ifclca.sort_material_database", text="♢", emboss=False)
+            sort_icon_op.column = 'DENSITY'
+        
+        # Material list (search bar will appear at the top automatically)
         layout.template_list(
             "IFCLCA_UL_MaterialDatabaseList", "material_browser_list",
             context.scene, "ifclca_material_database",
             context.scene, "ifclca_material_database_index",
-            rows=15,
-            maxrows=15
+            rows=10,
+            maxrows=10
         )
         
-        # Help text
-        box = layout.box()
-        col = box.column(align=True)
-        col.scale_y = 0.9
-        col.label(text="Tips:", icon='INFO')
-        col.label(text="• Use search box to filter materials")
-        col.label(text="• Click column headers to sort")
-        col.label(text="• Double-click to select")
+        # Selection details
+        db = context.scene.ifclca_material_database
+        idx = context.scene.ifclca_material_database_index
+        
+        if 0 <= idx < len(db):
+            # Selection info box
+            box = layout.box()
+            col = box.column()
+            
+            # Selected material header
+            row = col.row()
+            row.label(text="Selected Material:", icon='FORWARD')
+            
+            # Material details in two columns
+            split = col.split(factor=0.5)
+            
+            # Left column
+            left = split.column()
+            left.label(text=f"Name: {db[idx].name}")
+            left.label(text=f"Category: {db[idx].category}")
+            
+            # Right column
+            right = split.column()
+            if db[idx].gwp > 0:
+                right.label(text=f"GWP: {db[idx].gwp:.3f} kg CO₂/kg")
+            else:
+                right.label(text="GWP: No data")
+            if db[idx].density > 0:
+                right.label(text=f"Density: {db[idx].density:.0f} kg/m³")
+            else:
+                right.label(text="Density: No data")
+        else:
+            # No selection
+            box = layout.box()
+            box.label(text="No material selected", icon='ERROR')
+        
+        # Footer with material count and shortcuts
+        footer_box = layout.box()
+        footer_col = footer_box.column()
+        
+        # Material count
+        if hasattr(context.scene, 'ifclca_material_database'):
+            total = len(context.scene.ifclca_material_database)
+            footer_col.label(text=f"Total materials: {total}", icon='INFO')
+        
+        # Keyboard shortcuts
+        footer_col.label(text="↑↓ Navigate • Enter to confirm • Esc to cancel", icon='HAND')
     
     def execute(self, context):
         props = context.scene.ifclca_props
         db = context.scene.ifclca_material_database
         idx = context.scene.ifclca_material_database_index
         
+        # Check if any material is selected
         if idx < 0 or idx >= len(db):
-            self.report({'WARNING'}, "No material selected")
+            self.report({'WARNING'}, "Please select a material first")
             return {'CANCELLED'}
         
         try:
@@ -401,7 +540,10 @@ class IFCLCA_OT_BrowseMaterials(Operator):
             mapping.database_name = selected.name
             mapping.is_mapped = True
             
-            self.report({'INFO'}, f"Mapped to: {mapping.database_name}")
+            # Clear the material database after successful selection
+            context.scene.ifclca_material_database.clear()
+            
+            self.report({'INFO'}, f"✓ Material mapped to: {mapping.database_name}")
             return {'FINISHED'}
             
         except Exception as e:
@@ -736,7 +878,7 @@ class IFCLCA_OT_ViewWebResults(Operator):
     bl_options = {'REGISTER', 'UNDO'}
 
     def execute(self, context):
-        global _ifc_file
+        global _ifc_file, _web_server
         props = context.scene.ifclca_props
         if not props.results_json:
             self.report({'ERROR'}, "No results available")
@@ -759,8 +901,8 @@ class IFCLCA_OT_ViewWebResults(Operator):
             detailed_results=detailed_results,
             ifc_file=_ifc_file
         )
-        # Store server on context to keep alive
-        context.scene.ifclca_web_server = server
+        # Store server globally to keep alive
+        _web_server = server
         self.report({'INFO'}, "Opening results in web browser...")
         return {'FINISHED'}
 
@@ -769,6 +911,7 @@ class IFCLCA_OT_ViewWebResults(Operator):
 classes = [
     IFCLCA_OT_LoadIFC,
     IFCLCA_OT_UseActiveIFC,
+    IFCLCA_OT_SortMaterialDatabase,
     IFCLCA_OT_BrowseMaterials,
     IFCLCA_OT_RunAnalysis,
     IFCLCA_OT_ClearResults,

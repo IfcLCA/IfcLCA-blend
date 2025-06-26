@@ -121,10 +121,6 @@ def register():
     for cls in panels.classes:
         bpy.utils.register_class(cls)
     
-    # Register web server property as a generic Python object
-    # This allows storing the server reference without needing a custom property type
-    bpy.types.Scene.ifclca_web_server = None
-    
     # Make logger available in console
     bpy.ifclca_logger = get_ifclca_logger()
     
@@ -146,10 +142,6 @@ def unregister():
         
     # Unregister properties module (handles all property cleanup)
     properties.unregister()
-    
-    # Remove web server property
-    if hasattr(bpy.types.Scene, 'ifclca_web_server'):
-        del bpy.types.Scene.ifclca_web_server
     
     # Remove logger from bpy
     if hasattr(bpy, 'ifclca_logger'):

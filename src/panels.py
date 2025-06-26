@@ -7,6 +7,9 @@ except ImportError:
     Panel = type
     UIList = type
 
+import logging
+logger = logging.getLogger('IfcLCA')
+
 # Try to import Bonsai to check if available
 try:
     from bonsai.bim.ifc import IfcStore
@@ -79,82 +82,153 @@ class IFCLCA_UL_MaterialDatabaseList(UIList):
     """UI List for material database browser"""
     
     def draw_item(self, context, layout, data, item, icon, active_data, active_propname):
-        # Force filter to show
+        """Draw each item in the list"""
+        # Force filter UI to show
         self.use_filter_show = True
+        
         if self.layout_type in {'DEFAULT', 'COMPACT'}:
+            props = context.scene.ifclca_props
+            
             # Use split for better layout
             split = layout.split(factor=0.3)
             
-            # Category and name
-            split.label(text=item.category, icon='DOT')
-            name_row = split.row()
+            # Category with optional impact indicators
+            cat_row = split.row()
+            
+            # Calculate relative impact if indicators are enabled
+            impact_icon = 'DOT'
+            if props.show_impact_indicators and item.gwp > 0:
+                # Get all items in the same category with GWP data
+                all_items = context.scene.ifclca_material_database
+                category_gwps = [mat.gwp for mat in all_items 
+                               if mat.category == item.category and mat.gwp > 0]
+                
+                if category_gwps:
+                    # Calculate percentile within category
+                    sorted_gwps = sorted(category_gwps)
+                    # Count how many materials have lower GWP
+                    lower_count = sum(1 for gwp in category_gwps if gwp < item.gwp)
+                    percentile = lower_count / len(category_gwps)
+                    
+                    # Assign icon based on relative performance in category
+                    if percentile >= 0.75:  # Top 25% worst performers
+                        cat_row.alert = True
+                        impact_icon = 'ORPHAN_DATA'
+                    elif percentile >= 0.5:  # 50-75th percentile
+                        impact_icon = 'ERROR'
+                    elif percentile >= 0.25:  # 25-50th percentile
+                        impact_icon = 'INFO'
+                    else:  # Bottom 25% best performers
+                        impact_icon = 'CHECKMARK'
+                else:
+                    impact_icon = 'QUESTION'
+            elif props.show_impact_indicators and item.gwp == 0:
+                impact_icon = 'QUESTION'
+            
+            cat_row.label(text=item.category, icon=impact_icon)
+            
+            # Material name
+            name_split = split.split(factor=0.5)
+            name_row = name_split.row()
             name_row.label(text=item.name, icon='MATERIAL_DATA')
             
-            # Environmental data
-            if item.gwp > 0 or item.density > 0:
-                info_row = split.row()
-                info_row.scale_x = 0.8
-                if item.gwp > 0:
-                    info_row.label(text=f"{item.gwp*1000:.3f} g CO₂/kg")
-                if item.density > 0:
-                    info_row.label(text=f"{item.density:.0f} kg/m³")
+            # Environmental data with better formatting
+            data_row = name_split.row(align=True)
+            data_row.scale_x = 0.9
+            
+            if item.gwp > 0:
+                # GWP is stored in kg CO₂-eq/kg
+                gwp_text = f"{item.gwp:.3f} kg CO₂/kg"
+                data_row.label(text=gwp_text)
+            else:
+                data_row.label(text="No GWP data")
+                
+            if item.density > 0:
+                data_row.label(text=f"• {item.density:.0f} kg/m³")
                     
         elif self.layout_type == 'GRID':
             layout.alignment = 'CENTER'
             layout.label(text="", icon='MATERIAL')
     
     def draw_filter(self, context, layout):
-        """Draw filter options"""
-        # Always show filter
-        self.use_filter_show = True
+        """Draw filter UI - search only"""
+        # Create a prominent search row
+        row = layout.row(align=True)
         
-        row = layout.row()
-        
-        subrow = row.row(align=True)
-        subrow.prop(self, "filter_name", text="")
-        subrow.prop(self, "use_filter_invert", text="", icon='ARROW_LEFTRIGHT')
-        
-        subrow = row.row(align=True) 
-        subrow.prop(self, "use_filter_sort_alpha", text="", icon='SORTALPHA')
-        subrow.prop(self, "use_filter_sort_reverse", text="", icon='SORT_DESC')
-        
+        # Search icon and input field
+        row.prop(self, "filter_name", text="", icon='VIEWZOOM')
+
     def filter_items(self, context, data, propname):
-        """Filter and sort items"""
-        # Get the collection
+        """Filter items in the list and apply sorting"""
+        # Get items collection
         items = getattr(data, propname)
+        props = context.scene.ifclca_props
         
-        # Initialize flags
+        # Initialize return values
         flt_flags = []
         flt_neworder = []
         
-        # Filter by name/category
+        # FILTERING
         if self.filter_name:
-            # Manual filtering implementation
-            filter_lower = self.filter_name.lower()
+            # Custom filter for name OR category
+            flt_flags = [self.bitflag_filter_item] * len(items)
+            search_term = self.filter_name.lower()
             
-            for idx, item in enumerate(items):
-                # Check if filter matches name or category
-                name_match = filter_lower in item.name.lower()
-                category_match = filter_lower in item.category.lower()
+            for i, item in enumerate(items):
+                # Check both name and category
+                found = (search_term in item.name.lower() or 
+                        search_term in item.category.lower())
                 
-                if name_match or category_match:
-                    # Show item if it matches (or hide if inverted)
-                    flt_flags.append(self.bitflag_filter_item if not self.use_filter_invert else 0)
-                else:
-                    # Hide item if it doesn't match (or show if inverted)
-                    flt_flags.append(0 if not self.use_filter_invert else self.bitflag_filter_item)
+                # Clear flag if not found
+                if not found:
+                    flt_flags[i] &= ~self.bitflag_filter_item
         else:
             # No filter - show all items
             flt_flags = [self.bitflag_filter_item] * len(items)
-        
-        # Sort items
-        if self.use_filter_sort_alpha:
-            # Sort by category first, then name
-            indices = list(range(len(items)))
-            indices.sort(key=lambda i: (items[i].category, items[i].name))
-            if self.use_filter_sort_reverse:
-                indices.reverse()
-            flt_neworder = indices
+            
+        # SORTING
+        if props.material_sort_column != 'NONE' and len(items) > 0:
+            # Create list of (index, sort_value) tuples for sort_items_helper
+            indexed_items = []
+            
+            for i, item in enumerate(items):
+                if props.material_sort_column == 'CATEGORY':
+                    # Sort by category, then by name for stability
+                    sort_value = (item.category.lower(), item.name.lower())
+                elif props.material_sort_column == 'NAME':
+                    sort_value = item.name.lower()
+                elif props.material_sort_column == 'GWP':
+                    # For numerical sorting, ensure items with no data always appear at bottom
+                    if item.gwp > 0:
+                        sort_value = item.gwp
+                    else:
+                        # Use a very large number so items with no data always sort to the end
+                        # regardless of whether we're sorting ascending or descending
+                        sort_value = float('inf') if not props.material_sort_reverse else float('-inf')
+                elif props.material_sort_column == 'DENSITY':
+                    # For numerical sorting, ensure items with no data always appear at bottom  
+                    if item.density > 0:
+                        sort_value = item.density
+                    else:
+                        # Use a very large number so items with no data always sort to the end
+                        # regardless of whether we're sorting ascending or descending
+                        sort_value = float('inf') if not props.material_sort_reverse else float('-inf')
+                else:
+                    sort_value = i  # Default to original order
+                    
+                indexed_items.append((i, sort_value))
+            
+            # Sort the items using the helper function
+            helper_funcs = bpy.types.UI_UL_list
+            if props.material_sort_column in ['GWP', 'DENSITY']:
+                # For numerical columns with tuple sorting:
+                # When reverse=False: (True, low_value) comes before (True, high_value) comes before (False, any)
+                # When reverse=True: (True, high_value) comes before (True, low_value) comes before (False, any)
+                # The (False, any) items always come last regardless of reverse flag
+                flt_neworder = helper_funcs.sort_items_helper(indexed_items, key=lambda x: x[1], reverse=props.material_sort_reverse)
+            else:
+                # Alphabetical sort - use sort_items_helper
+                flt_neworder = helper_funcs.sort_items_helper(indexed_items, key=lambda x: x[1], reverse=props.material_sort_reverse)
             
         return flt_flags, flt_neworder
 
@@ -484,6 +558,11 @@ class IFCLCA_PT_PreferencesPanel(Panel):
             col.prop(props, "kbob_data_path")
         elif props.database_type == 'CUSTOM':
             col.prop(props, "custom_data_path")
+        
+        # UI settings
+        col.separator()
+        col.label(text="Display Options:", icon='PREFERENCES')
+        col.prop(props, "show_impact_indicators")
         
         # Link to full preferences
         col.separator()

@@ -308,8 +308,8 @@ class KBOBReader(IfcLCADBReader):
             'id': kbob_id,
             'name': name,
             'category': category,
-            'gwp': gwp / 1000 if gwp else 0,  # Convert g to kg
-            'carbon_per_unit': gwp / 1000 if gwp else 0,  # For compatibility
+            'gwp': gwp if gwp else 0,  # GWP is already in kg CO₂-eq/kg
+            'carbon_per_unit': gwp if gwp else 0,  # For compatibility
             'penr': penre,
             'unit': 'kg',
             'ubp': ubp,

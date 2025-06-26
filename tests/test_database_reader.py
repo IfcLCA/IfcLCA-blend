@@ -51,14 +51,14 @@ class TestBlendDatabaseReader:
             {
                 "KBOB_ID": 99.001,
                 "Name": "Test Material 1",
-                "GWP": 500,  # in g CO₂-eq/kg
+                "GWP": 0.5,  # in kg CO₂-eq/kg
                 "PENRE": 1000,
                 "kg/unit": 1000
             },
             {
                 "KBOB_ID": 1.999,
                 "Name": "Test Concrete",
-                "GWP": 100,
+                "GWP": 0.1,  # in kg CO₂-eq/kg
                 "PENRE": 200,
                 "kg/unit": 2400,
                 "UBP": 150
@@ -78,13 +78,13 @@ class TestBlendDatabaseReader:
             # Check materials
             test_mat = reader.get_material_data('KBOB_99.001')
             assert test_mat['name'] == 'Test Material 1'
-            assert test_mat['carbon_per_unit'] == pytest.approx(0.5)  # 500/1000
+            assert test_mat['carbon_per_unit'] == pytest.approx(0.5)  # 0.5 kg CO₂-eq/kg
             assert test_mat['density'] == 1000
             assert test_mat['category'] == 'Other Materials'
             
             concrete_mat = reader.get_material_data('KBOB_1.999')
             assert concrete_mat['name'] == 'Test Concrete'
-            assert concrete_mat['carbon_per_unit'] == pytest.approx(0.1)  # 100/1000
+            assert concrete_mat['carbon_per_unit'] == pytest.approx(0.1)  # 0.1 kg CO₂-eq/kg
             assert concrete_mat['category'] == 'Concrete'
         finally:
             os.unlink(temp_path)
@@ -189,13 +189,13 @@ class TestBlendDatabaseReader:
             {
                 "KBOB_ID": 0.001,
                 "Name": "Foundation material",
-                "GWP": 100,
+                "GWP": 0.1,  # 0.1 kg CO₂-eq/kg
                 "kg/unit": "-"  # No density
             },
             {
                 "KBOB_ID": 10.001,
                 "Name": "Insulation with range",
-                "GWP": 1100,
+                "GWP": 1.1,  # 1.1 kg CO₂-eq/kg
                 "PENRE": 7800,
                 "min density": 20,
                 "max density": 100  # Density range
@@ -223,7 +223,7 @@ class TestBlendDatabaseReader:
             # Check material with density range
             insulation = reader.get_material_data('KBOB_10.001')
             assert insulation['density'] == 60  # Average of 20 and 100
-            assert insulation['carbon_per_unit'] == pytest.approx(1.1)  # 1100/1000
+            assert insulation['carbon_per_unit'] == pytest.approx(1.1)  # 1.1 kg CO₂-eq/kg
             
             # Check material with zero GWP
             window = reader.get_material_data('KBOB_5.001')

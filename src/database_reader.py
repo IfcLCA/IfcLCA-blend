@@ -164,7 +164,7 @@ class KBOBDatabaseReader(CarbonDatabaseReader):
                     "name": name,
                     "category": category,
                     "density": density,
-                    "carbon_per_unit": gwp / 1000 if gwp else 0,  # Convert g CO₂-eq/kg to kg CO₂-eq/kg
+                    "carbon_per_unit": gwp if gwp else 0,  # GWP is in kg CO₂-eq/kg
                     "unit": "kg CO₂-eq/kg",
                     "kbob_id": kbob_id_str,
                     "penre": penre,

@@ -42,7 +42,7 @@ def main():
         print(f"\n{i+1}. {name}")
         print(f"   ID: {mat_id}")
         print(f"   Category: {category}")
-        print(f"   GWP: {material['carbon_per_unit']*1000:.1f} g CO₂-eq/kg")
+        print(f"   GWP: {material['carbon_per_unit']:.3f} kg CO₂-eq/kg")
         if material['density']:
             print(f"   Density: {material['density']} kg/m³")
         else:
@@ -59,7 +59,7 @@ def main():
     for i, (mat_id, name, category) in enumerate(insulation[:3]):
         material = reader.get_material_data(mat_id)
         print(f"\n{i+1}. {name}")
-        print(f"   GWP: {material['carbon_per_unit']*1000:.1f} g CO₂-eq/kg")
+        print(f"   GWP: {material['carbon_per_unit']:.3f} kg CO₂-eq/kg")
         if material['density']:
             print(f"   Density: {material['density']} kg/m³")
     
@@ -73,7 +73,7 @@ def main():
     print(f"Found {len(carbon_negative)} carbon-negative materials")
     for mat_id, mat_data in carbon_negative[:3]:
         print(f"\n- {mat_data['name']}")
-        print(f"  GWP: {mat_data['carbon_per_unit']*1000:.1f} g CO₂-eq/kg")
+        print(f"  GWP: {mat_data['carbon_per_unit']:.3f} kg CO₂-eq/kg")
 
 if __name__ == '__main__':
     main() 
