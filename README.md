@@ -1,7 +1,7 @@
 # IfcLCA-blend
 
 <div align="center">
-  <img src="logo.png" alt="IfcLCA Logo" width="120"/>
+  <img src="https://github.com/louistrue/IfcLCA-blend/raw/main/logo.png" alt="IfcLCA Logo" width="120"/>
   
   <h3>Life Cycle Assessment for IFC building models in Blender</h3>
   
@@ -19,7 +19,7 @@
 
 ## Features
 
-<img src="UI.png" alt="IfcLCA Blender Interface" width="100%" style="border-radius: 8px; margin: 20px 0;"/>
+<img src="https://github.com/louistrue/IfcLCA-blend/raw/main/UI.png" alt="IfcLCA Blender Interface" width="100%" style="border-radius: 8px; margin: 20px 0;"/>
 
 - 🏗️ **IFC Model Integration**: Load IFC models and analyze building elements seamlessly
 - 🌍 **Environmental Databases**: Access KBOB (Swiss) and ÖKOBAUDAT (German) material databases
@@ -98,7 +98,7 @@
 
 ### Interactive Results Dashboard
 
-<img src="Web.png" alt="IfcLCA Web Dashboard" width="100%" style="border-radius: 8px; margin: 20px 0;"/>
+<img src="https://github.com/louistrue/IfcLCA-blend/raw/main/Web.png" alt="IfcLCA Web Dashboard" width="100%" style="border-radius: 8px; margin: 20px 0;"/>
 
 The web-based dashboard provides comprehensive visualization of your LCA results with:
 - **Total Carbon Impact**: Overall embodied carbon footprint
